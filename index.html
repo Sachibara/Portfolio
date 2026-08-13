@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 43rd Anniversary!</title>
+<style>
+  :root {
+    --pink: #ff6fa5;
+    --deep-pink: #ff2e7e;
+    --gold: #ffd166;
+    --bg1: #2b0f2e;
+    --bg2: #4a1942;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(ellipse at top, var(--bg2), var(--bg1));
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 24px;
+    text-align: center;
+  }
+
+  #hearts-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .card {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    padding: 48px 36px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 28px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    animation: floatIn 1.2s ease-out;
+  }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .top-line {
+    font-size: clamp(14px, 2.4vw, 18px);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 6vw, 48px);
+    line-height: 1.25;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--pink), var(--gold), var(--pink));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 4s linear infinite;
+    text-shadow: 0 0 40px rgba(255, 111, 165, 0.35);
+  }
+
+  @keyframes shimmer {
+    to { background-position: 200% center; }
+  }
+
+  .emojis {
+    font-size: clamp(30px, 7vw, 46px);
+    margin-top: 18px;
+    display: inline-block;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  .subtext {
+    margin-top: 22px;
+    font-size: clamp(14px, 2.2vw, 17px);
+    color: rgba(255,255,255,0.75);
+  }
+
+  button#burst-btn {
+    margin-top: 30px;
+    background: linear-gradient(135deg, var(--deep-pink), var(--pink));
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 30px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(255, 46, 126, 0.45);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  button#burst-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(255, 46, 126, 0.55);
+  }
+
+  button#burst-btn:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  button#burst-btn:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  footer {
+    position: relative;
+    z-index: 2;
+    margin-top: 18px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; }
+    h1 { animation: none; }
+    .emojis { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+  <canvas id="hearts-canvas" aria-hidden="true"></canvas>
+
+  <main class="card" role="main">
+    <p class="top-line">A Celebration Of Us</p>
+    <h1>HAPPY 43rd ANNIVERSARY<br>MY PRINCESS SACHIBARA DUMPLING!</h1>
+    <div class="emojis" aria-hidden="true">😘 💖 💯</div>
+    <p class="subtext">Here's to 43 years and counting. Tap the button — the hearts know how much. 💫</p>
+    <button id="burst-btn" type="button">Send More Love 💖</button>
+    <span id="live-status" class="sr-only" role="status" aria-live="polite"></span>
+  </main>
+
+  <footer>Made with love, one heart at a time.</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var canvas = document.getElementById('hearts-canvas');
+  var ctx = canvas.getContext('2d');
+  var hearts = [];
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function resize() {
+    canvas.width = window.innerWidth * devicePixelRatio;
+    canvas.height = window.innerHeight * devicePixelRatio;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function Heart(x, y, burst) {
+    this.x = x !== undefined ? x : Math.random() * window.innerWidth;
+    this.y = y !== undefined ? y : window.innerHeight + 20;
+    this.size = 10 + Math.random() * 18;
+    this.speedY = burst ? -(2 + Math.random() * 4) : -(0.6 + Math.random() * 1.2);
+    this.speedX = (Math.random() - 0.5) * (burst ? 3 : 1);
+    this.opacity = 1;
+    this.hue = Math.random() > 0.5 ? '#ff6fa5' : '#ffd166';
+    this.rotation = Math.random() * Math.PI * 2;
+    this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+  }
+
+  function drawHeart(h) {
+    ctx.save();
+    ctx.translate(h.x, h.y);
+    ctx.rotate(h.rotation);
+    ctx.globalAlpha = Math.max(h.opacity, 0);
+    ctx.fillStyle = h.hue;
+    var s = h.size;
+    ctx.beginPath();
+    ctx.moveTo(0, s * 0.3);
+    ctx.bezierCurveTo(-s, -s * 0.5, -s * 1.6, s * 0.5, 0, s * 1.4);
+    ctx.bezierCurveTo(s * 1.6, s * 0.5, s, -s * 0.5, 0, s * 0.3);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function spawnAmbient() {
+    if (hearts.length < 40) {
+      hearts.push(new Heart());
+    }
+  }
+
+  function burstHearts(count) {
+    var cx = window.innerWidth / 2;
+    var cy = window.innerHeight / 2;
+    for (var i = 0; i < count; i++) {
+      hearts.push(new Heart(cx + (Math.random() - 0.5) * 200, cy + (Math.random() - 0.5) * 100, true));
+    }
+  }
+
+  var lastSpawn = 0;
+  function animate(ts) {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    if (!reduceMotion && ts - lastSpawn > 400) {
+      spawnAmbient();
+      lastSpawn = ts;
+    }
+
+    for (var i = hearts.length - 1; i >= 0; i--) {
+      var h = hearts[i];
+      h.y += h.speedY;
+      h.x += h.speedX;
+      h.rotation += h.rotationSpeed;
+      h.opacity -= 0.004;
+      drawHeart(h);
+      if (h.opacity <= 0 || h.y < -50) {
+        hearts.splice(i, 1);
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  if (!reduceMotion) {
+    requestAnimationFrame(animate);
+  } else {
+    // Draw a single static frame of hearts for reduced-motion users
+    for (var j = 0; j < 15; j++) drawHeart(new Heart());
+  }
+
+  var btn = document.getElementById('burst-btn');
+  var status = document.getElementById('live-status');
+  var clicks = 0;
+
+  btn.addEventListener('click', function () {
+    clicks++;
+    burstHearts(30);
+    status.textContent = 'Sent a burst of love! (' + clicks + ' total)';
+  });
+
+  btn.addEventListener('keyup', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      btn.click();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
