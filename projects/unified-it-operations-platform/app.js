@@ -530,7 +530,85 @@
     }).join("") : '<div class="empty">No incidents yet.</div>';
 
     $("overviewAudit").innerHTML = renderAuditEntries(state.audit.slice(0, 8));
+    renderOpsVisuals(stats);
     bindOpenEndpointButtons();
+  }
+
+  function renderOpsVisuals(stats) {
+    if (!$("healthTrendChart")) return;
+
+    const noncompliant = stats.managed.length - stats.compliant;
+    const offline = state.endpoints.filter((e) => e.agent !== "online").length;
+    const warrantyRisk = (state.assets || []).filter((a) => {
+      const w = warrantyInfo(a);
+      return w.days !== null && w.days <= 45;
+    }).length;
+    const openTickets = state.incidents.filter((i) => !["Resolved","Closed"].includes(i.status)).length;
+
+    // Deterministic telemetry curve derived from the current fleet posture.
+    const penalty = Math.min(22, noncompliant * 3 + offline * 4 + openTickets * 2);
+    const base = stats.health;
+    const offsets = [-7,-4,-6,-2,-1,2,0,3];
+    const values = offsets.map((offset, index) =>
+      Math.max(18, Math.min(100, base + offset - Math.round(penalty * (7-index) / 24)))
+    );
+    values[values.length - 1] = base;
+
+    const x0=48, x1=738, y0=24, y1=208;
+    const pts = values.map((value,index) => {
+      const x=x0 + (x1-x0) * index/(values.length-1);
+      const y=y1 - (value/100)*(y1-y0);
+      return {x,y,value};
+    });
+    $("healthTrendLine").setAttribute("points",pts.map(p=>p.x.toFixed(1)+","+p.y.toFixed(1)).join(" "));
+    $("healthTrendArea").setAttribute("d","M "+pts[0].x.toFixed(1)+" "+y1+" L "+pts.map(p=>p.x.toFixed(1)+" "+p.y.toFixed(1)).join(" L ")+" L "+pts[pts.length-1].x.toFixed(1)+" "+y1+" Z");
+    $("healthTrendPoints").innerHTML=pts.map(p=>'<circle class="trend-point" cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="4"><title>'+p.value+'% health</title></circle>').join("");
+    const labels=["−7h","−6h","−5h","−4h","−3h","−2h","−1h","Now"];
+    $("healthTrendDates").innerHTML=pts.map((p,i)=>'<text x="'+p.x.toFixed(1)+'" y="219">'+labels[i]+'</text>').join("");
+
+    const riskItems = [
+      {label:"Open tickets", value:openTickets, cls:"rk1"},
+      {label:"Non-compliant", value:noncompliant, cls:"rk2"},
+      {label:"Offline agents", value:offline, cls:"rk3"},
+      {label:"Warranty risk", value:warrantyRisk, cls:"rk4"}
+    ];
+    const totalRisk = Math.max(1,riskItems.reduce((sum,item)=>sum+item.value,0));
+    const riskIndex = Math.min(100,Math.round((100-stats.health)*.7 + Math.min(30,totalRisk*3)));
+    $("riskScoreValue").textContent=riskIndex;
+    $("riskKey").innerHTML=riskItems.map(item =>
+      '<div class="risk-key-row"><i class="'+item.cls+'"></i><span>'+esc(item.label)+'</span><b>'+item.value+'</b></div>'
+    ).join("");
+
+    let cursor=0;
+    const colors=["var(--coral)","var(--yellow)","var(--cyan)","var(--acid)"];
+    const segments=riskItems.map((item,i)=>{
+      const start=cursor;
+      const size=(item.value/totalRisk)*100;
+      cursor+=size;
+      return colors[i]+" "+start.toFixed(1)+"% "+cursor.toFixed(1)+"%";
+    });
+    $("riskDonut").style.background="conic-gradient("+segments.join(",")+")";
+
+    if ($("fabricTickets")) $("fabricTickets").textContent=openTickets+" open";
+    if ($("fabricAssets")) $("fabricAssets").textContent=(state.assets||[]).length+" managed";
+    if ($("fabricUsers")) $("fabricUsers").textContent=(state.identities||[]).length+" users";
+    if ($("fabricEndpoints")) $("fabricEndpoints").textContent=state.endpoints.length+" devices";
+    if ($("fabricDiagnostics")) $("fabricDiagnostics").textContent=state.diagnostics.length+" runs";
+    if ($("fabricCompliance")) $("fabricCompliance").textContent=stats.complianceRate+"%";
+
+    const sites={};
+    state.endpoints.forEach((e)=>{
+      if(!sites[e.site]) sites[e.site]={total:0,online:0,devices:[]};
+      sites[e.site].total++;
+      if(e.agent==="online") sites[e.site].online++;
+      sites[e.site].devices.push(e);
+    });
+    const maxSite=Math.max(1,...Object.values(sites).map(s=>s.total));
+    $("siteVisual").innerHTML=Object.entries(sites).map(([site,row])=>{
+      const width=Math.max(8,(row.total/maxSite)*100);
+      return '<div class="site-bar-row"><span>'+esc(site)+'</span><div class="site-bar-track"><div class="site-bar-fill" style="width:'+width.toFixed(0)+'%"></div></div><b>'+row.online+'/'+row.total+'</b></div>';
+    }).join("")+
+    '<div class="site-device-cloud">'+state.endpoints.map(e=>'<span class="'+(e.agent==="online"?"online":"offline")+'" title="'+esc(e.ip)+'">'+esc(e.hostname)+'</span>').join("")+'</div>';
   }
 
   function uniqueSites() {
