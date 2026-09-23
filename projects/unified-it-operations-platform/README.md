@@ -242,3 +242,29 @@ Phase 2 establishes these primary relationships:
 `Identity → Asset → Endpoint → Diagnostic / Compliance / Remote Support → Service Desk Ticket → Audit`
 
 Global search now includes endpoints, assets, identities, tickets, and VLAN records.
+
+
+## Phase 3 integration — Supabase Cloud, Auth, RLS, and RBAC
+
+OpsFusion now supports two modes:
+
+- **Cloud Workspace** — Supabase Auth + persistent server-backed workspace
+- **Demo Mode** — recruiter-friendly browser-local portfolio experience with no account required
+
+The cloud implementation uses the existing Sachibara Supabase project with isolated `opsfusion_*` tables.
+
+Security model:
+
+- frontend uses a publishable Supabase key only
+- no service-role or secret key is exposed
+- `anon` has no table access to OpsFusion data
+- all OpsFusion tables have Row Level Security enabled
+- workspace reads are restricted to owners/members
+- workspace writes are limited to owners/admins/technicians
+- viewers are read-only
+- audit events are stored server-side for signed-in operators
+- every new account receives an isolated workspace and admin membership for its own portfolio testing
+
+The full unified state is stored in `opsfusion_workspaces.state` as JSONB so all Phase 1/2 modules remain synchronized. Critical governance metadata is separately persisted in profiles, memberships, and server-side audit events.
+
+The browser client pins `@supabase/supabase-js@2.117.0`.
