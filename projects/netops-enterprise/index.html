@@ -7,6 +7,8 @@
   <meta name="description" content="NetOps Enterprise unified network operations platform: NOC monitoring, topology, IPAM, configuration backups, troubleshooting, documentation, alerts, and audit.">
   <title>NetOps Enterprise | Unified Network Operations</title>
   <link rel="stylesheet" href="/projects/netops-enterprise/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.0"></script>
+  <script src="/projects/netops-enterprise/cloud.js" defer></script>
   <script src="/projects/netops-enterprise/app.js" defer></script>
 </head>
 <body>
@@ -67,6 +69,11 @@
         </div>
         <button class="btn ghost" id="exportBtn">Export Workspace</button>
         <label class="btn ghost file-label">Import<input id="importInput" type="file" accept="application/json"></label>
+        <div class="cloud-user" id="cloudUser" hidden>
+          <span id="cloudUserLabel">Cloud user</span>
+          <b id="cloudRoleLabel">admin</b>
+          <button class="btn ghost" id="cloudSignOutBtn">Sign Out</button>
+        </div>
       </div>
     </header>
 
@@ -409,6 +416,71 @@
     <div id="modalBody"></div>
   </div>
 </div>
+<div class="auth-gate" id="authGate">
+  <div class="auth-shell">
+    <section class="auth-visual">
+      <div class="auth-top">
+        <span>NETOPS ENTERPRISE / NOC FABRIC</span>
+        <b><i></i> SYSTEM READY</b>
+      </div>
+      <div class="auth-network">
+        <div class="auth-core">NE</div>
+        <span class="auth-ring r1"></span>
+        <span class="auth-ring r2"></span>
+        <span class="auth-ring r3"></span>
+        <span class="auth-sat s1">NOC</span>
+        <span class="auth-sat s2">IPAM</span>
+        <span class="auth-sat s3">CFG</span>
+        <span class="auth-sat s4">MON</span>
+        <span class="auth-sat s5">DOC</span>
+        <span class="auth-sat s6">DIA</span>
+      </div>
+      <div class="auth-copy-block">
+        <p>UNIFIED NETWORK OPERATIONS</p>
+        <h2>From address space to incident response—one network fabric.</h2>
+        <div class="auth-stats">
+          <span><b>10</b> integrated modules</span>
+          <span><b>03</b> operating roles</span>
+          <span><b>01</b> shared network model</span>
+        </div>
+      </div>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-card">
+        <div class="auth-card-head">
+          <div class="brand">
+            <div class="brand-symbol"><span></span><span></span><span></span><span></span></div>
+            <div><strong>NETOPS</strong><small>ENTERPRISE</small></div>
+          </div>
+          <span class="cloud-chip">CLOUD READY</span>
+        </div>
+        <p class="auth-eyebrow">Supabase-backed network workspace</p>
+        <h2>Choose your operating mode.</h2>
+        <p class="auth-intro">Sign in for persistent cloud state and role-based access, or launch the full portfolio demo with browser-local network data.</p>
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-tab="signin">Sign In</button>
+          <button class="auth-tab" data-auth-tab="signup">Create Account</button>
+        </div>
+        <form id="signInForm" class="auth-form">
+          <label class="field"><span>Email</span><input id="authEmail" type="email" autocomplete="email" required placeholder="engineer@company.com"></label>
+          <label class="field"><span>Password</span><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="••••••••"></label>
+          <button class="btn primary wide" type="submit">Connect Cloud Workspace</button>
+        </form>
+        <form id="signUpForm" class="auth-form" hidden>
+          <label class="field"><span>Display name</span><input id="authDisplayName" autocomplete="name" required placeholder="Network Engineer"></label>
+          <label class="field"><span>Email</span><input id="authSignupEmail" type="email" autocomplete="email" required placeholder="engineer@company.com"></label>
+          <label class="field"><span>Password</span><input id="authSignupPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="8+ characters"></label>
+          <button class="btn primary wide" type="submit">Create Cloud Workspace</button>
+        </form>
+        <div id="authMessage" class="auth-message">Cloud data is protected with Supabase Auth, RLS, and network-role access controls.</div>
+        <div class="auth-divider"><span>OR</span></div>
+        <button class="btn demo wide" id="continueDemoBtn">Launch Portfolio Demo</button>
+        <p class="auth-footnote">Demo Mode never touches external network infrastructure.</p>
+      </div>
+    </section>
+  </div>
+</div>
+
 <div class="toast-region" id="toastRegion"></div>
 </body>
 </html>
