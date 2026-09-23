@@ -222,6 +222,9 @@
   }
 
   let state = loadState();
+  let cloudRole = "demo";
+  let demoMode = false;
+  let cloudSaveTimer = null;
 
   function migrateUnifiedState() {
     const base = seedState();
@@ -242,6 +245,15 @@
   function saveState() {
     state.meta.updatedAt = now();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    if (window.OpsFusionCloud?.isCloudActive?.() && cloudRole !== "viewer") {
+      clearTimeout(cloudSaveTimer);
+      cloudSaveTimer = setTimeout(() => {
+        window.OpsFusionCloud.saveWorkspace(state).catch((error) => {
+          console.error("Cloud save failed:", error);
+          toast("Cloud save failed", error.message || "Workspace remains saved in this browser.");
+        });
+      }, 350);
+    }
   }
 
   function esc(value) {
@@ -268,15 +280,19 @@
   }
 
   function audit(module, action, target, detail) {
-    state.audit.unshift({
+    const event = {
       id: uid("AUD"),
       module: String(module || "System"),
       action: String(action || "Action"),
       target: String(target || ""),
       detail: String(detail || ""),
       createdAt: now()
-    });
+    };
+    state.audit.unshift(event);
     state.audit = state.audit.slice(0, 500);
+    if (window.OpsFusionCloud?.isCloudActive?.() && cloudRole !== "viewer") {
+      window.OpsFusionCloud.pushAudit(event).catch((error) => console.error("Server audit write failed:", error));
+    }
   }
 
   function endpointById(id) {
@@ -569,6 +585,7 @@
     $("modalBody").innerHTML = bodyHtml;
     $("modalBackdrop").hidden = false;
     if (typeof setup === "function") setup($("modalBody"));
+    applyRoleAccess();
   }
 
   function closeModal() {
@@ -1763,6 +1780,135 @@
     if (!event.target.closest(".global-search-wrap")) $("searchResults").hidden = true;
   });
 
+
+  function setAuthMessage(message, tone = "") {
+    const box = $("authMessage");
+    if (!box) return;
+    box.textContent = message;
+    box.className = "auth-message" + (tone ? " " + tone : "");
+  }
+
+  function applyRoleAccess() {
+    document.body.dataset.role = cloudRole;
+    const readOnly = cloudRole === "viewer";
+    const adminOnlyIds = ["resetWorkspaceBtn","clearAuditBtn"];
+    const mutatingIds = [
+      "addEndpointBtn","addAssetBtn","provisionUserBtn","runDiagBtn","diagCreateIncidentBtn",
+      "addVlanBtn","addPortBtn","addChangeNoteBtn","evaluateComplianceBtn","newIncidentBtn",
+      "saveRulesBtn","saveWorkflowSettingsBtn"
+    ];
+    mutatingIds.forEach((id) => { if ($(id)) $(id).disabled = readOnly; });
+    qsa("[data-remote-action],[data-remediate]").forEach((el) => {
+      if (readOnly) el.disabled = true;
+    });
+    adminOnlyIds.forEach((id) => { if ($(id)) $(id).disabled = cloudRole !== "admin" && cloudRole !== "demo"; });
+    qsa("#modalBody .btn.primary,#modalBody .btn.danger").forEach((el) => {
+      if (readOnly) el.disabled = true;
+    });
+  }
+
+  function showCloudIdentity(user, role) {
+    cloudRole = role || "viewer";
+    if ($("cloudUser")) $("cloudUser").hidden = false;
+    if ($("cloudUserLabel")) $("cloudUserLabel").textContent = user?.email || "Cloud user";
+    if ($("cloudRoleLabel")) $("cloudRoleLabel").textContent = cloudRole;
+    applyRoleAccess();
+  }
+
+  async function bootstrapCloud(displayName = "") {
+    if (!window.OpsFusionCloud?.available) throw new Error("Supabase client is unavailable.");
+    const result = await window.OpsFusionCloud.bootstrap(state, displayName);
+    if (result.state) state = result.state;
+    if (result.audit?.length) state.audit = result.audit;
+    migrateUnifiedState();
+    currentEndpointId = state.endpoints[0] ? state.endpoints[0].id : null;
+    selectedDiagnosticId = null;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    demoMode = false;
+    $("authGate").hidden = true;
+    showCloudIdentity(result.user, result.role);
+    renderAll();
+    toast("Cloud workspace connected", result.workspaceName + " · " + result.role);
+  }
+
+  async function initCloudAuth() {
+    if (!window.OpsFusionCloud?.available) {
+      setAuthMessage("Cloud client could not load. Demo Mode is still available.", "error");
+      return;
+    }
+    try {
+      const session = await window.OpsFusionCloud.init();
+      if (session) {
+        setAuthMessage("Restoring your Supabase workspace...");
+        await bootstrapCloud();
+      }
+    } catch (error) {
+      console.error("Cloud initialization failed:", error);
+      setAuthMessage(error.message || "Could not restore the cloud session.", "error");
+    }
+  }
+
+  qsa("[data-auth-tab]").forEach((button) => button.addEventListener("click", () => {
+    qsa("[data-auth-tab]").forEach((b) => b.classList.toggle("active", b === button));
+    const signup = button.dataset.authTab === "signup";
+    $("signInForm").hidden = signup;
+    $("signUpForm").hidden = !signup;
+    setAuthMessage(signup ? "Create a Supabase Auth account for persistent cloud data." : "Sign in to load your persistent OpsFusion workspace.");
+  }));
+
+  $("signInForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    setAuthMessage("Signing in...");
+    try {
+      await window.OpsFusionCloud.signIn($("authEmail").value.trim(), $("authPassword").value);
+      await bootstrapCloud();
+    } catch (error) {
+      setAuthMessage(error.message || "Sign-in failed.", "error");
+    }
+  });
+
+  $("signUpForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const displayName = $("authDisplayName").value.trim();
+    setAuthMessage("Creating account...");
+    try {
+      const result = await window.OpsFusionCloud.signUp(
+        $("authSignupEmail").value.trim(),
+        $("authSignupPassword").value,
+        displayName
+      );
+      if (result.session) {
+        await bootstrapCloud(displayName);
+      } else {
+        setAuthMessage("Account created. Check your email for the confirmation link, then return here and sign in.", "success");
+      }
+    } catch (error) {
+      setAuthMessage(error.message || "Account creation failed.", "error");
+    }
+  });
+
+  $("continueDemoBtn").addEventListener("click", () => {
+    demoMode = true;
+    cloudRole = "demo";
+    $("authGate").hidden = true;
+    $("cloudUser").hidden = true;
+    applyRoleAccess();
+    toast("Demo Mode", "Using browser-local portfolio data. Sign in later for cloud persistence.");
+  });
+
+  $("cloudSignOutBtn").addEventListener("click", async () => {
+    try {
+      await window.OpsFusionCloud.signOut();
+    } catch (error) {
+      console.error(error);
+    }
+    cloudRole = "demo";
+    $("cloudUser").hidden = true;
+    $("authGate").hidden = false;
+    setAuthMessage("Signed out. Sign in again or continue in Demo Mode.");
+    applyRoleAccess();
+  });
+
   function renderAll() {
     renderOverview();
     renderEndpoints();
@@ -1780,6 +1926,8 @@
   migrateUnifiedState();
   saveState();
   renderAll();
+  applyRoleAccess();
+  initCloudAuth();
   try {
     const initialCidr = calculateCidr($("cidrInput").value);
     $("cidrOutput").innerHTML =
