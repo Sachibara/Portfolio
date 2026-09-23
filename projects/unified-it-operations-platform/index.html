@@ -128,6 +128,79 @@
         <article><span>Diagnostics</span><strong id="kpiDiagnostics">0</strong><small>Recorded test runs</small></article>
       </div>
 
+      <div class="ops-visual-grid">
+        <article class="visual-card visual-card-wide">
+          <div class="visual-head">
+            <div><span class="visual-kicker">OPERATIONS TREND</span><h3>Fleet health telemetry</h3></div>
+            <div class="visual-legend"><span><i class="lg-cyan"></i>health</span><span><i class="lg-coral"></i>risk</span></div>
+          </div>
+          <svg id="healthTrendChart" class="trend-chart" viewBox="0 0 760 220" role="img" aria-label="Fleet health trend chart">
+            <defs>
+              <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#12b8b2" stop-opacity=".30"/>
+                <stop offset="100%" stop-color="#12b8b2" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <g class="chart-grid">
+              <line x1="42" y1="24" x2="742" y2="24"/><line x1="42" y1="70" x2="742" y2="70"/>
+              <line x1="42" y1="116" x2="742" y2="116"/><line x1="42" y1="162" x2="742" y2="162"/>
+              <line x1="42" y1="208" x2="742" y2="208"/>
+            </g>
+            <path id="healthTrendArea" class="trend-area" d=""></path>
+            <polyline id="healthTrendLine" class="trend-line" points=""></polyline>
+            <g id="healthTrendPoints"></g>
+            <g class="chart-labels">
+              <text x="8" y="29">100</text><text x="14" y="75">75</text><text x="14" y="121">50</text><text x="14" y="167">25</text><text x="20" y="213">0</text>
+            </g>
+            <g id="healthTrendDates" class="chart-dates"></g>
+          </svg>
+        </article>
+
+        <article class="visual-card">
+          <div class="visual-head">
+            <div><span class="visual-kicker">RISK COMPOSITION</span><h3>Operational exposure</h3></div>
+          </div>
+          <div class="risk-visual">
+            <div class="risk-donut" id="riskDonut"><div><strong id="riskScoreValue">0</strong><span>risk index</span></div></div>
+            <div class="risk-key" id="riskKey"></div>
+          </div>
+        </article>
+
+        <article class="visual-card visual-card-fabric">
+          <div class="visual-head">
+            <div><span class="visual-kicker">MODULE FABRIC</span><h3>Cross-system control map</h3></div>
+            <span class="fabric-status">LIVE</span>
+          </div>
+          <div class="module-fabric">
+            <div class="fabric-lines" aria-hidden="true">
+              <i class="fl f1"></i><i class="fl f2"></i><i class="fl f3"></i><i class="fl f4"></i>
+              <i class="fl f5"></i><i class="fl f6"></i><i class="fl f7"></i><i class="fl f8"></i>
+            </div>
+            <button class="fabric-node core" data-go="overview"><b>OF</b><span>OpsFusion</span><small>control fabric</small></button>
+            <button class="fabric-node fn1" data-go="incidents"><b>SD</b><span>Service</span><small id="fabricTickets">0 open</small></button>
+            <button class="fabric-node fn2" data-go="assets"><b>AM</b><span>Assets</span><small id="fabricAssets">0 managed</small></button>
+            <button class="fabric-node fn3" data-go="identity"><b>ID</b><span>Identity</span><small id="fabricUsers">0 users</small></button>
+            <button class="fabric-node fn4" data-go="endpoints"><b>EP</b><span>Endpoints</span><small id="fabricEndpoints">0 devices</small></button>
+            <button class="fabric-node fn5" data-go="troubleshooting"><b>NT</b><span>Network</span><small id="fabricDiagnostics">0 runs</small></button>
+            <button class="fabric-node fn6" data-go="compliance"><b>PC</b><span>Compliance</span><small id="fabricCompliance">0%</small></button>
+          </div>
+        </article>
+
+        <article class="visual-card">
+          <div class="visual-head">
+            <div><span class="visual-kicker">SITE DISTRIBUTION</span><h3>Managed estate</h3></div>
+          </div>
+          <div id="siteVisual" class="site-visual"></div>
+        </article>
+      </div>
+
+      <div class="module-launch-grid">
+        <button class="module-launch coral" data-go="incidents"><span class="module-glyph">01</span><div><b>Service Desk</b><small>SLA, requests, knowledge & technicians</small></div><i>↗</i></button>
+        <button class="module-launch cyan" data-go="assets"><span class="module-glyph">02</span><div><b>Asset Lifecycle</b><small>Ownership, warranty & maintenance</small></div><i>↗</i></button>
+        <button class="module-launch acid" data-go="identity"><span class="module-glyph">03</span><div><b>Identity & Access</b><small>Provisioning, groups & offboarding</small></div><i>↗</i></button>
+        <button class="module-launch blue" data-go="troubleshooting"><span class="module-glyph">04</span><div><b>Network Diagnostics</b><small>Guided tests & interpreted findings</small></div><i>↗</i></button>
+      </div>
+
       <div class="grid two">
         <article class="panel">
           <div class="panel-head">
