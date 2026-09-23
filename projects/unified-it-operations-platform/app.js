@@ -10,11 +10,13 @@
   const pageMeta = {
     overview: ["Unified operations", "Overview"],
     endpoints: ["Shared source of truth", "Endpoints"],
+    assets: ["Asset lifecycle", "Assets"],
+    identity: ["Directory operations", "Identity & Access"],
     troubleshooting: ["Network diagnostics", "Troubleshooting"],
     remote: ["Endpoint operations", "Remote Support"],
     documentation: ["Network records", "Documentation"],
     compliance: ["Endpoint posture", "Compliance"],
-    incidents: ["Service workflow", "Incidents"],
+    incidents: ["IT service management", "Service Desk"],
     audit: ["Governance", "Audit Log"],
     settings: ["Configuration", "Settings"]
   };
@@ -105,6 +107,68 @@
       ],
       diagnostics: [],
       remoteActions: [],
+      identities: [
+        { id:"USR-001", firstName:"Adrian", lastName:"Reyes", displayName:"Adrian Reyes", username:"areyes", upn:"areyes@corp.local", department:"Finance", title:"Finance Analyst", manager:"Finance Manager", status:"Active", enabled:true, templateId:"TPL-FIN", groups:["GRP-ALL","GRP-FIN"], expiry:"", mustResetPassword:false, createdAt:"2025-01-16T08:00:00.000Z" },
+        { id:"USR-002", firstName:"Nico", lastName:"Cruz", displayName:"Nico Cruz", username:"ncruz", upn:"ncruz@corp.local", department:"Human Resources", title:"HR Specialist", manager:"HR Manager", status:"Active", enabled:true, templateId:"TPL-HR", groups:["GRP-ALL","GRP-HR"], expiry:"", mustResetPassword:false, createdAt:"2025-03-11T08:00:00.000Z" },
+        { id:"USR-003", firstName:"Jim", lastName:"Camus", displayName:"Jim Camus", username:"jcamus", upn:"jcamus@corp.local", department:"IT", title:"IT Support Specialist", manager:"IT Operations Manager", status:"Active", enabled:true, templateId:"TPL-IT", groups:["GRP-ALL","GRP-HELP","GRP-VPN"], expiry:"", mustResetPassword:false, createdAt:"2024-11-03T08:00:00.000Z" },
+        { id:"USR-004", firstName:"Marco", lastName:"Santos", displayName:"Marco Santos", username:"msantos", upn:"msantos@corp.local", department:"Operations", title:"Operations Coordinator", manager:"Operations Manager", status:"Active", enabled:true, templateId:"TPL-OPS", groups:["GRP-ALL","GRP-OPS","GRP-VPN"], expiry:"", mustResetPassword:false, createdAt:"2025-05-18T08:00:00.000Z" },
+        { id:"USR-005", firstName:"Daniel", lastName:"Lee", displayName:"Daniel Lee", username:"dlee", upn:"dlee@corp.local", department:"Sales", title:"Account Executive", manager:"Sales Manager", status:"Active", enabled:true, templateId:"TPL-STD", groups:["GRP-ALL"], expiry:"", mustResetPassword:false, createdAt:"2024-12-08T08:00:00.000Z" },
+        { id:"USR-006", firstName:"Miguel", lastName:"Torres", displayName:"Miguel Torres", username:"mtorres", upn:"mtorres@corp.local", department:"Marketing", title:"Marketing Associate", manager:"Marketing Manager", status:"Disabled", enabled:false, templateId:"TPL-STD", groups:["GRP-ALL"], expiry:"", mustResetPassword:false, createdAt:"2025-02-20T08:00:00.000Z" },
+        { id:"USR-007", firstName:"Paolo", lastName:"Garcia", displayName:"Paolo Garcia", username:"pgarcia", upn:"pgarcia@corp.local", department:"Finance", title:"Finance Contractor", manager:"Finance Manager", status:"Active", enabled:true, templateId:"TPL-FIN", groups:["GRP-ALL","GRP-FIN"], expiry:"2026-10-11", mustResetPassword:true, createdAt:"2026-09-01T08:00:00.000Z" },
+        { id:"USR-008", firstName:"Leo", lastName:"Ramos", displayName:"Leo Ramos", username:"lramos", upn:"lramos@corp.local", department:"Operations", title:"Operations Associate", manager:"Operations Manager", status:"Offboarded", enabled:false, templateId:"TPL-OPS", groups:[], expiry:"", mustResetPassword:false, createdAt:"2024-08-01T08:00:00.000Z" }
+      ],
+      groups: [
+        { id:"GRP-ALL", name:"GG-All-Employees", type:"Security", owner:"IT Operations", risk:"Low", permission:"Baseline employee resources" },
+        { id:"GRP-FIN", name:"GG-Finance-Share-RW", type:"Security", owner:"Finance", risk:"Medium", permission:"Finance shared-drive modify access" },
+        { id:"GRP-HR", name:"GG-HR-Confidential-RW", type:"Security", owner:"Human Resources", risk:"High", permission:"HR confidential records modify access" },
+        { id:"GRP-HELP", name:"GG-IT-HelpDesk", type:"Security", owner:"IT Operations", risk:"Medium", permission:"Help desk tools and support resources" },
+        { id:"GRP-ADMIN", name:"GG-IT-Admins", type:"Security", owner:"Infrastructure", risk:"High", permission:"Privileged administration" },
+        { id:"GRP-OPS", name:"GG-Operations-Apps", type:"Security", owner:"Operations", risk:"Medium", permission:"Operations application access" },
+        { id:"GRP-VPN", name:"GG-VPN-Users", type:"Security", owner:"Infrastructure", risk:"Medium", permission:"Remote-access entitlement" }
+      ],
+      templates: [
+        { id:"TPL-STD", name:"Standard Employee", department:"Corporate", groups:["GRP-ALL"], description:"Baseline employee identity" },
+        { id:"TPL-FIN", name:"Finance User", department:"Finance", groups:["GRP-ALL","GRP-FIN"], description:"Finance resources and shared-drive access" },
+        { id:"TPL-HR", name:"HR User", department:"Human Resources", groups:["GRP-ALL","GRP-HR"], description:"HR confidential-resource access" },
+        { id:"TPL-IT", name:"IT Support", department:"IT", groups:["GRP-ALL","GRP-HELP","GRP-VPN"], description:"Help desk and remote-support access" },
+        { id:"TPL-ADMIN", name:"IT Administrator", department:"IT", groups:["GRP-ALL","GRP-HELP","GRP-ADMIN","GRP-VPN"], description:"Privileged infrastructure administration" },
+        { id:"TPL-OPS", name:"Operations User", department:"Operations", groups:["GRP-ALL","GRP-OPS"], description:"Operations application access" }
+      ],
+      technicians: [
+        { id:"TECH-01", name:"Jim Camus", role:"Administrator", specialty:"Network / Endpoint", identityId:"USR-003" },
+        { id:"TECH-02", name:"Kevin Lim", role:"Technician", specialty:"Endpoint / Hardware", identityId:"" },
+        { id:"TECH-03", name:"Ryan Mendoza", role:"Technician", specialty:"Microsoft 365 / Access", identityId:"" }
+      ],
+      assets: [
+        { id:"AST-1001", tag:"AST-1001", hostname:"HQ-FIN-01", type:"Workstation", serial:"DEL-7010-F01", status:"Assigned", assignedUserId:"USR-001", endpointId:"EP-001", department:"Finance", location:"HQ · Finance", purchaseDate:"2025-01-16", warrantyExpiry:"2027-01-16", specs:"Dell OptiPlex 7010 · Windows 11 24H2" },
+        { id:"AST-1002", tag:"AST-1002", hostname:"HQ-HR-02", type:"Workstation", serial:"HP-800G9-H02", status:"Assigned", assignedUserId:"USR-002", endpointId:"EP-002", department:"Human Resources", location:"HQ · HR", purchaseDate:"2024-07-04", warrantyExpiry:"2026-10-31", specs:"HP EliteDesk 800 G9 · Windows 11 24H2" },
+        { id:"AST-1003", tag:"AST-1003", hostname:"BR-WS-01", type:"Workstation", serial:"LNV-M80S-B01", status:"Assigned", assignedUserId:"USR-005", endpointId:"EP-003", department:"Sales", location:"Branch · Sales", purchaseDate:"2024-04-22", warrantyExpiry:"2027-04-22", specs:"Lenovo ThinkCentre M80s · Windows 11 23H2" },
+        { id:"AST-1004", tag:"AST-1004", hostname:"BR-LAP-03", type:"Laptop", serial:"DEL-5450-B03", status:"Assigned", assignedUserId:"USR-004", endpointId:"EP-004", department:"Operations", location:"Branch · Operations", purchaseDate:"2025-02-18", warrantyExpiry:"2028-02-18", specs:"Dell Latitude 5450 · Windows 11 24H2" },
+        { id:"AST-1005", tag:"AST-1005", hostname:"HQ-SRV-AD01", type:"Server", serial:"DEL-R350-AD01", status:"Assigned", assignedUserId:"USR-003", endpointId:"EP-005", department:"IT", location:"HQ · Server Room", purchaseDate:"2025-05-10", warrantyExpiry:"2029-05-10", specs:"PowerEdge R350 · Windows Server 2025" },
+        { id:"AST-1006", tag:"AST-1006", hostname:"HQ-GW-01", type:"Router", serial:"CSC-4331-GW01", status:"Assigned", assignedUserId:"USR-003", endpointId:"NET-001", department:"IT", location:"HQ · MDF", purchaseDate:"2025-05-10", warrantyExpiry:"2029-05-10", specs:"Cisco ISR 4331 · IOS XE" },
+        { id:"AST-1007", tag:"AST-1007", hostname:"HQ-SW-01", type:"Switch", serial:"CSC-9200-SW01", status:"Assigned", assignedUserId:"USR-003", endpointId:"NET-002", department:"IT", location:"HQ · MDF", purchaseDate:"2025-05-10", warrantyExpiry:"2029-05-10", specs:"Catalyst 9200L · IOS XE" },
+        { id:"AST-1008", tag:"AST-1008", hostname:"SPARE-LT-02", type:"Laptop", serial:"ACR-SWIFT-02", status:"Available", assignedUserId:"", endpointId:"", department:"IT", location:"HQ · IT Stockroom", purchaseDate:"2025-08-20", warrantyExpiry:"2028-08-20", specs:"Acer Swift · Windows 11 Pro" },
+        { id:"AST-1009", tag:"AST-1009", hostname:"PRN-FIN-01", type:"Printer", serial:"HP-M428-11", status:"In Repair", assignedUserId:"", endpointId:"", department:"Finance", location:"HQ · IT Repair Bench", purchaseDate:"2023-09-11", warrantyExpiry:"2026-04-11", specs:"HP LaserJet Pro M428 · Ethernet" }
+      ],
+      maintenance: [
+        { id:"MNT-001", assetId:"AST-1009", type:"Hardware Repair", status:"In Progress", owner:"Kevin Lim", dueDate:"2026-09-25", detail:"Printer hardware fault after paper jam." },
+        { id:"MNT-002", assetId:"AST-1002", type:"Patch / Reboot", status:"Scheduled", owner:"Jim Camus", dueDate:"2026-09-24", detail:"Install missing updates and restart outside business hours." }
+      ],
+      software: [
+        { assetId:"AST-1001", name:"Microsoft 365 Apps", version:"Current Channel", status:"Approved" },
+        { assetId:"AST-1001", name:"Endpoint Security Agent", version:"6.4", status:"Healthy" },
+        { assetId:"AST-1002", name:"Microsoft 365 Apps", version:"Current Channel", status:"Approved" },
+        { assetId:"AST-1002", name:"Endpoint Security Agent", version:"6.4", status:"Healthy" },
+        { assetId:"AST-1003", name:"Endpoint Security Agent", version:"6.2", status:"Review" },
+        { assetId:"AST-1004", name:"VPN Client", version:"5.1", status:"Approved" }
+      ],
+      knowledge: [
+        { id:"KB-001", title:"DNS resolution troubleshooting checklist", category:"Network", summary:"Validate local resolver, gateway reachability, cache, and authoritative response path." },
+        { id:"KB-002", title:"Windows endpoint compliance remediation", category:"Endpoint", summary:"Remediate missing updates, stale AV, firewall, encryption, and reboot-age findings." },
+        { id:"KB-003", title:"Account lockout and stale credential workflow", category:"Identity", summary:"Identify lockout source, clear cached credentials, validate devices, and confirm access." },
+        { id:"KB-004", title:"VPN authentication after password reset", category:"Access", summary:"Refresh cached credentials, verify account state, group membership, and VPN entitlement." },
+        { id:"KB-005", title:"Printer outage triage", category:"Hardware", summary:"Check queue/spooler, device status, network reachability, consumables, and hardware error state." }
+      ],
       incidents: [
         {
           id: "INC-1001", endpointId: "EP-002", title: "HR workstation cannot resolve internal names",
@@ -140,6 +204,14 @@
         docChanges: Array.isArray(parsed.docChanges) ? parsed.docChanges : base.docChanges,
         diagnostics: Array.isArray(parsed.diagnostics) ? parsed.diagnostics : [],
         remoteActions: Array.isArray(parsed.remoteActions) ? parsed.remoteActions : [],
+        identities: Array.isArray(parsed.identities) ? parsed.identities : base.identities,
+        groups: Array.isArray(parsed.groups) ? parsed.groups : base.groups,
+        templates: Array.isArray(parsed.templates) ? parsed.templates : base.templates,
+        technicians: Array.isArray(parsed.technicians) ? parsed.technicians : base.technicians,
+        assets: Array.isArray(parsed.assets) ? parsed.assets : base.assets,
+        maintenance: Array.isArray(parsed.maintenance) ? parsed.maintenance : base.maintenance,
+        software: Array.isArray(parsed.software) ? parsed.software : base.software,
+        knowledge: Array.isArray(parsed.knowledge) ? parsed.knowledge : base.knowledge,
         incidents: Array.isArray(parsed.incidents) ? parsed.incidents : base.incidents,
         audit: Array.isArray(parsed.audit) ? parsed.audit : base.audit
       };
@@ -150,6 +222,20 @@
   }
 
   let state = loadState();
+
+  function migrateUnifiedState() {
+    const base = seedState();
+    ["identities","groups","templates","technicians","assets","maintenance","software","knowledge"].forEach((key) => {
+      if (!Array.isArray(state[key])) state[key] = base[key];
+    });
+    state.incidents = (state.incidents || []).map(normalizeTicket);
+    state.assets.forEach((asset) => {
+      const endpoint = endpointById(asset.endpointId);
+      const user = identityById(asset.assignedUserId);
+      if (endpoint && user && asset.status === "Assigned") endpoint.owner = user.displayName;
+    });
+  }
+
   let currentEndpointId = state.endpoints[0] ? state.endpoints[0].id : null;
   let selectedDiagnosticId = null;
 
@@ -199,6 +285,121 @@
 
   function incidentById(id) {
     return state.incidents.find((item) => item.id === id) || null;
+  }
+  function identityById(id) {
+    return (state.identities || []).find((item) => item.id === id) || null;
+  }
+
+  function assetById(id) {
+    return (state.assets || []).find((item) => item.id === id) || null;
+  }
+
+  function assetByEndpointId(id) {
+    return (state.assets || []).find((item) => item.endpointId === id) || null;
+  }
+
+  function groupById(id) {
+    return (state.groups || []).find((item) => item.id === id) || null;
+  }
+
+  function templateById(id) {
+    return (state.templates || []).find((item) => item.id === id) || null;
+  }
+
+  function technicianById(id) {
+    return (state.technicians || []).find((item) => item.id === id) || null;
+  }
+
+  const SLA = {
+    P1: { response: 1, resolution: 2 },
+    P2: { response: 2, resolution: 8 },
+    P3: { response: 4, resolution: 24 },
+    P4: { response: 8, resolution: 72 }
+  };
+
+  function addHours(iso, hours) {
+    return new Date(new Date(iso).getTime() + Number(hours || 0) * 3600000).toISOString();
+  }
+
+  function priorityFromImpactUrgency(impact, urgency) {
+    const level = { Low: 1, Medium: 2, High: 3 };
+    const score = (level[impact] || 2) + (level[urgency] || 2);
+    if (score >= 6) return "P1";
+    if (score === 5) return "P2";
+    if (score === 4) return "P3";
+    return "P4";
+  }
+
+  function normalizeTicket(ticket) {
+    const createdAt = ticket.createdAt || ticket.created_at || now();
+    const priority = ticket.priority || "P3";
+    const sla = SLA[priority] || SLA.P3;
+    const status = ticket.status || "New";
+    return {
+      id: ticket.id || uid("INC"),
+      type: ticket.type || "Incident",
+      endpointId: ticket.endpointId || "",
+      assetId: ticket.assetId || "",
+      requesterId: ticket.requesterId || "",
+      assigneeId: ticket.assigneeId || "",
+      category: ticket.category || ticket.source || "General",
+      title: ticket.title || ticket.subject || "Service desk ticket",
+      description: ticket.description || "",
+      impact: ticket.impact || (priority === "P1" ? "High" : "Medium"),
+      urgency: ticket.urgency || (["P1","P2"].includes(priority) ? "High" : "Medium"),
+      priority,
+      status,
+      source: ticket.source || "Manual",
+      escalation: Number(ticket.escalation || 0),
+      createdAt,
+      updatedAt: ticket.updatedAt || ticket.updated_at || createdAt,
+      responseDue: ticket.responseDue || ticket.response_due || addHours(createdAt, sla.response),
+      resolutionDue: ticket.resolutionDue || ticket.resolution_due || addHours(createdAt, sla.resolution),
+      firstResponseAt: ticket.firstResponseAt || ticket.first_response_at || null,
+      resolvedAt: ticket.resolvedAt || ticket.resolved_at || (["Resolved","Closed"].includes(status) ? ticket.updatedAt || createdAt : null),
+      activities: Array.isArray(ticket.activities) ? ticket.activities : []
+    };
+  }
+
+  function ticketSlaState(ticket) {
+    const t = normalizeTicket(ticket);
+    const open = !["Resolved","Closed"].includes(t.status);
+    const nowMs = Date.now();
+    const responseDue = new Date(t.responseDue).getTime();
+    const resolutionDue = new Date(t.resolutionDue).getTime();
+    const responseDone = t.firstResponseAt ? new Date(t.firstResponseAt).getTime() : null;
+    const resolved = t.resolvedAt ? new Date(t.resolvedAt).getTime() : null;
+    const responseBreached = responseDone ? responseDone > responseDue : open && nowMs > responseDue;
+    const resolutionBreached = resolved ? resolved > resolutionDue : open && nowMs > resolutionDue;
+    if (responseBreached || resolutionBreached) return { level:"bad", label:"Breached" };
+    if (open) {
+      const remain = Math.min(responseDone ? Infinity : responseDue - nowMs, resolutionDue - nowMs);
+      if (remain <= 2 * 3600000) return { level:"warn", label:"At risk" };
+    }
+    return { level:"good", label: open ? "On track" : "Met" };
+  }
+
+  function warrantyInfo(asset) {
+    if (!asset || !asset.warrantyExpiry) return { days:null, label:"No warranty date", tone:"purple" };
+    const days = Math.ceil((new Date(asset.warrantyExpiry + "T23:59:59").getTime() - Date.now()) / 86400000);
+    if (days < 0) return { days, label:"Expired", tone:"red" };
+    if (days <= 45) return { days, label:days + "d left", tone:"amber" };
+    return { days, label:days + "d left", tone:"green" };
+  }
+
+  function expiringIdentity(user) {
+    if (!user || !user.expiry || user.status !== "Active") return false;
+    const diff = new Date(user.expiry + "T23:59:59").getTime() - Date.now();
+    return diff >= 0 && diff <= 30 * 86400000;
+  }
+
+  function usernameFor(first, last) {
+    const base = ((first || "").trim().slice(0,1) + (last || "").trim()).toLowerCase().replace(/[^a-z0-9]/g, "") || "user";
+    const used = new Set((state.identities || []).map((u) => String(u.username || "").toLowerCase()));
+    let candidate = base;
+    let n = 2;
+    while (used.has(candidate)) candidate = base + n++;
+    return candidate;
   }
 
   function badge(text, tone) {
@@ -268,6 +469,8 @@
   function renderPage(page) {
     if (page === "overview") renderOverview();
     if (page === "endpoints") renderEndpoints();
+    if (page === "assets") renderAssets();
+    if (page === "identity") renderIdentity();
     if (page === "troubleshooting") renderTroubleshooting();
     if (page === "remote") renderRemote();
     if (page === "documentation") renderDocumentation();
@@ -1295,6 +1498,8 @@
   function renderAll() {
     renderOverview();
     renderEndpoints();
+    renderAssets();
+    renderIdentity();
     renderTroubleshooting();
     renderRemote();
     renderDocumentation();
@@ -1304,6 +1509,8 @@
     renderSettings();
   }
 
+  migrateUnifiedState();
+  saveState();
   renderAll();
   try {
     const initialCidr = calculateCidr($("cidrInput").value);
