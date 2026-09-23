@@ -136,3 +136,26 @@ Discovery, probes, backups, and restore workflows remain safely simulated until 
 
 - `main` — public portfolio and existing standalone systems
 - `netops-enterprise-unification` — active unified network platform development
+
+
+## Cloud workspace
+
+NetOps Enterprise supports two operating modes:
+
+- **Cloud Workspace** — Supabase Auth, persistent workspace state, RLS-protected data, server-side audit history, and role-based access.
+- **Portfolio Demo** — no account required; all data remains browser-local and no external network infrastructure is contacted.
+
+Cloud tables:
+
+- `netops_profiles`
+- `netops_workspaces`
+- `netops_memberships`
+- `netops_audit_events`
+
+Roles:
+
+- `admin`
+- `engineer`
+- `viewer`
+
+The public frontend uses only the Supabase publishable key. No service-role or secret key is exposed.
