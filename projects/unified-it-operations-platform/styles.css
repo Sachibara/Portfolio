@@ -665,6 +665,7 @@ button:disabled{opacity:.38;cursor:not-allowed;transform:none!important;box-shad
 .chart-dates text{text-anchor:middle}
 .risk-visual{display:grid;grid-template-columns:155px 1fr;gap:15px;align-items:center;min-height:220px}
 .risk-donut{
+  position:relative;
   width:150px;height:150px;border-radius:50%;
   display:grid;place-items:center;margin:auto;
   background:conic-gradient(var(--coral) 0 20%,var(--yellow) 20% 42%,var(--cyan) 42% 70%,var(--acid) 70% 100%);
