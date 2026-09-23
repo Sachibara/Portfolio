@@ -7,6 +7,8 @@
   <meta name="description" content="OpsFusion unified IT operations workspace integrating troubleshooting, remote support, documentation, endpoint compliance, incidents, and audit history.">
   <title>OpsFusion Unified IT Operations Platform</title>
   <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.0"></script>
+  <script src="./cloud.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body>
@@ -61,6 +63,11 @@
         </div>
         <button class="btn secondary" id="exportBtn">Export Workspace</button>
         <label class="btn secondary file-label">Import<input id="importInput" type="file" accept="application/json"></label>
+        <div class="cloud-user" id="cloudUser" hidden>
+          <span id="cloudUserLabel">Cloud user</span>
+          <b id="cloudRoleLabel">admin</b>
+          <button class="mini-btn" id="cloudSignOutBtn">Sign Out</button>
+        </div>
       </div>
     </header>
 
@@ -511,6 +518,35 @@
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-head"><h2 id="modalTitle">Dialog</h2><button class="icon-btn" id="modalCloseBtn" aria-label="Close">×</button></div>
     <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="auth-gate" id="authGate">
+  <div class="auth-card">
+    <div class="brand auth-brand">
+      <div class="brand-mark">OF</div>
+      <div><strong>OpsFusion</strong><span>Cloud Workspace</span></div>
+    </div>
+    <p class="eyebrow">Phase 3 · Supabase-backed</p>
+    <h2>Open the unified IT operations workspace</h2>
+    <p class="auth-copy">Sign in to persist the full OpsFusion workspace in Supabase, or continue in portfolio demo mode using browser-local data.</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-auth-tab="signin">Sign In</button>
+      <button class="auth-tab" data-auth-tab="signup">Create Account</button>
+    </div>
+    <form id="signInForm" class="auth-form">
+      <label class="field"><span>Email</span><input id="authEmail" type="email" autocomplete="email" required></label>
+      <label class="field"><span>Password</span><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required></label>
+      <button class="btn primary wide" type="submit">Sign In to Cloud</button>
+    </form>
+    <form id="signUpForm" class="auth-form" hidden>
+      <label class="field"><span>Display name</span><input id="authDisplayName" autocomplete="name" required></label>
+      <label class="field"><span>Email</span><input id="authSignupEmail" type="email" autocomplete="email" required></label>
+      <label class="field"><span>Password</span><input id="authSignupPassword" type="password" autocomplete="new-password" minlength="8" required></label>
+      <button class="btn primary wide" type="submit">Create Cloud Account</button>
+    </form>
+    <div id="authMessage" class="auth-message">Cloud data is protected with Supabase Auth and row-level security.</div>
+    <button class="btn secondary wide" id="continueDemoBtn">Continue in Demo Mode</button>
   </div>
 </div>
 
