@@ -172,3 +172,73 @@ After this unified browser model is validated:
 6. add authenticated roles and permissions
 7. add real authorized endpoint/monitoring agent support
 8. add automated testing and production deployment only after the unified build is approved
+
+
+## Phase 2 integration — Service Desk, Assets, and Identity
+
+The unified branch now also integrates the strongest workflows from:
+
+- HelpDesk Pro
+- IT Asset Manager
+- AD User Provisioning Simulator
+
+### Service Desk integration
+
+The existing incident/remediation queue has been expanded into an ITSM-style service desk:
+
+- incidents and service requests
+- impact + urgency priority calculation
+- P1–P4 SLA response/resolution targets
+- SLA on-track / at-risk / breached state
+- requester identity
+- linked asset and endpoint
+- technician assignment
+- first-response timestamps
+- status lifecycle
+- work notes/activity history
+- knowledge base
+- technician workload context
+
+Tickets created from troubleshooting, compliance, asset management, onboarding/offboarding, or manual intake all enter the same queue.
+
+### Asset lifecycle integration
+
+OpsFusion now has a shared asset register with:
+
+- asset tag and serial number
+- lifecycle state
+- assigned identity
+- linked endpoint
+- department/location
+- warranty expiry and risk
+- maintenance queue
+- software inventory
+- assignment/reassignment
+- ticket creation directly from an asset
+
+When an asset assignment changes, its linked endpoint ownership is updated as well.
+
+### Identity & access integration
+
+The identity module now supports:
+
+- directory users
+- active/disabled/offboarded states
+- role templates
+- security/access groups
+- privileged-access visibility
+- password-reset-required state
+- account enable/disable
+- joiner provisioning
+- leaver/offboarding workflow
+- assigned-asset visibility
+
+Offboarding releases the user's assigned assets, updates linked endpoint ownership, removes group membership, disables the identity, and creates a validation service request when asset recovery is involved.
+
+### Cross-module model
+
+Phase 2 establishes these primary relationships:
+
+`Identity → Asset → Endpoint → Diagnostic / Compliance / Remote Support → Service Desk Ticket → Audit`
+
+Global search now includes endpoints, assets, identities, tickets, and VLAN records.
