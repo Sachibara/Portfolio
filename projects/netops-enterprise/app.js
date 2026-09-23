@@ -165,10 +165,21 @@
   let state=loadState();
   let selectedDeviceId=state.devices[0]?.id||null;
   let lastDiagnostic=null;
+  let cloudRole="demo";
+  let cloudSaveTimer=null;
 
   function save(){
     state.updatedAt=now();
     localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    if(window.NetOpsCloud?.isCloudActive?.()&&cloudRole!=="viewer"){
+      clearTimeout(cloudSaveTimer);
+      cloudSaveTimer=setTimeout(()=>{
+        window.NetOpsCloud.saveWorkspace(state).catch(error=>{
+          console.error("NetOps cloud save failed:",error);
+          toast("Cloud save failed",error.message||"Workspace remains saved locally.");
+        });
+      },350);
+    }
   }
   function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");}
   function fmt(v){const d=new Date(v);return Number.isNaN(d.getTime())?"—":d.toLocaleString();}
@@ -182,8 +193,13 @@
     $("toastRegion").appendChild(el);setTimeout(()=>el.remove(),3400);
   }
   function audit(module,action,detail){
-    state.audit.unshift({id:uid("AUD"),at:now(),module,action,detail});
-    state.audit=state.audit.slice(0,400);save();
+    const event={id:uid("AUD"),at:now(),module,action,detail};
+    state.audit.unshift(event);
+    state.audit=state.audit.slice(0,400);
+    if(window.NetOpsCloud?.isCloudActive?.()&&cloudRole!=="viewer"){
+      window.NetOpsCloud.pushAudit(event).catch(error=>console.error("NetOps audit sync failed:",error));
+    }
+    save();
   }
   function badge(text,tone){return '<span class="badge '+esc(tone||"")+'">'+esc(text)+'</span>';}
   function toneForStatus(status){
@@ -577,7 +593,100 @@
   });
   $("importInput").addEventListener("change",async()=>{const file=$("importInput").files?.[0];if(!file)return;try{const parsed=JSON.parse(await file.text()),w=parsed.workspace||parsed;if(!w||!Array.isArray(w.devices)||!Array.isArray(w.subnets))throw new Error("Invalid NetOps Enterprise workspace.");state={...seedState(),...w};audit("System","Workspace imported",file.name);save();renderAll();openPage("overview");toast("Workspace imported",file.name);}catch(e){toast("Import failed",e.message);}finally{$("importInput").value="";}});
   
+
+  function setAuthMessage(message,tone=""){
+    const box=$("authMessage");if(!box)return;
+    box.textContent=message;box.className="auth-message"+(tone?" "+tone:"");
+  }
+
+  function applyRoleAccess(){
+    document.body.dataset.role=cloudRole;
+    const viewer=cloudRole==="viewer";
+    [
+      "scanNetworkBtn","collectTelemetryBtn","openPlannerBtn","backupAllBtn",
+      "runCompareBtn","runDiagBtn","addDocChangeBtn"
+    ].forEach(id=>{if($(id))$(id).disabled=viewer;});
+    qsa("[data-backup-one],[data-ack],[data-quick]").forEach(el=>{if(viewer)el.disabled=true;});
+  }
+
+  function showCloudIdentity(user,role){
+    cloudRole=role||"viewer";
+    $("cloudUser").hidden=false;
+    $("cloudUserLabel").textContent=user?.email||"Cloud user";
+    $("cloudRoleLabel").textContent=cloudRole;
+    applyRoleAccess();
+  }
+
+  async function bootstrapCloud(displayName=""){
+    if(!window.NetOpsCloud?.available)throw new Error("Supabase client unavailable.");
+    const result=await window.NetOpsCloud.bootstrap(state,displayName);
+    if(result.state)state={...seedState(),...result.state};
+    if(result.audit?.length)state.audit=result.audit;
+    selectedDeviceId=state.devices[0]?.id||null;
+    lastDiagnostic=state.diagnostics?.[0]||null;
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    $("authGate").hidden=true;
+    showCloudIdentity(result.user,result.role);
+    renderAll();
+    toast("Cloud workspace connected",result.name+" · "+result.role);
+  }
+
+  async function initCloudAuth(){
+    if(!window.NetOpsCloud?.available){
+      setAuthMessage("Cloud client could not load. Portfolio Demo is still available.","error");
+      return;
+    }
+    try{
+      const session=await window.NetOpsCloud.init();
+      if(session){
+        setAuthMessage("Restoring NetOps Enterprise cloud workspace...");
+        await bootstrapCloud();
+      }
+    }catch(error){
+      console.error(error);
+      setAuthMessage(error.message||"Unable to restore cloud session.","error");
+    }
+  }
+
+  qsa("[data-auth-tab]").forEach(button=>button.addEventListener("click",()=>{
+    qsa("[data-auth-tab]").forEach(b=>b.classList.toggle("active",b===button));
+    const signup=button.dataset.authTab==="signup";
+    $("signInForm").hidden=signup;$("signUpForm").hidden=!signup;
+    setAuthMessage(signup?"Create a cloud network workspace.":"Sign in to load persistent network operations data.");
+  }));
+
+  $("signInForm").addEventListener("submit",async event=>{
+    event.preventDefault();setAuthMessage("Signing in...");
+    try{
+      await window.NetOpsCloud.signIn($("authEmail").value.trim(),$("authPassword").value);
+      await bootstrapCloud();
+    }catch(error){setAuthMessage(error.message||"Sign-in failed.","error");}
+  });
+
+  $("signUpForm").addEventListener("submit",async event=>{
+    event.preventDefault();const name=$("authDisplayName").value.trim();
+    setAuthMessage("Creating account...");
+    try{
+      const result=await window.NetOpsCloud.signUp($("authSignupEmail").value.trim(),$("authSignupPassword").value,name);
+      if(result.session)await bootstrapCloud(name);
+      else setAuthMessage("Account created. Confirm your email, then return and sign in.","success");
+    }catch(error){setAuthMessage(error.message||"Account creation failed.","error");}
+  });
+
+  $("continueDemoBtn").addEventListener("click",()=>{
+    cloudRole="demo";$("authGate").hidden=true;$("cloudUser").hidden=true;applyRoleAccess();
+    toast("Portfolio Demo","Using browser-local network data. No external infrastructure is contacted.");
+  });
+
+  $("cloudSignOutBtn").addEventListener("click",async()=>{
+    try{await window.NetOpsCloud.signOut();}catch(error){console.error(error);}
+    cloudRole="demo";$("cloudUser").hidden=true;$("authGate").hidden=false;applyRoleAccess();
+    setAuthMessage("Signed out. Sign in again or launch Portfolio Demo.");
+  });
+
   function renderAll(){renderOverview();renderTopology();renderDevices();renderHealth();renderIpam();renderConfigs();renderTroubleshoot();renderDocs();renderAlerts();renderAudit();}
   renderAll();
+  applyRoleAccess();
+  initCloudAuth();
   try{$("cidrCalcBtn").click();}catch(_){}
 })();
