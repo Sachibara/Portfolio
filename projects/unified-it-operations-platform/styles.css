@@ -477,3 +477,22 @@ tbody tr:last-child td{border-bottom:0}
 .service-ticket .incident-actions select{min-width:118px}
 @media(max-width:1180px){.asset-kpis,.identity-kpis{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:620px){.asset-kpis,.identity-kpis{grid-template-columns:1fr 1fr}.service-ticket{grid-template-columns:1fr}}
+
+/* Phase 3: authentication, cloud persistence, RBAC */
+.auth-gate{position:fixed;inset:0;z-index:200;background:rgba(3,9,15,.94);backdrop-filter:blur(14px);display:grid;place-items:center;padding:20px}
+.auth-card{width:min(470px,100%);background:#0b1826;border:1px solid #2b465e;border-radius:18px;padding:22px;box-shadow:0 36px 100px rgba(0,0,0,.55)}
+.auth-brand{border-bottom:0;padding:0 0 14px;margin-bottom:6px}
+.auth-card h2{font-size:1.65rem;line-height:1.05;letter-spacing:-.035em;margin:8px 0 10px}
+.auth-copy{font-size:.62rem;line-height:1.6;color:var(--muted)}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:16px 0 12px}
+.auth-tab{min-height:36px;border-radius:8px;border:1px solid #29445b;background:#0c1a27;color:#8fa4b8;font-size:.58rem;font-weight:900}
+.auth-tab.active{background:#14304a;color:#fff;border-color:#3e6b8e}
+.auth-form{display:grid;gap:2px}
+.auth-message{margin:10px 0;padding:9px;border:1px solid #21394e;border-radius:8px;background:#081521;color:#9fb3c4;font-size:.52rem;line-height:1.5}
+.auth-message.error{border-color:#66343e;color:#ff9eaa;background:#291419}
+.auth-message.success{border-color:#2f654f;color:#83e5b5;background:#0e281f}
+.cloud-user{display:flex;align-items:center;gap:7px;border:1px solid #29445b;background:#0a1622;border-radius:8px;padding:5px 6px 5px 9px}
+.cloud-user span,.cloud-user b{font-size:.49rem}
+.cloud-user span{color:#cbd9e4}.cloud-user b{color:#72dca9;text-transform:uppercase;letter-spacing:.06em}
+body[data-role="viewer"] .support-action:not(:disabled){opacity:.45}
+button:disabled{opacity:.42;cursor:not-allowed;transform:none!important}
