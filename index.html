@@ -362,41 +362,42 @@
             <div>
               <div class="project-top">
                 <span class="project-number">01</span>
-                <span class="status">Unified Security Flagship</span>
+                <span class="status">Flagship Desktop Application</span>
               </div>
 
-              <h3>PyreWall — Unified Next Generation Firewall Platform</h3>
+              <h3>PyreWall — Python-Based Next Generation Firewall</h3>
               <p>
-                A unified firewall platform combining the original Windows/PyQt6 enforcement engine with a browser-based
-                security control plane for policy, device control, application signatures, threats, traffic analytics, and audit.
+                The original Windows/PyQt6 next-generation firewall application developed as a BSIT Network Technology capstone.
+                PyreWall provides local packet filtering, website/application controls, connected-device management, custom rules,
+                threats, history, settings, and administration through its desktop interface.
               </p>
 
               <ul class="bullet-list">
-                <li>Windows enforcement through WinDivert, Windows Firewall, ARP discovery, DNS/SNI/HTTP filtering, and SQLite.</li>
-                <li>Unified browser security dashboard for domains, IPs, devices, applications, rules, threats, traffic, and audit.</li>
-                <li>Connected-device block/unblock workflows with IP/MAC identity and network-access context.</li>
-                <li>Application/service signatures and structured IP/port/protocol policy management.</li>
-                <li>Threat-center workflows with severity, acknowledgement, resolution, and security-posture scoring.</li>
-                <li>Portfolio Demo mode separated from real privileged local Windows enforcement.</li>
+                <li>Start/stop firewall engine with WinDivert and Windows Firewall integration.</li>
+                <li>Website blocking through domain, DNS, TLS SNI, HTTP Host, and resolved-IP policy.</li>
+                <li>Network device discovery with IP/MAC visibility and device block/unblock controls.</li>
+                <li>Administrator-managed application signatures and custom IP/port/protocol firewall rules.</li>
+                <li>Threat monitoring, logs/history, settings, database backups, and admin user management.</li>
+                <li>The linked website is a browser remake of this original desktop application for portfolio viewing.</li>
               </ul>
 
               <div class="tag-list" aria-label="PyreWall technologies">
-                <span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">Flask</span><span class="tag">JavaScript</span>
-                <span class="tag">SQLite</span><span class="tag">WinDivert</span><span class="tag">Windows Firewall</span>
-                <span class="tag">NGFW</span><span class="tag">Threat Monitoring</span>
+                <span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">SQLite</span>
+                <span class="tag">WinDivert</span><span class="tag">Windows Firewall</span><span class="tag">DNS/SNI Filtering</span>
+                <span class="tag">Device Control</span><span class="tag">NGFW</span>
               </div>
             </div>
 
             <div class="project-panel" aria-hidden="true">
               <div class="terminal">
-                <div><span class="ok">$</span> pyrewall --control-plane unified</div><br>
-                <div>Windows engine .......... <span class="ok">local-ready</span></div>
-                <div>Web / IP policy ......... <span class="ok">operational</span></div>
-                <div>Device control .......... <span class="ok">operational</span></div>
-                <div>Application control ..... <span class="ok">operational</span></div>
-                <div>Threat center ........... <span class="ok">operational</span></div>
-                <div>Traffic analytics ....... <span class="ok">operational</span></div><br>
-                <div class="dim">Browser control plane + privileged Windows enforcement architecture.</div>
+                <div><span class="ok">$</span> python main.py</div><br>
+                <div>PyQt6 dashboard ......... <span class="ok">desktop</span></div>
+                <div>WinDivert filtering ..... <span class="ok">enabled</span></div>
+                <div>Website blocking ........ <span class="ok">enabled</span></div>
+                <div>Device control .......... <span class="ok">enabled</span></div>
+                <div>Firewall rules .......... <span class="ok">enabled</span></div>
+                <div>Threat / history ........ <span class="ok">enabled</span></div><br>
+                <div class="dim">Open Site launches a faithful browser remake of the original desktop application.</div>
               </div>
             </div>
                       <div class="project-actions">
