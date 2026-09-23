@@ -30,12 +30,14 @@
 
     <nav class="side-nav" aria-label="Primary navigation">
       <button class="nav-link active" data-page="overview">Overview</button>
+      <button class="nav-link" data-page="incidents">Service Desk</button>
       <button class="nav-link" data-page="endpoints">Endpoints</button>
+      <button class="nav-link" data-page="assets">Assets</button>
+      <button class="nav-link" data-page="identity">Identity & Access</button>
       <button class="nav-link" data-page="troubleshooting">Troubleshooting</button>
       <button class="nav-link" data-page="remote">Remote Support</button>
       <button class="nav-link" data-page="documentation">Documentation</button>
       <button class="nav-link" data-page="compliance">Compliance</button>
-      <button class="nav-link" data-page="incidents">Incidents</button>
       <button class="nav-link" data-page="audit">Audit Log</button>
       <button class="nav-link" data-page="settings">Settings</button>
     </nav>
@@ -152,6 +154,97 @@
           </table>
         </div>
       </article>
+    </section>
+
+
+    <section class="page" data-panel="assets">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">IT Asset Manager integration</p>
+          <h2>Asset Lifecycle Management</h2>
+          <p>Track ownership, lifecycle state, warranty exposure, endpoint relationships, maintenance, and assignment history from one asset register.</p>
+        </div>
+        <button class="btn primary" id="addAssetBtn">Add Asset</button>
+      </div>
+
+      <div class="asset-kpis">
+        <article><span>Total assets</span><strong id="assetTotal">0</strong></article>
+        <article><span>Assigned</span><strong id="assetAssigned">0</strong></article>
+        <article><span>Available</span><strong id="assetAvailable">0</strong></article>
+        <article><span>In repair</span><strong id="assetRepair">0</strong></article>
+        <article><span>Warranty risk</span><strong id="assetWarrantyRisk">0</strong></article>
+      </div>
+
+      <div class="toolbar">
+        <input id="assetSearch" type="search" placeholder="Search tag, hostname, serial, user, department...">
+        <select id="assetStatusFilter"><option value="">All lifecycle states</option></select>
+        <select id="assetTypeFilter"><option value="">All asset types</option></select>
+      </div>
+
+      <article class="panel table-panel">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Asset</th><th>Type</th><th>Status</th><th>Assigned To</th><th>Endpoint</th><th>Location</th><th>Warranty</th><th></th></tr></thead>
+            <tbody id="assetRows"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <div class="grid two">
+        <article class="panel">
+          <div class="panel-head"><div><h3>Maintenance Queue</h3><p>Open maintenance work tied to managed assets.</p></div></div>
+          <div id="maintenanceRows" class="stack"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><div><h3>Software Exposure</h3><p>Installed-software inventory summarized by asset.</p></div></div>
+          <div id="softwareRows" class="stack"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" data-panel="identity">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">AD provisioning integration</p>
+          <h2>Identity & Access</h2>
+          <p>Manage joiner/mover/leaver workflows, role templates, groups, account state, password-reset flags, and asset relationships.</p>
+        </div>
+        <button class="btn primary" id="provisionUserBtn">Provision User</button>
+      </div>
+
+      <div class="identity-kpis">
+        <article><span>Directory users</span><strong id="idUsers">0</strong></article>
+        <article><span>Active</span><strong id="idActive">0</strong></article>
+        <article><span>Disabled</span><strong id="idDisabled">0</strong></article>
+        <article><span>Expiring soon</span><strong id="idExpiring">0</strong></article>
+        <article><span>Privileged users</span><strong id="idPrivileged">0</strong></article>
+      </div>
+
+      <div class="toolbar">
+        <input id="identitySearch" type="search" placeholder="Search name, username, department, title...">
+        <select id="identityStatusFilter"><option value="">All identity states</option></select>
+        <select id="identityDepartmentFilter"><option value="">All departments</option></select>
+      </div>
+
+      <article class="panel table-panel">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>User</th><th>Department</th><th>Title</th><th>Status</th><th>Template</th><th>Groups</th><th>Assets</th><th></th></tr></thead>
+            <tbody id="identityRows"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <div class="grid two">
+        <article class="panel">
+          <div class="panel-head"><div><h3>Role Templates</h3><p>Reusable provisioning baselines and access bundles.</p></div></div>
+          <div id="templateRows" class="stack"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><div><h3>Access Groups</h3><p>Security/distribution groups with ownership and risk context.</p></div></div>
+          <div id="groupRows" class="stack"></div>
+        </article>
+      </div>
     </section>
 
     <section class="page" data-panel="troubleshooting">
@@ -322,23 +415,40 @@
     <section class="page" data-panel="incidents">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Unified service workflow</p>
-          <h2>Incidents & Remediation</h2>
-          <p>Diagnostics, remote support, and compliance can all create tickets against the same endpoint record.</p>
+          <p class="eyebrow">HelpDesk Pro integration</p>
+          <h2>Service Desk</h2>
+          <p>Unified incident and service-request operations with priority calculation, SLA tracking, requester/asset context, assignment, escalation, and knowledge support.</p>
         </div>
-        <button class="btn primary" id="newIncidentBtn">New Incident</button>
+        <button class="btn primary" id="newIncidentBtn">New Ticket</button>
       </div>
 
       <div class="incident-kpis">
-        <article><span>New</span><strong id="incNew">0</strong></article>
-        <article><span>Active</span><strong id="incActive">0</strong></article>
-        <article><span>Pending</span><strong id="incPending">0</strong></article>
-        <article><span>Resolved</span><strong id="incResolved">0</strong></article>
+        <article><span>Open tickets</span><strong id="incNew">0</strong></article>
+        <article><span>SLA at risk</span><strong id="incActive">0</strong></article>
+        <article><span>SLA breached</span><strong id="incPending">0</strong></article>
+        <article><span>Resolved / closed</span><strong id="incResolved">0</strong></article>
+      </div>
+
+      <div class="toolbar">
+        <input id="ticketSearch" type="search" placeholder="Search ticket, subject, requester, endpoint, asset...">
+        <select id="ticketStatusFilter"><option value="">All statuses</option></select>
+        <select id="ticketPriorityFilter"><option value="">All priorities</option><option>P1</option><option>P2</option><option>P3</option><option>P4</option></select>
       </div>
 
       <article class="panel">
         <div id="incidentRows" class="incident-list"></div>
       </article>
+
+      <div class="grid two">
+        <article class="panel">
+          <div class="panel-head"><div><h3>Knowledge Base</h3><p>Suggested support articles from HelpDesk Pro.</p></div></div>
+          <div id="knowledgeRows" class="stack"></div>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><div><h3>Service Desk Team</h3><p>Assignment and workload context.</p></div></div>
+          <div id="technicianRows" class="stack"></div>
+        </article>
+      </div>
     </section>
 
     <section class="page" data-panel="audit">
