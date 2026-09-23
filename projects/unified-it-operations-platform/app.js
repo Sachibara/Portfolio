@@ -1807,11 +1807,20 @@
     });
   }
 
+  function updateModeUI(mode, role = "demo") {
+    const cloud = mode === "cloud";
+    if ($("workspaceModeLabel")) $("workspaceModeLabel").textContent = cloud ? "CLOUD WORKSPACE" : "PORTFOLIO DEMO";
+    if ($("persistenceModeLabel")) $("persistenceModeLabel").textContent = cloud ? "SUPABASE" : "LOCAL";
+    if ($("accessModeLabel")) $("accessModeLabel").textContent = String(role || "demo").toUpperCase();
+    if ($("heroPersistenceLabel")) $("heroPersistenceLabel").textContent = cloud ? "Supabase cloud" : "Local demo";
+  }
+
   function showCloudIdentity(user, role) {
     cloudRole = role || "viewer";
     if ($("cloudUser")) $("cloudUser").hidden = false;
     if ($("cloudUserLabel")) $("cloudUserLabel").textContent = user?.email || "Cloud user";
     if ($("cloudRoleLabel")) $("cloudRoleLabel").textContent = cloudRole;
+    updateModeUI("cloud", cloudRole);
     applyRoleAccess();
   }
 
@@ -1905,6 +1914,7 @@
     cloudRole = "demo";
     $("cloudUser").hidden = true;
     $("authGate").hidden = false;
+    updateModeUI("demo", "demo");
     setAuthMessage("Signed out. Sign in again or continue in Demo Mode.");
     applyRoleAccess();
   });
@@ -1926,6 +1936,7 @@
   migrateUnifiedState();
   saveState();
   renderAll();
+  updateModeUI("demo", "demo");
   applyRoleAccess();
   initCloudAuth();
   try {

@@ -30,18 +30,19 @@
       </div>
     </div>
 
+    <div class="rail-label">CONTROL MODULES</div>
     <nav class="side-nav" aria-label="Primary navigation">
-      <button class="nav-link active" data-page="overview">Overview</button>
-      <button class="nav-link" data-page="incidents">Service Desk</button>
-      <button class="nav-link" data-page="endpoints">Endpoints</button>
-      <button class="nav-link" data-page="assets">Assets</button>
-      <button class="nav-link" data-page="identity">Identity & Access</button>
-      <button class="nav-link" data-page="troubleshooting">Troubleshooting</button>
-      <button class="nav-link" data-page="remote">Remote Support</button>
-      <button class="nav-link" data-page="documentation">Documentation</button>
-      <button class="nav-link" data-page="compliance">Compliance</button>
-      <button class="nav-link" data-page="audit">Audit Log</button>
-      <button class="nav-link" data-page="settings">Settings</button>
+      <button class="nav-link active" data-page="overview"><span class="nav-code">OV</span><span>Overview</span></button>
+      <button class="nav-link" data-page="incidents"><span class="nav-code">SD</span><span>Service Desk</span></button>
+      <button class="nav-link" data-page="endpoints"><span class="nav-code">EP</span><span>Endpoints</span></button>
+      <button class="nav-link" data-page="assets"><span class="nav-code">AM</span><span>Assets</span></button>
+      <button class="nav-link" data-page="identity"><span class="nav-code">ID</span><span>Identity & Access</span></button>
+      <button class="nav-link" data-page="troubleshooting"><span class="nav-code">NT</span><span>Troubleshooting</span></button>
+      <button class="nav-link" data-page="remote"><span class="nav-code">RS</span><span>Remote Support</span></button>
+      <button class="nav-link" data-page="documentation"><span class="nav-code">ND</span><span>Documentation</span></button>
+      <button class="nav-link" data-page="compliance"><span class="nav-code">PC</span><span>Compliance</span></button>
+      <button class="nav-link" data-page="audit"><span class="nav-code">AU</span><span>Audit Log</span></button>
+      <button class="nav-link" data-page="settings"><span class="nav-code">ST</span><span>Settings</span></button>
     </nav>
 
     <div class="sidebar-note">
@@ -52,9 +53,12 @@
 
   <main class="main">
     <header class="topbar">
-      <div>
-        <p class="eyebrow" id="pageEyebrow">Unified operations</p>
-        <h1 id="pageTitle">Overview</h1>
+      <div class="topbar-heading">
+        <span class="topbar-index">OPS / 15</span>
+        <div>
+          <p class="eyebrow" id="pageEyebrow">Unified operations</p>
+          <h1 id="pageTitle">Overview</h1>
+        </div>
       </div>
       <div class="top-actions">
         <div class="global-search-wrap">
@@ -71,28 +75,48 @@
       </div>
     </header>
 
+    <div class="system-strip">
+      <div><span class="signal-dot live"></span><b>CONTROL FABRIC</b><small id="workspaceModeLabel">PORTFOLIO DEMO</small></div>
+      <div><span class="strip-key">SYNC</span><b id="persistenceModeLabel">LOCAL</b><small>workspace state</small></div>
+      <div><span class="strip-key">ACCESS</span><b id="accessModeLabel">DEMO</b><small>role boundary</small></div>
+      <div><span class="strip-key">AGENT</span><b>SAFE MODE</b><small>simulated actions</small></div>
+    </div>
+
     <section class="page active" data-panel="overview">
       <div class="hero">
-        <div>
-          <p class="eyebrow">Operations control plane</p>
-          <h2>One inventory. One audit trail. Multiple IT workflows.</h2>
+        <div class="hero-copy">
+          <div class="hero-sequence"><span>01</span><i></i><span>UNIFIED CONTROL PLANE</span></div>
+          <p class="eyebrow">Operations control fabric</p>
+          <h2>One command surface for the full IT lifecycle.</h2>
           <p>
-            OpsFusion now uses a shared endpoint model across troubleshooting, remote support,
-            network documentation, patch compliance, incident handling, and reporting.
-            Actions taken in one module are visible everywhere else.
+            OpsFusion binds service desk, assets, identity, endpoints, diagnostics, remote support,
+            documentation, compliance, and audit into one operational model. Every action carries context
+            across the platform instead of ending inside a silo.
           </p>
           <div class="hero-actions">
-            <button class="btn primary" data-go="endpoints">Open Endpoints</button>
+            <button class="btn primary" data-go="incidents">Enter Service Desk</button>
             <button class="btn secondary" data-go="troubleshooting">Run Diagnostics</button>
           </div>
+          <div class="hero-capabilities">
+            <span>ITSM</span><span>ITAM</span><span>IAM</span><span>NETOPS</span><span>ENDPOINT</span><span>GRC</span>
+          </div>
         </div>
-        <div class="hero-status">
-          <span>WORKSPACE HEALTH</span>
-          <strong id="healthScoreHero">—</strong>
-          <small id="healthLabelHero">Calculating...</small>
+        <div class="hero-status signal-board">
+          <div class="signal-board-head"><span>LIVE OPERATIONS SIGNAL</span><b>OPS-FABRIC</b></div>
+          <div class="signal-core">
+            <div class="signal-ring ring-a"></div>
+            <div class="signal-ring ring-b"></div>
+            <div class="signal-score">
+              <strong id="healthScoreHero">—</strong>
+              <small id="healthLabelHero">Calculating...</small>
+            </div>
+            <span class="orbit-node n1">SD</span><span class="orbit-node n2">EP</span><span class="orbit-node n3">AM</span>
+            <span class="orbit-node n4">ID</span><span class="orbit-node n5">NT</span><span class="orbit-node n6">PC</span>
+          </div>
           <div class="health-bar"><i id="healthBar"></i></div>
-          <div class="hero-status-row"><span>Persistence</span><b>Browser local</b></div>
-          <div class="hero-status-row"><span>Production agent</span><b>Optional</b></div>
+          <div class="hero-status-row"><span>Data plane</span><b id="heroPersistenceLabel">Local demo</b></div>
+          <div class="hero-status-row"><span>Control boundary</span><b>RLS / RBAC</b></div>
+          <div class="hero-status-row"><span>Action model</span><b>Safe simulation</b></div>
         </div>
       </div>
 
@@ -522,31 +546,64 @@
 </div>
 
 <div class="auth-gate" id="authGate">
-  <div class="auth-card">
-    <div class="brand auth-brand">
-      <div class="brand-mark">OF</div>
-      <div><strong>OpsFusion</strong><span>Cloud Workspace</span></div>
-    </div>
-    <p class="eyebrow">Phase 3 · Supabase-backed</p>
-    <h2>Open the unified IT operations workspace</h2>
-    <p class="auth-copy">Sign in to persist the full OpsFusion workspace in Supabase, or continue in portfolio demo mode using browser-local data.</p>
-    <div class="auth-tabs">
-      <button class="auth-tab active" data-auth-tab="signin">Sign In</button>
-      <button class="auth-tab" data-auth-tab="signup">Create Account</button>
-    </div>
-    <form id="signInForm" class="auth-form">
-      <label class="field"><span>Email</span><input id="authEmail" type="email" autocomplete="email" required></label>
-      <label class="field"><span>Password</span><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required></label>
-      <button class="btn primary wide" type="submit">Sign In to Cloud</button>
-    </form>
-    <form id="signUpForm" class="auth-form" hidden>
-      <label class="field"><span>Display name</span><input id="authDisplayName" autocomplete="name" required></label>
-      <label class="field"><span>Email</span><input id="authSignupEmail" type="email" autocomplete="email" required></label>
-      <label class="field"><span>Password</span><input id="authSignupPassword" type="password" autocomplete="new-password" minlength="8" required></label>
-      <button class="btn primary wide" type="submit">Create Cloud Account</button>
-    </form>
-    <div id="authMessage" class="auth-message">Cloud data is protected with Supabase Auth and row-level security.</div>
-    <button class="btn secondary wide" id="continueDemoBtn">Continue in Demo Mode</button>
+  <div class="auth-shell">
+    <section class="auth-visual">
+      <div class="auth-visual-top">
+        <span class="auth-serial">OPS-FUSION / CONTROL FABRIC / 015</span>
+        <span class="auth-live"><i></i> SYSTEM READY</span>
+      </div>
+      <div class="auth-emblem">
+        <span class="auth-emblem-code">OF</span>
+        <div class="auth-emblem-ring r1"></div>
+        <div class="auth-emblem-ring r2"></div>
+        <div class="auth-emblem-ring r3"></div>
+        <span class="auth-node a1">ITSM</span><span class="auth-node a2">ITAM</span><span class="auth-node a3">IAM</span>
+        <span class="auth-node a4">NET</span><span class="auth-node a5">SEC</span><span class="auth-node a6">AUDIT</span>
+      </div>
+      <div class="auth-manifest">
+        <p>UNIFIED IT OPERATIONS PLATFORM</p>
+        <h2>Operate across systems, not inside silos.</h2>
+        <div class="manifest-grid">
+          <span><b>11</b> control modules</span>
+          <span><b>01</b> shared data fabric</span>
+          <span><b>03</b> access roles</span>
+          <span><b>24/7</b> portfolio demo</span>
+        </div>
+      </div>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-card">
+        <div class="auth-panel-head">
+          <div class="brand auth-brand">
+            <div class="brand-mark">OF</div>
+            <div><strong>OpsFusion</strong><span>Unified IT Operations</span></div>
+          </div>
+          <span class="phase-chip">PHASE 3</span>
+        </div>
+        <p class="eyebrow">Supabase-backed cloud workspace</p>
+        <h2>Choose your operating mode.</h2>
+        <p class="auth-copy">Sign in for persistent cloud state and role-based access, or enter Demo Mode to inspect the complete product without an account.</p>
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-tab="signin">Sign In</button>
+          <button class="auth-tab" data-auth-tab="signup">Create Account</button>
+        </div>
+        <form id="signInForm" class="auth-form">
+          <label class="field"><span>Email</span><input id="authEmail" type="email" autocomplete="email" required placeholder="operator@company.com"></label>
+          <label class="field"><span>Password</span><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="••••••••"></label>
+          <button class="btn primary wide" type="submit">Connect Cloud Workspace</button>
+        </form>
+        <form id="signUpForm" class="auth-form" hidden>
+          <label class="field"><span>Display name</span><input id="authDisplayName" autocomplete="name" required placeholder="IT Operator"></label>
+          <label class="field"><span>Email</span><input id="authSignupEmail" type="email" autocomplete="email" required placeholder="operator@company.com"></label>
+          <label class="field"><span>Password</span><input id="authSignupPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="8+ characters"></label>
+          <button class="btn primary wide" type="submit">Create Cloud Workspace</button>
+        </form>
+        <div id="authMessage" class="auth-message">Cloud data is protected with Supabase Auth, RLS, and role-based access control.</div>
+        <div class="auth-divider"><span>OR</span></div>
+        <button class="btn demo wide" id="continueDemoBtn">Launch Portfolio Demo</button>
+        <p class="auth-footnote">Demo Mode uses seeded, browser-local data. No infrastructure access is performed.</p>
+      </div>
+    </section>
   </div>
 </div>
 
