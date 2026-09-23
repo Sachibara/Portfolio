@@ -8,7 +8,8 @@ This repository contains the main portfolio and the five newer standalone portfo
 
 - **PyreWall:** https://github.com/Sachibara/Pyrewall
 - **OmniShare:** https://finalomnishare.vercel.app
-- **PyreWall Web:** https://sachibara.github.io/Pyrewall-Web/
+- **StudySyncRemod:** https://study-sync-remod.vercel.app
+- **PyreWall Web:** https://portfolio-github-io-five-pi.vercel.app/projects/pyrewall-web/
 - **NetOps Command Center:** https://sachibara.github.io/NetOps-Command-Center/
 - **HelpDesk Pro:** https://sachibara.github.io/HelpDesk-Pro/
 - **IT Asset Manager:** https://sachibara.github.io/IT-Asset-Manager/
@@ -23,7 +24,7 @@ This repository contains the main portfolio and the five newer standalone portfo
 - **LAN Deployment & Remote Support Console:** https://portfolio-github-io-five-pi.vercel.app/projects/lan-deployment-remote-support-console/
 - **Network Documentation Generator:** https://portfolio-github-io-five-pi.vercel.app/projects/network-documentation-generator/
 - **Patch & Endpoint Compliance Dashboard:** https://portfolio-github-io-five-pi.vercel.app/projects/patch-endpoint-compliance-dashboard/
-- **Unified IT Operations Platform (OpsFusion):** https://portfolio-github-io-five-pi.vercel.app/projects/unified-it-operations-platform/
+- **Unified IT Operations Platform (OpsFusion):** listed as the planned unification target; no standalone public site
 
 ## Notes
 
