@@ -1696,6 +1696,7 @@
         settings: { ...seedState().settings, ...(imported.settings || {}) },
         complianceRules: { ...seedState().complianceRules, ...(imported.complianceRules || {}) }
       };
+      migrateUnifiedState();
       audit("System", "Workspace imported", file.name, "Unified state restored from JSON.");
       saveState();
       currentEndpointId = state.endpoints[0] ? state.endpoints[0].id : null;
@@ -1727,6 +1728,15 @@
       const hay = [i.id, i.title, i.status, i.priority, i.source].join(" ").toLowerCase();
       if (hay.includes(q)) hits.push({ type: "incident", id: i.id, title: i.id + " · " + i.title, detail: i.status + " · " + i.priority });
     });
+    state.assets.forEach((a) => {
+      const user=identityById(a.assignedUserId);
+      const hay=[a.tag,a.hostname,a.serial,a.type,a.status,a.department,a.location,user?user.displayName:""].join(" ").toLowerCase();
+      if(hay.includes(q)) hits.push({type:"asset",id:a.id,title:a.tag+" · "+a.hostname,detail:a.status+" · "+(user?user.displayName:"Unassigned")});
+    });
+    state.identities.forEach((u) => {
+      const hay=[u.displayName,u.username,u.upn,u.department,u.title,u.status].join(" ").toLowerCase();
+      if(hay.includes(q)) hits.push({type:"identity",id:u.id,title:u.displayName,detail:u.upn+" · "+u.department+" · "+u.status});
+    });
     state.vlans.forEach((v) => {
       const hay = [v.site, v.vlan, v.name, v.cidr, v.gateway].join(" ").toLowerCase();
       if (hay.includes(q)) hits.push({ type: "vlan", id: v.id, title: v.site + " VLAN " + v.vlan + " · " + v.name, detail: v.cidr });
@@ -1741,7 +1751,9 @@
       box.hidden = true;
       $("globalSearch").value = "";
       if (hit.type === "endpoint") openEndpointModal(hit.id);
-      if (hit.type === "incident") openPage("incidents");
+      if (hit.type === "incident") { openPage("incidents"); setTimeout(()=>openTicketModal(hit.id),0); }
+      if (hit.type === "asset") { openPage("assets"); setTimeout(()=>openAssetModal(hit.id),0); }
+      if (hit.type === "identity") { openPage("identity"); setTimeout(()=>openIdentityModal(hit.id),0); }
       if (hit.type === "vlan") openPage("documentation");
     });
   }
