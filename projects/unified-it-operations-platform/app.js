@@ -676,6 +676,233 @@
     );
   });
 
+
+  function renderAssets() {
+    const statuses = Array.from(new Set(state.assets.map((a) => a.status))).sort();
+    const types = Array.from(new Set(state.assets.map((a) => a.type))).sort();
+    const statusFilter = $("assetStatusFilter");
+    const typeFilter = $("assetTypeFilter");
+    const prevStatus = statusFilter.value;
+    const prevType = typeFilter.value;
+    statusFilter.innerHTML = '<option value="">All lifecycle states</option>' + statuses.map((s) => '<option value="' + esc(s) + '">' + esc(s) + '</option>').join("");
+    typeFilter.innerHTML = '<option value="">All asset types</option>' + types.map((s) => '<option value="' + esc(s) + '">' + esc(s) + '</option>').join("");
+    if (statuses.includes(prevStatus)) statusFilter.value = prevStatus;
+    if (types.includes(prevType)) typeFilter.value = prevType;
+
+    const search = $("assetSearch").value.trim().toLowerCase();
+    const rows = state.assets.filter((a) => {
+      const user = identityById(a.assignedUserId);
+      const hay = [a.tag,a.hostname,a.serial,a.type,a.status,a.department,a.location,user ? user.displayName : ""].join(" ").toLowerCase();
+      return (!search || hay.includes(search)) && (!statusFilter.value || a.status === statusFilter.value) && (!typeFilter.value || a.type === typeFilter.value);
+    });
+
+    $("assetTotal").textContent = state.assets.length;
+    $("assetAssigned").textContent = state.assets.filter((a) => a.status === "Assigned").length;
+    $("assetAvailable").textContent = state.assets.filter((a) => a.status === "Available").length;
+    $("assetRepair").textContent = state.assets.filter((a) => a.status === "In Repair").length;
+    $("assetWarrantyRisk").textContent = state.assets.filter((a) => {
+      const w = warrantyInfo(a); return w.days !== null && w.days <= 45;
+    }).length;
+
+    $("assetRows").innerHTML = rows.length ? rows.map((a) => {
+      const user = identityById(a.assignedUserId);
+      const endpoint = endpointById(a.endpointId);
+      const w = warrantyInfo(a);
+      const statusTone = a.status === "Assigned" ? "green" : a.status === "Available" ? "blue" : a.status === "In Repair" ? "amber" : "purple";
+      return "<tr>" +
+        '<td><span class="cell-title">' + esc(a.tag + " · " + a.hostname) + '</span><span class="cell-sub">' + esc(a.serial) + "</span></td>" +
+        "<td>" + esc(a.type) + "</td><td>" + badge(a.status,statusTone) + "</td><td>" + esc(user ? user.displayName : "Unassigned") + "</td>" +
+        "<td>" + esc(endpoint ? endpoint.hostname : "Not linked") + "</td><td>" + esc(a.location) + "</td><td>" + badge(w.label,w.tone) + '</td>' +
+        '<td><button class="mini-btn" data-open-asset="' + esc(a.id) + '">Open</button></td></tr>';
+    }).join("") : '<tr><td colspan="8" class="empty">No assets match the current filters.</td></tr>';
+
+    $("maintenanceRows").innerHTML = state.maintenance.length ? state.maintenance.map((m) => {
+      const asset = assetById(m.assetId);
+      return '<div class="stack-row"><div><strong>' + esc(m.type + " · " + (asset ? asset.tag : m.assetId)) +
+        '</strong><small>' + esc(m.detail + " · Owner " + m.owner + " · Due " + m.dueDate) +
+        '</small></div>' + badge(m.status,m.status === "In Progress" ? "amber" : "blue") + '</div>';
+    }).join("") : '<div class="empty">No open maintenance records.</div>';
+
+    const softwareByAsset = {};
+    state.software.forEach((s) => {
+      if (!softwareByAsset[s.assetId]) softwareByAsset[s.assetId] = [];
+      softwareByAsset[s.assetId].push(s);
+    });
+    $("softwareRows").innerHTML = Object.keys(softwareByAsset).length ? Object.entries(softwareByAsset).slice(0,10).map(([assetId, items]) => {
+      const asset = assetById(assetId);
+      const review = items.some((i) => i.status === "Review");
+      return '<div class="stack-row"><div><strong>' + esc(asset ? asset.tag + " · " + asset.hostname : assetId) +
+        '</strong><small>' + esc(items.map((i) => i.name + " " + i.version).join(" · ")) +
+        '</small></div>' + badge(review ? "Review" : "Healthy",review ? "amber" : "green") + '</div>';
+    }).join("") : '<div class="empty">No software inventory records.</div>';
+
+    qsa("[data-open-asset]").forEach((b) => b.onclick = () => openAssetModal(b.dataset.openAsset));
+  }
+
+  function openAssetModal(id) {
+    const asset = assetById(id);
+    if (!asset) return;
+    const w = warrantyInfo(asset);
+    const endpoint = endpointById(asset.endpointId);
+    const user = identityById(asset.assignedUserId);
+    showModal("Asset · " + asset.tag,
+      '<div class="endpoint-card"><h3>' + esc(asset.tag + " · " + asset.hostname) + '</h3><p>' + esc(asset.type + " · " + asset.serial) + '</p>' +
+      '<div class="endpoint-meta"><div><span>Assigned to</span><strong>' + esc(user ? user.displayName : "Unassigned") + '</strong></div>' +
+      '<div><span>Endpoint</span><strong>' + esc(endpoint ? endpoint.hostname : "Not linked") + '</strong></div>' +
+      '<div><span>Department</span><strong>' + esc(asset.department) + '</strong></div><div><span>Location</span><strong>' + esc(asset.location) + '</strong></div>' +
+      '<div><span>Warranty</span><strong>' + esc(w.label) + '</strong></div><div><span>Specs</span><strong>' + esc(asset.specs) + '</strong></div></div></div>' +
+      '<div class="form-grid"><label class="field"><span>Lifecycle status</span><select id="mAssetStatus">' +
+      ["Assigned","Available","In Repair","Retired","Lost"].map((s) => '<option' + (s===asset.status ? " selected" : "") + '>' + s + '</option>').join("") +
+      '</select></label><label class="field"><span>Assigned user</span><select id="mAssetUser"><option value="">Unassigned</option>' +
+      state.identities.filter((u) => u.status === "Active").map((u) => '<option value="' + esc(u.id) + '"' + (u.id===asset.assignedUserId ? " selected" : "") + '>' + esc(u.displayName) + '</option>').join("") +
+      '</select></label></div><div class="modal-actions"><button class="btn secondary" id="mAssetTicket">Create Ticket</button><button class="btn primary" id="mAssetSave">Save Asset</button></div>',
+      () => {
+        $("mAssetSave").onclick = () => {
+          const oldStatus = asset.status;
+          asset.status = $("mAssetStatus").value;
+          asset.assignedUserId = $("mAssetUser").value;
+          if (asset.status !== "Assigned") asset.assignedUserId = "";
+          if (asset.status === "Assigned" && !asset.assignedUserId) {
+            toast("Assignment required","Choose an active user or select another lifecycle state."); return;
+          }
+          const assigned = identityById(asset.assignedUserId);
+          const ep = endpointById(asset.endpointId);
+          if (ep) ep.owner = assigned ? assigned.displayName : "Unassigned";
+          audit("Assets","Asset updated",asset.tag,oldStatus + " → " + asset.status + (assigned ? " · " + assigned.displayName : ""));
+          saveState(); closeModal(); renderAssets(); renderEndpoints(); renderIdentity(); renderOverview();
+          toast("Asset updated",asset.tag);
+        };
+        $("mAssetTicket").onclick = () => {
+          createIncident({
+            type:"Incident", assetId:asset.id, endpointId:asset.endpointId,
+            requesterId:asset.assignedUserId, title:"Asset support required: " + asset.tag + " · " + asset.hostname,
+            category:"Hardware / Asset", impact:"Medium", urgency:"Medium", source:"Asset Management"
+          });
+          closeModal(); toast("Ticket created",asset.tag);
+        };
+      }
+    );
+  }
+
+  $("assetSearch").addEventListener("input",renderAssets);
+  $("assetStatusFilter").addEventListener("change",renderAssets);
+  $("assetTypeFilter").addEventListener("change",renderAssets);
+
+  $("addAssetBtn").addEventListener("click",() => {
+    showModal("Add Asset",
+      '<div class="form-grid"><label class="field"><span>Asset tag</span><input id="mAssetTag" placeholder="AST-1010"></label>' +
+      '<label class="field"><span>Hostname / name</span><input id="mAssetHost" placeholder="HQ-LT-010"></label>' +
+      '<label class="field"><span>Type</span><select id="mAssetType"><option>Laptop</option><option>Workstation</option><option>Server</option><option>Printer</option><option>Switch</option><option>Router</option><option>Access Point</option></select></label>' +
+      '<label class="field"><span>Serial</span><input id="mAssetSerial"></label>' +
+      '<label class="field"><span>Location</span><input id="mAssetLocation" placeholder="HQ · IT Stockroom"></label>' +
+      '<label class="field"><span>Department</span><input id="mAssetDepartment" placeholder="IT"></label>' +
+      '<label class="field"><span>Warranty expiry</span><input id="mAssetWarranty" type="date"></label>' +
+      '<label class="field"><span>Link endpoint</span><select id="mAssetEndpoint"><option value="">No endpoint</option>' + state.endpoints.map((e) => '<option value="' + esc(e.id) + '">' + esc(e.hostname) + '</option>').join("") + '</select></label>' +
+      '</div><div class="modal-actions"><button class="btn secondary" id="mCancel">Cancel</button><button class="btn primary" id="mSave">Add Asset</button></div>',
+      () => {
+        $("mCancel").onclick=closeModal;
+        $("mSave").onclick=() => {
+          const tag=$("mAssetTag").value.trim(), host=$("mAssetHost").value.trim();
+          if(!tag||!host){toast("Missing details","Asset tag and hostname/name are required.");return;}
+          if(state.assets.some((a)=>a.tag.toLowerCase()===tag.toLowerCase())){toast("Duplicate tag",tag);return;}
+          const endpointId=$("mAssetEndpoint").value;
+          const ep=endpointById(endpointId);
+          state.assets.push({id:tag,tag,hostname:host,type:$("mAssetType").value,serial:$("mAssetSerial").value.trim()||"—",status:"Available",assignedUserId:"",endpointId,department:$("mAssetDepartment").value.trim()||"IT",location:$("mAssetLocation").value.trim()||"Unspecified",purchaseDate:new Date().toISOString().slice(0,10),warrantyExpiry:$("mAssetWarranty").value,specs:ep ? ep.model+" · "+ep.os : "Portfolio asset record"});
+          audit("Assets","Asset added",tag,host + (ep ? " · linked to "+ep.hostname : ""));
+          saveState();closeModal();renderAssets();renderOverview();toast("Asset added",tag);
+        };
+      }
+    );
+  });
+
+  function renderIdentity() {
+    const statuses=Array.from(new Set(state.identities.map((u)=>u.status))).sort();
+    const departments=Array.from(new Set(state.identities.map((u)=>u.department))).sort();
+    const sf=$("identityStatusFilter"), df=$("identityDepartmentFilter"), ps=sf.value, pd=df.value;
+    sf.innerHTML='<option value="">All identity states</option>'+statuses.map((s)=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join("");
+    df.innerHTML='<option value="">All departments</option>'+departments.map((s)=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join("");
+    if(statuses.includes(ps))sf.value=ps;if(departments.includes(pd))df.value=pd;
+    const q=$("identitySearch").value.trim().toLowerCase();
+    const rows=state.identities.filter((u)=>{
+      const hay=[u.displayName,u.username,u.upn,u.department,u.title,u.manager].join(" ").toLowerCase();
+      return(!q||hay.includes(q))&&(!sf.value||u.status===sf.value)&&(!df.value||u.department===df.value);
+    });
+    $("idUsers").textContent=state.identities.length;
+    $("idActive").textContent=state.identities.filter((u)=>u.status==="Active").length;
+    $("idDisabled").textContent=state.identities.filter((u)=>u.status==="Disabled").length;
+    $("idExpiring").textContent=state.identities.filter(expiringIdentity).length;
+    $("idPrivileged").textContent=state.identities.filter((u)=>(u.groups||[]).includes("GRP-ADMIN")).length;
+    $("identityRows").innerHTML=rows.length?rows.map((u)=>{
+      const tpl=templateById(u.templateId);
+      const assets=state.assets.filter((a)=>a.assignedUserId===u.id);
+      const tone=u.status==="Active"?"green":u.status==="Disabled"?"red":u.status==="Offboarded"?"purple":"amber";
+      return "<tr><td><span class=\"cell-title\">"+esc(u.displayName)+"</span><span class=\"cell-sub\">"+esc(u.upn)+(u.mustResetPassword?" · password reset required":"")+"</span></td>"+
+        "<td>"+esc(u.department)+"</td><td>"+esc(u.title)+"</td><td>"+badge(u.status,tone)+"</td><td>"+esc(tpl?tpl.name:"Custom")+"</td><td>"+esc((u.groups||[]).length)+"</td><td>"+esc(assets.length)+"</td>"+
+        '<td><button class="mini-btn" data-open-identity="'+esc(u.id)+'">Open</button></td></tr>';
+    }).join(""):'<tr><td colspan="8" class="empty">No identities match the current filters.</td></tr>';
+    $("templateRows").innerHTML=state.templates.map((t)=>'<div class="stack-row"><div><strong>'+esc(t.name)+'</strong><small>'+esc(t.department+" · "+t.description)+'</small></div>'+badge(t.groups.length+" groups","blue")+'</div>').join("");
+    $("groupRows").innerHTML=state.groups.map((g)=>{
+      const members=state.identities.filter((u)=>(u.groups||[]).includes(g.id)&&u.status!=="Offboarded").length;
+      return '<div class="stack-row"><div><strong>'+esc(g.name)+'</strong><small>'+esc(g.permission+" · Owner "+g.owner)+'</small></div>'+badge(members+" members · "+g.risk,g.risk==="High"?"red":g.risk==="Medium"?"amber":"green")+'</div>';
+    }).join("");
+    qsa("[data-open-identity]").forEach((b)=>b.onclick=()=>openIdentityModal(b.dataset.openIdentity));
+  }
+
+  function openIdentityModal(id) {
+    const user=identityById(id);if(!user)return;
+    const tpl=templateById(user.templateId);
+    const assets=state.assets.filter((a)=>a.assignedUserId===user.id);
+    const groups=(user.groups||[]).map(groupById).filter(Boolean);
+    showModal("Identity · "+user.displayName,
+      '<div class="endpoint-card"><h3>'+esc(user.displayName)+'</h3><p>'+esc(user.upn+" · "+user.title)+'</p><div class="endpoint-meta">'+
+      '<div><span>Status</span><strong>'+esc(user.status)+'</strong></div><div><span>Department</span><strong>'+esc(user.department)+'</strong></div>'+
+      '<div><span>Template</span><strong>'+esc(tpl?tpl.name:"Custom")+'</strong></div><div><span>Manager</span><strong>'+esc(user.manager||"—")+'</strong></div>'+
+      '<div><span>Groups</span><strong>'+esc(groups.map((g)=>g.name).join(", ")||"None")+'</strong></div><div><span>Assigned assets</span><strong>'+esc(assets.map((a)=>a.tag).join(", ")||"None")+'</strong></div></div></div>'+
+      '<div class="modal-actions"><button class="btn secondary" id="mIdPassword">Require Password Reset</button><button class="btn secondary" id="mIdToggle">'+(user.enabled?"Disable":"Enable")+' Account</button>'+(user.status!=="Offboarded"?'<button class="btn danger" id="mIdOffboard">Offboard</button>':"")+'</div>',
+      ()=>{
+        $("mIdPassword").onclick=()=>{user.mustResetPassword=true;audit("Identity","Password reset required",user.username,"User must change temporary/reset password at next sign-in.");saveState();closeModal();renderIdentity();toast("Password reset flag set",user.displayName);};
+        $("mIdToggle").onclick=()=>{user.enabled=!user.enabled;user.status=user.enabled?"Active":"Disabled";audit("Identity",user.enabled?"Account enabled":"Account disabled",user.username,user.displayName);saveState();closeModal();renderIdentity();renderOverview();toast("Account updated",user.displayName+" · "+user.status);};
+        if($("mIdOffboard"))$("mIdOffboard").onclick=()=>offboardIdentity(user);
+      }
+    );
+  }
+
+  function offboardIdentity(user) {
+    if(!confirm("Offboard "+user.displayName+" and release assigned assets?"))return;
+    const released=state.assets.filter((a)=>a.assignedUserId===user.id);
+    user.enabled=false;user.status="Offboarded";user.groups=[];user.mustResetPassword=false;
+    released.forEach((a)=>{a.assignedUserId="";a.status="Available";const ep=endpointById(a.endpointId);if(ep)ep.owner="Unassigned";});
+    audit("Identity","User offboarded",user.username,user.displayName+" · "+released.length+" asset(s) released.");
+    if(released.length)createIncident({type:"Service Request",title:"Validate returned assets for "+user.displayName,category:"Offboarding",impact:"Low",urgency:"Medium",source:"Identity",description:"Review and validate "+released.length+" released asset(s) after offboarding."},true);
+    saveState();closeModal();renderIdentity();renderAssets();renderEndpoints();renderIncidents();renderOverview();toast("User offboarded",user.displayName);
+  }
+
+  $("identitySearch").addEventListener("input",renderIdentity);
+  $("identityStatusFilter").addEventListener("change",renderIdentity);
+  $("identityDepartmentFilter").addEventListener("change",renderIdentity);
+
+  $("provisionUserBtn").addEventListener("click",()=>{
+    showModal("Provision User",
+      '<div class="form-grid"><label class="field"><span>First name</span><input id="mIdFirst"></label><label class="field"><span>Last name</span><input id="mIdLast"></label>'+
+      '<label class="field"><span>Role template</span><select id="mIdTemplate">'+state.templates.map((t)=>'<option value="'+esc(t.id)+'">'+esc(t.name+" · "+t.department)+'</option>').join("")+'</select></label>'+
+      '<label class="field"><span>Job title</span><input id="mIdTitle" placeholder="Analyst"></label><label class="field"><span>Manager</span><input id="mIdManager"></label>'+
+      '<label class="field"><span>Expiry (optional)</span><input id="mIdExpiry" type="date"></label></div>'+
+      '<div class="modal-actions"><button class="btn secondary" id="mCancel">Cancel</button><button class="btn primary" id="mSave">Provision</button></div>',
+      ()=>{
+        $("mCancel").onclick=closeModal;
+        $("mSave").onclick=()=>{
+          const first=$("mIdFirst").value.trim(),last=$("mIdLast").value.trim(),tpl=templateById($("mIdTemplate").value);
+          if(!first||!last||!tpl){toast("Missing details","First name, last name, and template are required.");return;}
+          const username=usernameFor(first,last);
+          const user={id:uid("USR"),firstName:first,lastName:last,displayName:first+" "+last,username,upn:username+"@corp.local",department:tpl.department==="Corporate"?"General":tpl.department,title:$("mIdTitle").value.trim()||"Employee",manager:$("mIdManager").value.trim()||"Unassigned",status:"Active",enabled:true,templateId:tpl.id,groups:[...tpl.groups],expiry:$("mIdExpiry").value,mustResetPassword:true,createdAt:now()};
+          state.identities.push(user);audit("Identity","User provisioned",user.username,user.displayName+" · "+tpl.name);
+          createIncident({type:"Service Request",requesterId:user.id,title:"New starter provisioning validation: "+user.displayName,category:"Onboarding",impact:"Low",urgency:"Medium",source:"Identity",description:"Validate access, endpoint assignment, and first-login requirements."},true);
+          saveState();closeModal();renderIdentity();renderIncidents();renderOverview();toast("User provisioned",user.upn);
+        };
+      }
+    );
+  });
+
   function renderTroubleshooting() {
     fillEndpointSelect($("diagEndpoint"), currentEndpointId, true);
     if ($("diagEndpoint").value) currentEndpointId = $("diagEndpoint").value;
@@ -1250,80 +1477,109 @@
   }
 
   function createIncident(input, silent = false) {
-    const incident = {
-      id: nextIncidentId(),
-      endpointId: input.endpointId || "",
-      title: String(input.title || "New incident").trim(),
-      priority: input.priority || "P3",
-      status: input.status || "New",
-      source: input.source || "Manual",
-      createdAt: now()
-    };
+    const createdAt=now();
+    const impact=input.impact||"Medium",urgency=input.urgency||"Medium";
+    const priority=input.priority||priorityFromImpactUrgency(impact,urgency);
+    const sla=SLA[priority]||SLA.P3;
+    const asset=assetById(input.assetId);
+    const endpointId=input.endpointId||(asset?asset.endpointId:"");
+    const incident=normalizeTicket({
+      id:nextIncidentId(),type:input.type||"Incident",endpointId,assetId:input.assetId||"",
+      requesterId:input.requesterId||"",assigneeId:input.assigneeId||"",category:input.category||input.source||"General",
+      title:String(input.title||"New service desk ticket").trim(),description:input.description||"",
+      impact,urgency,priority,status:input.status||"New",source:input.source||"Manual",createdAt,
+      responseDue:addHours(createdAt,sla.response),resolutionDue:addHours(createdAt,sla.resolution),
+      activities:[{at:createdAt,actor:"OpsFusion",action:"Ticket created",note:input.description||input.source||"Service desk intake"}]
+    });
     state.incidents.unshift(incident);
-    const ep = endpointById(incident.endpointId);
-    audit("Incidents", "Incident created", incident.id, incident.title + (ep ? " · " + ep.hostname : ""));
+    const ep=endpointById(incident.endpointId),requester=identityById(incident.requesterId);
+    audit("Service Desk","Ticket created",incident.id,incident.title+(ep?" · "+ep.hostname:"")+(requester?" · "+requester.displayName:""));
     saveState();
-    if (!silent) {
-      renderIncidents();
-      renderOverview();
-    }
+    if(!silent){renderIncidents();renderOverview();}
     return incident;
   }
 
-  function renderIncidents() {
-    const count = (status) => state.incidents.filter((i) => i.status === status).length;
-    $("incNew").textContent = count("New");
-    $("incActive").textContent = count("Active");
-    $("incPending").textContent = count("Pending");
-    $("incResolved").textContent = state.incidents.filter((i) => ["Resolved", "Closed"].includes(i.status)).length;
-
-    const incidents = state.incidents.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    $("incidentRows").innerHTML = incidents.length ? incidents.map((i) => {
-      const ep = endpointById(i.endpointId);
-      return '<div class="incident-card">' +
-        '<div><span class="ticket">' + esc(i.id) + '</span><div style="margin-top:5px">' + badge(i.priority, priorityTone(i.priority)) + "</div></div>" +
-        '<div><h4>' + esc(i.title) + '</h4><p>' + esc((ep ? ep.hostname + " · " + ep.ip : "Unassigned") + " · " + i.source + " · " + fmtDate(i.createdAt)) + "</p></div>" +
-        '<div class="incident-actions"><select data-incident-status="' + esc(i.id) + '">' +
-        ["New", "Active", "Pending", "Resolved", "Closed"].map((s) => '<option' + (s === i.status ? " selected" : "") + ">" + s + "</option>").join("") +
-        '</select>' + (ep ? '<button class="mini-btn" data-open-endpoint="' + esc(ep.id) + '">Endpoint</button>' : "") + "</div></div>";
-    }).join("") : '<div class="empty">No incidents recorded.</div>';
-
-    qsa("[data-incident-status]").forEach((select) => select.onchange = () => {
-      const incident = incidentById(select.dataset.incidentStatus);
-      if (!incident) return;
-      const previous = incident.status;
-      incident.status = select.value;
-      audit("Incidents", "Incident status changed", incident.id, previous + " → " + incident.status);
-      saveState();
-      renderIncidents();
-      renderOverview();
-    });
-    bindOpenEndpointButtons();
+  function openTicketModal(id) {
+    const t=incidentById(id);if(!t)return;
+    const ticket=normalizeTicket(t),ep=endpointById(ticket.endpointId),asset=assetById(ticket.assetId),requester=identityById(ticket.requesterId),tech=technicianById(ticket.assigneeId),sla=ticketSlaState(ticket);
+    showModal("Ticket · "+ticket.id,
+      '<div class="endpoint-card"><h3>'+esc(ticket.title)+'</h3><p>'+esc(ticket.type+" · "+ticket.category+" · "+ticket.source)+'</p><div class="endpoint-meta">'+
+      '<div><span>Requester</span><strong>'+esc(requester?requester.displayName:"Unassigned")+'</strong></div><div><span>Assignee</span><strong>'+esc(tech?tech.name:"Unassigned")+'</strong></div>'+
+      '<div><span>Endpoint</span><strong>'+esc(ep?ep.hostname:"None")+'</strong></div><div><span>Asset</span><strong>'+esc(asset?asset.tag:"None")+'</strong></div>'+
+      '<div><span>Priority</span><strong>'+esc(ticket.priority+" · "+sla.label)+'</strong></div><div><span>Resolution due</span><strong>'+esc(fmtDate(ticket.resolutionDue))+'</strong></div></div></div>'+
+      '<p style="font-size:.58rem;color:var(--muted);line-height:1.55">'+esc(ticket.description||"No additional description.")+'</p>'+
+      '<div class="stack">'+ticket.activities.slice().reverse().map((a)=>'<div class="stack-row"><div><strong>'+esc(a.action+" · "+a.actor)+'</strong><small>'+esc(fmtDate(a.at)+" · "+a.note)+'</small></div></div>').join("")+'</div>'+
+      '<label class="field" style="margin-top:12px"><span>Work note</span><textarea id="mTicketNote" placeholder="Add troubleshooting or resolution note"></textarea></label>'+
+      '<div class="modal-actions">'+(!ticket.firstResponseAt?'<button class="btn secondary" id="mTicketRespond">Record First Response</button>':"")+'<button class="btn primary" id="mTicketNoteSave">Add Work Note</button></div>',
+      ()=>{
+        if($("mTicketRespond"))$("mTicketRespond").onclick=()=>{t.firstResponseAt=now();t.updatedAt=now();t.activities.push({at:now(),actor:"Service Desk",action:"First response",note:"First-response timestamp recorded."});audit("Service Desk","First response recorded",t.id,t.title);saveState();closeModal();renderIncidents();toast("First response recorded",t.id);};
+        $("mTicketNoteSave").onclick=()=>{const note=$("mTicketNote").value.trim();if(!note)return;t.updatedAt=now();t.activities.push({at:now(),actor:"Service Desk",action:"Work note",note});audit("Service Desk","Work note added",t.id,note);saveState();closeModal();renderIncidents();toast("Work note added",t.id);};
+      }
+    );
   }
 
-  $("newIncidentBtn").addEventListener("click", () => {
-    showModal("New Incident",
-      '<div class="form-grid">' +
-      '<label class="field span-2"><span>Title</span><input id="mIncidentTitle" placeholder="Describe the issue"></label>' +
-      '<label class="field"><span>Endpoint</span><select id="mIncidentEndpoint"><option value="">Unassigned</option>' + state.endpoints.map((e) => '<option value="' + esc(e.id) + '">' + esc(e.hostname + " · " + e.ip) + "</option>").join("") + '</select></label>' +
-      '<label class="field"><span>Priority</span><select id="mIncidentPriority"><option>P1</option><option>P2</option><option selected>P3</option><option>P4</option></select></label>' +
-      '<label class="field"><span>Status</span><select id="mIncidentStatus"><option>New</option><option>Active</option><option>Pending</option></select></label>' +
-      '<label class="field"><span>Source</span><select id="mIncidentSource"><option>Manual</option><option>Troubleshooting</option><option>Remote Support</option><option>Compliance</option><option>Monitoring</option></select></label>' +
-      '</div><div class="modal-actions"><button class="btn secondary" id="mCancel">Cancel</button><button class="btn primary" id="mSave">Create Incident</button></div>',
-      () => {
-        $("mCancel").onclick = closeModal;
-        $("mSave").onclick = () => {
-          const title = $("mIncidentTitle").value.trim();
-          if (!title) { toast("Title required", "Enter an incident title."); return; }
-          createIncident({
-            endpointId: $("mIncidentEndpoint").value,
-            title,
-            priority: $("mIncidentPriority").value,
-            status: $("mIncidentStatus").value,
-            source: $("mIncidentSource").value
-          });
-          closeModal();
-          toast("Incident created", title);
+  function renderIncidents() {
+    state.incidents=state.incidents.map(normalizeTicket);
+    const open=state.incidents.filter((i)=>!["Resolved","Closed"].includes(i.status));
+    const risk=open.filter((i)=>ticketSlaState(i).level==="warn").length;
+    const breached=open.filter((i)=>ticketSlaState(i).level==="bad").length;
+    $("incNew").textContent=open.length;$("incActive").textContent=risk;$("incPending").textContent=breached;$("incResolved").textContent=state.incidents.length-open.length;
+
+    const statuses=Array.from(new Set(state.incidents.map((i)=>i.status))).sort(),sf=$("ticketStatusFilter"),prev=sf.value;
+    sf.innerHTML='<option value="">All statuses</option>'+statuses.map((s)=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join("");if(statuses.includes(prev))sf.value=prev;
+    const q=$("ticketSearch").value.trim().toLowerCase(),pf=$("ticketPriorityFilter").value;
+    const incidents=state.incidents.filter((i)=>{
+      const ep=endpointById(i.endpointId),asset=assetById(i.assetId),req=identityById(i.requesterId),tech=technicianById(i.assigneeId);
+      const hay=[i.id,i.title,i.type,i.category,i.source,ep?ep.hostname:"",asset?asset.tag:"",req?req.displayName:"",tech?tech.name:""].join(" ").toLowerCase();
+      return(!q||hay.includes(q))&&(!sf.value||i.status===sf.value)&&(!pf||i.priority===pf);
+    }).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+
+    $("incidentRows").innerHTML=incidents.length?incidents.map((i)=>{
+      const ep=endpointById(i.endpointId),asset=assetById(i.assetId),req=identityById(i.requesterId),tech=technicianById(i.assigneeId),sla=ticketSlaState(i);
+      return '<div class="incident-card service-ticket"><div><span class="ticket">'+esc(i.id)+'</span><div style="margin-top:5px">'+badge(i.priority,priorityTone(i.priority))+' '+badge(sla.label,sla.level==="bad"?"red":sla.level==="warn"?"amber":"green")+'</div></div>'+
+        '<div><h4>'+esc(i.title)+'</h4><p>'+esc(i.type+" · "+i.category+" · "+(req?req.displayName:"No requester")+(asset?" · "+asset.tag:ep?" · "+ep.hostname:"")+(tech?" · "+tech.name:" · Unassigned"))+'</p><p>'+esc("Created "+fmtDate(i.createdAt)+" · Resolution due "+fmtDate(i.resolutionDue))+'</p></div>'+
+        '<div class="incident-actions"><select data-incident-status="'+esc(i.id)+'">'+["New","Assigned","Active","In Progress","Pending","Resolved","Closed"].map((s)=>'<option'+(s===i.status?" selected":"")+'>'+s+'</option>').join("")+'</select><button class="mini-btn" data-open-ticket="'+esc(i.id)+'">Details</button></div></div>';
+    }).join(""):'<div class="empty">No tickets match the current filters.</div>';
+
+    qsa("[data-incident-status]").forEach((select)=>select.onchange=()=>{
+      const t=incidentById(select.dataset.incidentStatus);if(!t)return;const previous=t.status;t.status=select.value;t.updatedAt=now();
+      if(["Resolved","Closed"].includes(t.status)&&!t.resolvedAt)t.resolvedAt=now();
+      t.activities.push({at:now(),actor:"Service Desk",action:"Status changed",note:previous+" → "+t.status});
+      audit("Service Desk","Ticket status changed",t.id,previous+" → "+t.status);saveState();renderIncidents();renderOverview();
+    });
+    qsa("[data-open-ticket]").forEach((b)=>b.onclick=()=>openTicketModal(b.dataset.openTicket));
+
+    $("knowledgeRows").innerHTML=state.knowledge.map((k)=>'<button class="knowledge-row" data-kb="'+esc(k.id)+'"><strong>'+esc(k.title)+'</strong><span>'+esc(k.category+" · "+k.summary)+'</span></button>').join("");
+    qsa("[data-kb]").forEach((b)=>b.onclick=()=>{const k=state.knowledge.find((x)=>x.id===b.dataset.kb);if(k)showModal(k.title,'<p style="font-size:.62rem;color:var(--muted);line-height:1.7">'+esc(k.summary)+'</p><div class="modal-actions"><button class="btn primary" id="mKbClose">Close</button></div>',()=>{$("mKbClose").onclick=closeModal;});});
+    $("technicianRows").innerHTML=state.technicians.map((tech)=>{const load=open.filter((t)=>t.assigneeId===tech.id).length;return '<div class="stack-row"><div><strong>'+esc(tech.name+" · "+tech.role)+'</strong><small>'+esc(tech.specialty)+'</small></div>'+badge(load+" open",load>3?"amber":"blue")+'</div>';}).join("");
+    saveState();
+  }
+
+  $("ticketSearch").addEventListener("input",renderIncidents);
+  $("ticketStatusFilter").addEventListener("change",renderIncidents);
+  $("ticketPriorityFilter").addEventListener("change",renderIncidents);
+
+  $("newIncidentBtn").addEventListener("click",()=>{
+    showModal("New Service Desk Ticket",
+      '<div class="form-grid"><label class="field span-2"><span>Title</span><input id="mIncidentTitle" placeholder="Describe the issue or request"></label>'+
+      '<label class="field"><span>Type</span><select id="mTicketType"><option>Incident</option><option>Service Request</option></select></label>'+
+      '<label class="field"><span>Category</span><select id="mTicketCategory"><option>Network</option><option>Endpoint</option><option>Account Access</option><option>Hardware / Asset</option><option>Microsoft 365</option><option>VPN</option><option>Onboarding</option><option>Offboarding</option><option>General</option></select></label>'+
+      '<label class="field"><span>Requester</span><select id="mTicketRequester"><option value="">No requester</option>'+state.identities.filter((u)=>u.status==="Active").map((u)=>'<option value="'+esc(u.id)+'">'+esc(u.displayName+" · "+u.department)+'</option>').join("")+'</select></label>'+
+      '<label class="field"><span>Asset</span><select id="mTicketAsset"><option value="">No asset</option>'+state.assets.map((a)=>'<option value="'+esc(a.id)+'">'+esc(a.tag+" · "+a.hostname)+'</option>').join("")+'</select></label>'+
+      '<label class="field"><span>Impact</span><select id="mTicketImpact"><option>Low</option><option selected>Medium</option><option>High</option></select></label>'+
+      '<label class="field"><span>Urgency</span><select id="mTicketUrgency"><option>Low</option><option selected>Medium</option><option>High</option></select></label>'+
+      '<label class="field"><span>Assignee</span><select id="mTicketAssignee"><option value="">Unassigned</option>'+state.technicians.map((t)=>'<option value="'+esc(t.id)+'">'+esc(t.name+" · "+t.role)+'</option>').join("")+'</select></label>'+
+      '<label class="field"><span>Source</span><select id="mIncidentSource"><option>Manual</option><option>Troubleshooting</option><option>Remote Support</option><option>Compliance</option><option>Monitoring</option><option>Identity</option><option>Asset Management</option></select></label>'+
+      '<label class="field span-2"><span>Description</span><textarea id="mTicketDescription" placeholder="Provide symptoms, request details, business impact, or troubleshooting context"></textarea></label></div>'+
+      '<div class="modal-actions"><button class="btn secondary" id="mCancel">Cancel</button><button class="btn primary" id="mSave">Create Ticket</button></div>',
+      ()=>{
+        $("mCancel").onclick=closeModal;
+        $("mSave").onclick=()=>{
+          const title=$("mIncidentTitle").value.trim();if(!title){toast("Title required","Enter a ticket title.");return;}
+          const assetId=$("mTicketAsset").value,asset=assetById(assetId);
+          const requesterId=$("mTicketRequester").value||(asset?asset.assignedUserId:"");
+          createIncident({type:$("mTicketType").value,assetId,endpointId:asset?asset.endpointId:"",requesterId,assigneeId:$("mTicketAssignee").value,title,category:$("mTicketCategory").value,impact:$("mTicketImpact").value,urgency:$("mTicketUrgency").value,source:$("mIncidentSource").value,description:$("mTicketDescription").value.trim()});
+          closeModal();toast("Ticket created",title);
         };
       }
     );
