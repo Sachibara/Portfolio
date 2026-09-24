@@ -209,17 +209,6 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
     }
-    .lab-showcase { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(300px,.85fr); gap: 22px; padding: 30px; border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(135deg,rgba(99,214,255,.09),rgba(122,240,189,.035)),var(--surface); box-shadow: var(--shadow); }
-    .lab-showcase h3 { font-size: clamp(2rem,4vw,3rem); line-height: 1.04; letter-spacing: -.045em; margin: 8px 0 12px; }
-    .lab-showcase p { color: var(--muted); }
-    .lab-skill-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
-    .lab-skill-list span { padding: 7px 10px; border: 1px solid var(--border); border-radius: 9px; color: var(--accent); background: rgba(99,214,255,.045); font-size: 12px; font-weight: 850; }
-    .lab-console { border: 1px solid rgba(255,255,255,.09); border-radius: 18px; padding: 20px; background: #07111f; font-family: Consolas,"SFMono-Regular",monospace; color: #bcefff; display: grid; gap: 11px; align-content: center; }
-    .lab-console div { display: grid; grid-template-columns: 58px 1fr auto; gap: 10px; align-items: center; font-size: 12px; }
-    .lab-console b { color: #7af0bd; }
-    .lab-console span:last-child { color: #718aa5; }
-    @media (max-width: 960px) { .lab-showcase { grid-template-columns: 1fr; } }
-
   </style>
 </head>
 <body>
@@ -236,9 +225,7 @@
         <nav class="desktop-nav" aria-label="Primary navigation">
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
-          <a href="#labs">Cisco Project</a>
-          <a href="#labs">Cisco Project</a>
-        <a href="#skills">Skills</a>
+          <a href="#skills">Skills</a>
           <a href="#credentials">Credentials</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -552,51 +539,6 @@
               <a class="btn btn-primary" href="https://finalomnishare.vercel.app" target="_blank" rel="noopener noreferrer">Open Site</a>
             </div>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="labs">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">Cisco Packet Tracer / Featured Network Engineering Case Study</div>
-            <h2>Resilient Enterprise Campus & Branch Network.</h2>
-          </div>
-          <p>
-            A single enterprise-scale networking project built to demonstrate the routing, switching,
-            redundancy, segmentation, secure administration, and troubleshooting skills expected in Network Engineer and NOC roles.
-          </p>
-        </div>
-
-        <div class="lab-showcase">
-          <div>
-            <div class="status">Featured Cisco Packet Tracer project</div>
-            <h3>Enterprise network design with high availability, OSPF, DMZ, and secure access.</h3>
-            <p>
-              The project models a headquarters campus, Internet edge, public DMZ service, and remote branch.
-              It includes dual multilayer distribution, HSRP, Rapid-PVST, LACP EtherChannel, multi-area OSPF,
-              centralized DHCP/DNS, guest isolation, NAT/PAT, static DMZ publishing, SSH-only management,
-              port security, and documented failover tests.
-            </p>
-            <div class="lab-skill-list">
-              <span>OSPF</span><span>HSRP</span><span>EtherChannel</span><span>Rapid-PVST</span>
-              <span>VLAN / Trunking</span><span>ACL</span><span>NAT / PAT</span><span>DHCP Relay</span>
-              <span>SSH</span><span>Port Security</span>
-            </div>
-            <div class="project-actions">
-              <a class="btn btn-primary" href="/projects/cisco-enterprise-network/" target="_blank" rel="noopener noreferrer">Open Project</a>
-              <a class="btn btn-secondary" href="https://github.com/Sachibara/Portfolio/tree/main/projects/cisco-enterprise-network" target="_blank" rel="noopener noreferrer">View Engineering Files</a>
-            </div>
-          </div>
-
-          <div class="lab-console" aria-hidden="true">
-            <div><b>HQ</b><span>Dual Distribution Campus</span><span>HSRP / STP</span></div>
-            <div><b>WAN</b><span>HQ ↔ Branch Routing</span><span>OSPF Area 0/10</span></div>
-            <div><b>EDGE</b><span>Internet + DMZ</span><span>NAT / ACL</span></div>
-            <div><b>SVC</b><span>Central DHCP / DNS</span><span>DHCP Relay</span></div>
-            <div><b>OPS</b><span>Failover & Troubleshooting</span><span>VERIFY / RCA</span></div>
-          </div>
         </div>
       </div>
     </section>
