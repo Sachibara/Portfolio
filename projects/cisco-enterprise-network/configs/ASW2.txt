@@ -1,0 +1,64 @@
+! Device: ASW2 (Cisco 2960 suggested)
+
+hostname ASW2
+no ip domain-lookup
+ip domain-name corp.lab
+username netadmin privilege 15 secret LabOnly-ChangeMe!
+ip ssh version 2
+spanning-tree mode rapid-pvst
+
+vlan 10
+ name USERS
+vlan 20
+ name IT-ADMIN
+vlan 30
+ name SERVERS
+vlan 40
+ name GUEST
+vlan 50
+ name DMZ
+vlan 99
+ name MANAGEMENT
+
+interface GigabitEthernet0/1
+ description UPLINK-DIST1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,99
+
+interface GigabitEthernet0/2
+ description UPLINK-DIST2
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,99
+
+interface range FastEthernet0/1-8
+ description SERVER-ACCESS
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+
+interface FastEthernet0/10
+ description CENTRAL-DHCP-DNS
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+
+interface FastEthernet0/11
+ description DMZ-WEB-SERVER
+ switchport mode access
+ switchport access vlan 50
+ spanning-tree portfast
+
+interface Vlan99
+ ip address 10.10.99.12 255.255.255.0
+ no shutdown
+
+ip default-gateway 10.10.99.1
+
+ip access-list standard MGMT-SSH
+ permit 10.10.20.0 0.0.0.255
+ permit 10.10.99.0 0.0.0.255
+
+line vty 0 4
+ login local
+ transport input ssh
+ access-class MGMT-SSH in
