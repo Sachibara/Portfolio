@@ -3,111 +3,285 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#07131f">
-  <meta name="description" content="Enterprise Cisco Packet Tracer network engineering lab suite by Jim Rodmark Camus.">
+  <meta name="theme-color" content="#06111b">
+  <meta name="description" content="Interactive enterprise Cisco Packet Tracer network engineering lab control center by Jim Rodmark Camus.">
   <title>Enterprise Network Engineering Lab Suite | Jim Rodmark Camus</title>
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=20260924-ui2">
+  <script src="./app.js?v=20260924-ui2" defer></script>
 </head>
 <body>
-  <header class="top">
-    <a class="back" href="/">← Portfolio</a>
-    <div class="brand">JRC / NETWORK ENGINEERING LAB</div>
-    <span class="status">5 ENTERPRISE LABS</span>
-  </header>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/">
+        <span class="brand-mark">JC</span>
+        <span>
+          <strong>NETLAB</strong>
+          <small>PACKET TRACER</small>
+        </span>
+      </a>
 
-  <main>
-    <section class="hero">
-      <div>
-        <p class="eyebrow">CISCO PACKET TRACER · ENTERPRISE DESIGN · TROUBLESHOOTING</p>
-        <h1>Enterprise Network Engineering Lab Suite</h1>
-        <p class="lede">Five portfolio-grade network engineering projects designed around the skills employers expect from junior Network Engineers and NOC engineers: resilient switching, dynamic routing, segmentation, secure Internet edge design, IPv6, and structured troubleshooting.</p>
-        <div class="chips">
-          <span>OSPF</span><span>HSRP</span><span>EtherChannel</span><span>VLAN/STP</span><span>ACL</span><span>NAT/PAT</span><span>IPv6</span><span>SSH</span>
+      <div class="suite-state">
+        <span class="state-dot"></span>
+        <div>
+          <b>LAB SUITE ONLINE</b>
+          <small>5 enterprise scenarios</small>
         </div>
       </div>
-      <aside class="scorecard">
-        <div><span>Labs</span><strong>05</strong></div>
-        <div><span>Network domains</span><strong>12+</strong></div>
-        <div><span>Primary vendor</span><strong>CISCO</strong></div>
-        <div><span>Evidence model</span><strong>VERIFY</strong></div>
-      </aside>
-    </section>
 
-    <section class="section">
-      <div class="section-head">
-        <div><p class="eyebrow">LAB PORTFOLIO</p><h2>Enterprise scenarios</h2></div>
-        <p>Each lab includes an addressing plan, device roles, Packet Tracer build instructions, paste-ready IOS configuration, verification commands, and evidence that should be captured after implementation.</p>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Lab suite navigation">
+        <button class="nav-link active" data-view="overview"><span>01</span>Overview</button>
+        <button class="nav-link" data-view="labs"><span>02</span>Lab Library</button>
+        <button class="nav-link" data-view="skills"><span>03</span>Skill Matrix</button>
+        <button class="nav-link" data-view="evidence"><span>04</span>Evidence Tracker</button>
+      </nav>
+
+      <div class="sidebar-note">
+        <strong>Recruiter Mode</strong>
+        <p>Each lab highlights design, configuration, validation, failure testing, and troubleshooting.</p>
       </div>
 
-      <div class="lab-grid">
-        <article class="lab-card">
-          <div class="lab-num">LAB 01</div>
-          <h3>Resilient Enterprise Campus</h3>
-          <p>Dual distribution multilayer switches, HSRP default-gateway redundancy, LACP EtherChannel, STP root placement, inter-VLAN routing, DHCP relay, guest segmentation, OSPF uplinks, and NAT.</p>
-          <div class="tags"><span>HSRP</span><span>LACP</span><span>STP</span><span>OSPF</span></div>
-          <div class="mini-topology"><b>ISP</b><i></i><b>EDGE</b><i></i><b>DIST ×2</b><i></i><b>ACCESS</b></div>
-          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-01-campus-ha.md" target="_blank" rel="noopener">Open engineering brief ↗</a>
-        </article>
+      <a class="portfolio-link" href="/">← Back to Portfolio</a>
+    </aside>
 
-        <article class="lab-card">
-          <div class="lab-num">LAB 02</div>
-          <h3>Multi-Site OSPF Enterprise WAN</h3>
-          <p>HQ and two branches using an OSPF backbone, branch areas, summarization, router-on-a-stick VLANs, branch DHCP, WAN path engineering, and centralized default-route propagation.</p>
-          <div class="tags"><span>OSPF</span><span>ABR</span><span>ROAS</span><span>DHCP</span></div>
-          <div class="mini-topology"><b>BR1</b><i></i><b>HQ</b><i></i><b>BR2</b><i></i><b>ISP</b></div>
-          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-02-multisite-ospf.md" target="_blank" rel="noopener">Open engineering brief ↗</a>
-        </article>
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Cisco Packet Tracer · Enterprise Network Engineering</p>
+          <h1 id="pageTitle">Network Engineering Lab Control Center</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="status-pill"><i></i> PORTFOLIO LAB</span>
+          <a class="btn ghost" href="https://github.com/Sachibara/Portfolio/tree/main/projects/network-engineering-labs" target="_blank" rel="noopener">View Files ↗</a>
+        </div>
+      </header>
 
-        <article class="lab-card">
-          <div class="lab-num">LAB 03</div>
-          <h3>Secure Internet Edge & DMZ</h3>
-          <p>Enterprise Internet-edge segmentation with inside, guest, management, and DMZ zones; PAT, static NAT publishing, inbound ACLs, SSH management, port security, and least-privilege access.</p>
-          <div class="tags"><span>ACL</span><span>NAT</span><span>DMZ</span><span>SSH</span></div>
-          <div class="mini-topology"><b>INTERNET</b><i></i><b>EDGE</b><i></i><b>DMZ</b><i></i><b>LAN</b></div>
-          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-03-secure-dmz.md" target="_blank" rel="noopener">Open engineering brief ↗</a>
-        </article>
+      <section class="view active" data-view-panel="overview">
+        <div class="command-strip">
+          <div><span>LABS</span><strong>05</strong></div>
+          <div><span>TECHNOLOGIES</span><strong>10+</strong></div>
+          <div><span>ROUTING</span><strong>OSPFv2/v3</strong></div>
+          <div><span>REDUNDANCY</span><strong>HSRP / LACP</strong></div>
+          <div><span>SECURITY</span><strong>ACL / NAT</strong></div>
+        </div>
 
-        <article class="lab-card">
-          <div class="lab-num">LAB 04</div>
-          <h3>Dual-Stack IPv4/IPv6 Campus</h3>
-          <p>Modern dual-stack network with IPv4 OSPFv2, IPv6 OSPFv3, SLAAC, optional stateless DHCPv6, router-on-a-stick segmentation, and end-to-end verification across two sites.</p>
-          <div class="tags"><span>IPv6</span><span>OSPFv3</span><span>SLAAC</span><span>DUAL STACK</span></div>
-          <div class="mini-topology"><b>SITE A</b><i></i><b>R1</b><i></i><b>R2</b><i></i><b>SITE B</b></div>
-          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-04-dual-stack.md" target="_blank" rel="noopener">Open engineering brief ↗</a>
-        </article>
+        <section class="hero-grid">
+          <article class="hero-card">
+            <div class="hero-kicker">ENTERPRISE NETWORK ENGINEERING LAB SUITE</div>
+            <h2>Design. Configure. Break. Diagnose. Verify.</h2>
+            <p>
+              A recruiter-facing Cisco Packet Tracer portfolio built around the skills expected from junior Network Engineers
+              and NOC engineers: resilient switching, dynamic routing, segmentation, secure edge design, IPv6, and disciplined troubleshooting.
+            </p>
+            <div class="hero-actions">
+              <button class="btn primary" id="exploreLabsBtn">Explore Labs</button>
+              <button class="btn secondary" id="openEvidenceBtn">Track Evidence</button>
+            </div>
+            <div class="hero-tags">
+              <span>OSPF</span><span>HSRP</span><span>EtherChannel</span><span>VLAN/STP</span>
+              <span>ACL/NAT</span><span>IPv6</span><span>SSH</span><span>Troubleshooting</span>
+            </div>
+          </article>
 
-        <article class="lab-card challenge">
-          <div class="lab-num">LAB 05 · ASSESSMENT</div>
-          <h3>Enterprise Troubleshooting Challenge</h3>
-          <p>A deliberately faulted network covering VLAN/trunking, DHCP relay, OSPF adjacency, ACL behavior, default gateways, port security, and routing. Includes an incident worksheet and resolution evidence checklist.</p>
-          <div class="tags"><span>TROUBLESHOOT</span><span>FAULT ISOLATION</span><span>RCA</span><span>VALIDATION</span></div>
-          <div class="mini-topology"><b>SYMPTOM</b><i></i><b>ISOLATE</b><i></i><b>FIX</b><i></i><b>VERIFY</b></div>
-          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-05-troubleshooting.md" target="_blank" rel="noopener">Open challenge brief ↗</a>
-        </article>
-      </div>
-    </section>
+          <article class="topology-panel">
+            <div class="panel-head">
+              <div><span>LIVE PREVIEW</span><h3>Enterprise Campus Fabric</h3></div>
+              <span class="signal"><i></i> OPERATIONAL</span>
+            </div>
+            <div class="topology-canvas campus">
+              <div class="link l1"></div><div class="link l2"></div><div class="link l3"></div>
+              <div class="link l4"></div><div class="link l5"></div><div class="link l6"></div>
+              <button class="node isp" title="Internet / ISP"><b>ISP</b><small>WAN</small></button>
+              <button class="node edge" title="Internet Edge Router"><b>EDGE1</b><small>NAT / OSPF</small></button>
+              <button class="node d1" title="Distribution Switch 1"><b>DIST1</b><small>HSRP ACTIVE</small></button>
+              <button class="node d2" title="Distribution Switch 2"><b>DIST2</b><small>HSRP STANDBY</small></button>
+              <button class="node a1" title="Access Switch 1"><b>ASW1</b><small>VLAN 10/40</small></button>
+              <button class="node a2" title="Access Switch 2"><b>ASW2</b><small>VLAN 20/30</small></button>
+              <button class="node srv" title="DHCP/DNS Server"><b>SRV</b><small>DHCP / DNS</small></button>
+            </div>
+            <div class="topology-legend">
+              <span><i class="green"></i>Active</span>
+              <span><i class="cyan"></i>Redundant</span>
+              <span><i class="orange"></i>Edge</span>
+            </div>
+          </article>
+        </section>
 
-    <section class="section proof">
-      <div class="section-head">
-        <div><p class="eyebrow">PORTFOLIO EVIDENCE</p><h2>What to capture from Packet Tracer</h2></div>
-      </div>
-      <div class="proof-grid">
-        <article><b>01</b><h3>Topology screenshot</h3><p>Show device names, links, VLAN/site labels, servers, and WAN relationships.</p></article>
-        <article><b>02</b><h3>Control-plane evidence</h3><p>Capture <code>show ip ospf neighbor</code>, <code>show standby brief</code>, EtherChannel, STP, and routing tables.</p></article>
-        <article><b>03</b><h3>Security evidence</h3><p>Capture ACL hit counters, NAT translations, SSH-only management, and successful/denied traffic tests.</p></article>
-        <article><b>04</b><h3>Failure test</h3><p>Shut a redundant link or gateway and demonstrate recovery without losing the intended service.</p></article>
-        <article><b>05</b><h3>Engineering write-up</h3><p>Explain design decisions, tradeoffs, verification, faults found, and corrective actions.</p></article>
-        <article><b>06</b><h3>Final .pkt artifact</h3><p>Save the implemented lab from Cisco Packet Tracer and add it beside the engineering brief in GitHub.</p></article>
-      </div>
-    </section>
+        <section class="section-block">
+          <div class="section-head">
+            <div><p class="eyebrow">LAB INDEX</p><h2>Enterprise scenarios</h2></div>
+            <p>Open any lab for objectives, topology, technologies, engineering evidence, and the full GitHub brief.</p>
+          </div>
+          <div class="lab-cards" id="overviewLabCards"></div>
+        </section>
 
-    <section class="section hiring">
-      <p class="eyebrow">HIRING SIGNAL</p>
-      <h2>Designed to demonstrate engineering judgment—not just CLI memorization.</h2>
-      <p>The suite emphasizes architecture, redundancy, segmentation, security boundaries, routing behavior, validation, and fault isolation. These are stronger interview signals than a collection of unrelated beginner labs.</p>
-    </section>
-  </main>
+        <section class="overview-grid">
+          <article class="panel skill-summary">
+            <div class="panel-head"><div><span>CAPABILITY COVERAGE</span><h3>Network Engineering Skill Map</h3></div></div>
+            <div class="skill-bars" id="overviewSkillBars"></div>
+          </article>
 
-  <footer>Jim Rodmark Camus · BSIT Network Technology · Enterprise Network Engineering Lab Suite</footer>
+          <article class="panel hiring-panel">
+            <div class="panel-head"><div><span>HIRING SIGNAL</span><h3>What this suite proves</h3></div></div>
+            <ul class="signal-list">
+              <li><b>Architecture</b><span>Structured enterprise addressing, redundancy, and segmentation</span></li>
+              <li><b>Implementation</b><span>Paste-ready IOS configurations and role-based device design</span></li>
+              <li><b>Validation</b><span>Show commands, traffic tests, and failover verification</span></li>
+              <li><b>Troubleshooting</b><span>Fault isolation, root-cause analysis, and corrective action</span></li>
+            </ul>
+          </article>
+        </section>
+      </section>
+
+      <section class="view" data-view-panel="labs">
+        <div class="library-layout">
+          <aside class="lab-list-panel">
+            <div class="panel-head">
+              <div><span>LAB LIBRARY</span><h3>Select Scenario</h3></div>
+            </div>
+            <div class="lab-selector" id="labSelector"></div>
+          </aside>
+
+          <article class="lab-detail-panel" id="labDetail">
+            <div class="lab-detail-head">
+              <div>
+                <span class="lab-code" id="detailCode">LAB 01</span>
+                <h2 id="detailTitle">Resilient Enterprise Campus</h2>
+                <p id="detailSummary"></p>
+              </div>
+              <span class="difficulty" id="detailDifficulty">ADVANCED</span>
+            </div>
+
+            <div class="detail-kpis" id="detailKpis"></div>
+
+            <div class="detail-grid">
+              <section class="detail-card">
+                <div class="detail-label">TOPOLOGY</div>
+                <div class="dynamic-topology" id="detailTopology"></div>
+              </section>
+
+              <section class="detail-card">
+                <div class="detail-label">TECHNOLOGIES</div>
+                <div class="tech-grid" id="detailTechnologies"></div>
+              </section>
+
+              <section class="detail-card">
+                <div class="detail-label">ENGINEERING OBJECTIVES</div>
+                <ul class="objective-list" id="detailObjectives"></ul>
+              </section>
+
+              <section class="detail-card">
+                <div class="detail-label">VERIFICATION EVIDENCE</div>
+                <ul class="objective-list evidence-list" id="detailEvidence"></ul>
+              </section>
+            </div>
+
+            <div class="detail-actions">
+              <a class="btn primary" id="detailBriefLink" href="#" target="_blank" rel="noopener">Open Engineering Brief ↗</a>
+              <button class="btn secondary" id="markCompleteBtn">Mark Lab Complete</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="skills">
+        <div class="section-head">
+          <div><p class="eyebrow">TECHNICAL COVERAGE</p><h2>Skill Matrix</h2></div>
+          <p>Maps the lab suite to practical Network Engineer competencies.</p>
+        </div>
+
+        <div class="skill-matrix">
+          <article class="matrix-card">
+            <div class="matrix-code">L2</div>
+            <h3>Switching & Redundancy</h3>
+            <p>VLANs, 802.1Q trunking, Rapid-PVST, EtherChannel, HSRP, access-port security.</p>
+            <div class="meter"><i style="width:96%"></i></div>
+          </article>
+          <article class="matrix-card">
+            <div class="matrix-code">L3</div>
+            <h3>Routing & WAN</h3>
+            <p>OSPFv2, OSPFv3, multi-area design, summarization, default-route propagation, path failover.</p>
+            <div class="meter"><i style="width:94%"></i></div>
+          </article>
+          <article class="matrix-card">
+            <div class="matrix-code">SEC</div>
+            <h3>Network Security</h3>
+            <p>Extended ACLs, guest segmentation, DMZ isolation, NAT/PAT, SSH-only management.</p>
+            <div class="meter"><i style="width:90%"></i></div>
+          </article>
+          <article class="matrix-card">
+            <div class="matrix-code">IP</div>
+            <h3>Addressing & Services</h3>
+            <p>Subnet planning, DHCP, DHCP relay, DNS reachability, IPv4/IPv6 dual-stack operation.</p>
+            <div class="meter"><i style="width:91%"></i></div>
+          </article>
+          <article class="matrix-card">
+            <div class="matrix-code">OPS</div>
+            <h3>Operations & Verification</h3>
+            <p>Show commands, route-table analysis, adjacency validation, failover testing, change verification.</p>
+            <div class="meter"><i style="width:95%"></i></div>
+          </article>
+          <article class="matrix-card">
+            <div class="matrix-code">RCA</div>
+            <h3>Troubleshooting</h3>
+            <p>Fault isolation across L2/L3/services/security with incident notes and root-cause analysis.</p>
+            <div class="meter"><i style="width:98%"></i></div>
+          </article>
+        </div>
+
+        <section class="panel command-panel">
+          <div class="panel-head"><div><span>CLI EVIDENCE</span><h3>Verification Command Set</h3></div></div>
+          <div class="command-grid">
+            <code>show ip ospf neighbor</code>
+            <code>show ipv6 ospf neighbor</code>
+            <code>show ip route</code>
+            <code>show standby brief</code>
+            <code>show etherchannel summary</code>
+            <code>show spanning-tree vlan 10</code>
+            <code>show interfaces trunk</code>
+            <code>show access-lists</code>
+            <code>show ip nat translations</code>
+            <code>show port-security</code>
+            <code>traceroute</code>
+            <code>ping</code>
+          </div>
+        </section>
+      </section>
+
+      <section class="view" data-view-panel="evidence">
+        <div class="section-head">
+          <div><p class="eyebrow">BUILD & VERIFY</p><h2>Portfolio Evidence Tracker</h2></div>
+          <p>Use this after building each lab in Cisco Packet Tracer. Progress is saved locally in your browser.</p>
+        </div>
+
+        <div class="evidence-dashboard">
+          <article class="progress-panel">
+            <div class="progress-ring" id="progressRing"><span id="progressPercent">0%</span></div>
+            <div>
+              <span class="detail-label">SUITE COMPLETION</span>
+              <h3 id="progressTitle">0 / 30 evidence items complete</h3>
+              <p>Complete topology, configuration, verification, and failure evidence for each lab.</p>
+              <button class="btn ghost small" id="resetProgressBtn">Reset Progress</button>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><span>EVIDENCE STANDARD</span><h3>Required for every lab</h3></div></div>
+            <ul class="signal-list compact">
+              <li><b>Topology</b><span>Clean Packet Tracer topology screenshot</span></li>
+              <li><b>Configuration</b><span>Saved .pkt plus relevant IOS configs</span></li>
+              <li><b>Control Plane</b><span>Routing / redundancy / switching evidence</span></li>
+              <li><b>Policy</b><span>ACL, NAT, DHCP, IPv6, or security verification as applicable</span></li>
+              <li><b>Failure Test</b><span>Demonstrate expected behavior during a fault</span></li>
+              <li><b>Write-up</b><span>Design choices, findings, and root cause where applicable</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="evidence-labs" id="evidenceLabs"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast-region" id="toastRegion"></div>
 </body>
 </html>
