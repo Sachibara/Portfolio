@@ -209,6 +209,17 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
     }
+    .lab-showcase { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(300px,.85fr); gap: 22px; padding: 30px; border: 1px solid var(--border); border-radius: 24px; background: linear-gradient(135deg,rgba(99,214,255,.09),rgba(122,240,189,.035)),var(--surface); box-shadow: var(--shadow); }
+    .lab-showcase h3 { font-size: clamp(2rem,4vw,3rem); line-height: 1.04; letter-spacing: -.045em; margin: 8px 0 12px; }
+    .lab-showcase p { color: var(--muted); }
+    .lab-skill-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+    .lab-skill-list span { padding: 7px 10px; border: 1px solid var(--border); border-radius: 9px; color: var(--accent); background: rgba(99,214,255,.045); font-size: 12px; font-weight: 850; }
+    .lab-console { border: 1px solid rgba(255,255,255,.09); border-radius: 18px; padding: 20px; background: #07111f; font-family: Consolas,"SFMono-Regular",monospace; color: #bcefff; display: grid; gap: 11px; align-content: center; }
+    .lab-console div { display: grid; grid-template-columns: 58px 1fr auto; gap: 10px; align-items: center; font-size: 12px; }
+    .lab-console b { color: #7af0bd; }
+    .lab-console span:last-child { color: #718aa5; }
+    @media (max-width: 960px) { .lab-showcase { grid-template-columns: 1fr; } }
+
   </style>
 </head>
 <body>
@@ -225,7 +236,9 @@
         <nav class="desktop-nav" aria-label="Primary navigation">
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
+          <a href="#labs">Cisco Labs</a>
+          <a href="#labs">Cisco Labs</a>
+        <a href="#skills">Skills</a>
           <a href="#credentials">Credentials</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -539,6 +552,51 @@
               <a class="btn btn-primary" href="https://finalomnishare.vercel.app" target="_blank" rel="noopener noreferrer">Open Site</a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="labs">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Cisco Packet Tracer / Network Engineering</div>
+            <h2>Enterprise Network Engineering Lab Suite.</h2>
+          </div>
+          <p>
+            A focused set of enterprise-style labs built around the routing, switching, redundancy, security,
+            IPv6, and troubleshooting skills expected in Network Engineer and NOC roles.
+          </p>
+        </div>
+
+        <div class="lab-showcase">
+          <div>
+            <div class="status">Supplementary engineering portfolio</div>
+            <h3>Five labs. One enterprise networking story.</h3>
+            <p>
+              The suite covers a resilient campus, multi-site OSPF WAN, secure Internet edge and DMZ,
+              dual-stack IPv4/IPv6, and an intentionally broken network troubleshooting assessment.
+              Each project includes addressing plans, Cisco IOS configuration templates, validation commands,
+              failure tests, and evidence requirements for the final Packet Tracer build.
+            </p>
+            <div class="lab-skill-list">
+              <span>OSPFv2 / OSPFv3</span><span>HSRP</span><span>EtherChannel</span><span>Rapid-PVST</span>
+              <span>VLAN / Trunking</span><span>ACL</span><span>NAT / PAT</span><span>IPv6</span>
+              <span>SSH / Port Security</span><span>Troubleshooting</span>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-primary" href="/projects/network-engineering-labs/" target="_blank" rel="noopener noreferrer">Open Lab Suite</a>
+              <a class="btn btn-secondary" href="https://github.com/Sachibara/Portfolio/tree/main/projects/network-engineering-labs" target="_blank" rel="noopener noreferrer">View Lab Files</a>
+            </div>
+          </div>
+
+          <div class="lab-console" aria-hidden="true">
+            <div><b>LAB 01</b><span>Resilient Enterprise Campus</span><span>HSRP / STP</span></div>
+            <div><b>LAB 02</b><span>Multi-Site OSPF WAN</span><span>ABR / WAN</span></div>
+            <div><b>LAB 03</b><span>Secure Internet Edge & DMZ</span><span>ACL / NAT</span></div>
+            <div><b>LAB 04</b><span>Dual-Stack Campus</span><span>IPv6 / OSPFv3</span></div>
+            <div><b>LAB 05</b><span>Troubleshooting Assessment</span><span>RCA / VERIFY</span></div>
+          </div>
         </div>
       </div>
     </section>
