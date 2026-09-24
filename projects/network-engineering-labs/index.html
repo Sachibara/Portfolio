@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07131f">
+  <meta name="description" content="Enterprise Cisco Packet Tracer network engineering lab suite by Jim Rodmark Camus.">
+  <title>Enterprise Network Engineering Lab Suite | Jim Rodmark Camus</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="top">
+    <a class="back" href="/">← Portfolio</a>
+    <div class="brand">JRC / NETWORK ENGINEERING LAB</div>
+    <span class="status">5 ENTERPRISE LABS</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">CISCO PACKET TRACER · ENTERPRISE DESIGN · TROUBLESHOOTING</p>
+        <h1>Enterprise Network Engineering Lab Suite</h1>
+        <p class="lede">Five portfolio-grade network engineering projects designed around the skills employers expect from junior Network Engineers and NOC engineers: resilient switching, dynamic routing, segmentation, secure Internet edge design, IPv6, and structured troubleshooting.</p>
+        <div class="chips">
+          <span>OSPF</span><span>HSRP</span><span>EtherChannel</span><span>VLAN/STP</span><span>ACL</span><span>NAT/PAT</span><span>IPv6</span><span>SSH</span>
+        </div>
+      </div>
+      <aside class="scorecard">
+        <div><span>Labs</span><strong>05</strong></div>
+        <div><span>Network domains</span><strong>12+</strong></div>
+        <div><span>Primary vendor</span><strong>CISCO</strong></div>
+        <div><span>Evidence model</span><strong>VERIFY</strong></div>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">LAB PORTFOLIO</p><h2>Enterprise scenarios</h2></div>
+        <p>Each lab includes an addressing plan, device roles, Packet Tracer build instructions, paste-ready IOS configuration, verification commands, and evidence that should be captured after implementation.</p>
+      </div>
+
+      <div class="lab-grid">
+        <article class="lab-card">
+          <div class="lab-num">LAB 01</div>
+          <h3>Resilient Enterprise Campus</h3>
+          <p>Dual distribution multilayer switches, HSRP default-gateway redundancy, LACP EtherChannel, STP root placement, inter-VLAN routing, DHCP relay, guest segmentation, OSPF uplinks, and NAT.</p>
+          <div class="tags"><span>HSRP</span><span>LACP</span><span>STP</span><span>OSPF</span></div>
+          <div class="mini-topology"><b>ISP</b><i></i><b>EDGE</b><i></i><b>DIST ×2</b><i></i><b>ACCESS</b></div>
+          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-01-campus-ha.md" target="_blank" rel="noopener">Open engineering brief ↗</a>
+        </article>
+
+        <article class="lab-card">
+          <div class="lab-num">LAB 02</div>
+          <h3>Multi-Site OSPF Enterprise WAN</h3>
+          <p>HQ and two branches using an OSPF backbone, branch areas, summarization, router-on-a-stick VLANs, branch DHCP, WAN path engineering, and centralized default-route propagation.</p>
+          <div class="tags"><span>OSPF</span><span>ABR</span><span>ROAS</span><span>DHCP</span></div>
+          <div class="mini-topology"><b>BR1</b><i></i><b>HQ</b><i></i><b>BR2</b><i></i><b>ISP</b></div>
+          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-02-multisite-ospf.md" target="_blank" rel="noopener">Open engineering brief ↗</a>
+        </article>
+
+        <article class="lab-card">
+          <div class="lab-num">LAB 03</div>
+          <h3>Secure Internet Edge & DMZ</h3>
+          <p>Enterprise Internet-edge segmentation with inside, guest, management, and DMZ zones; PAT, static NAT publishing, inbound ACLs, SSH management, port security, and least-privilege access.</p>
+          <div class="tags"><span>ACL</span><span>NAT</span><span>DMZ</span><span>SSH</span></div>
+          <div class="mini-topology"><b>INTERNET</b><i></i><b>EDGE</b><i></i><b>DMZ</b><i></i><b>LAN</b></div>
+          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-03-secure-dmz.md" target="_blank" rel="noopener">Open engineering brief ↗</a>
+        </article>
+
+        <article class="lab-card">
+          <div class="lab-num">LAB 04</div>
+          <h3>Dual-Stack IPv4/IPv6 Campus</h3>
+          <p>Modern dual-stack network with IPv4 OSPFv2, IPv6 OSPFv3, SLAAC, optional stateless DHCPv6, router-on-a-stick segmentation, and end-to-end verification across two sites.</p>
+          <div class="tags"><span>IPv6</span><span>OSPFv3</span><span>SLAAC</span><span>DUAL STACK</span></div>
+          <div class="mini-topology"><b>SITE A</b><i></i><b>R1</b><i></i><b>R2</b><i></i><b>SITE B</b></div>
+          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-04-dual-stack.md" target="_blank" rel="noopener">Open engineering brief ↗</a>
+        </article>
+
+        <article class="lab-card challenge">
+          <div class="lab-num">LAB 05 · ASSESSMENT</div>
+          <h3>Enterprise Troubleshooting Challenge</h3>
+          <p>A deliberately faulted network covering VLAN/trunking, DHCP relay, OSPF adjacency, ACL behavior, default gateways, port security, and routing. Includes an incident worksheet and resolution evidence checklist.</p>
+          <div class="tags"><span>TROUBLESHOOT</span><span>FAULT ISOLATION</span><span>RCA</span><span>VALIDATION</span></div>
+          <div class="mini-topology"><b>SYMPTOM</b><i></i><b>ISOLATE</b><i></i><b>FIX</b><i></i><b>VERIFY</b></div>
+          <a href="https://github.com/Sachibara/Portfolio/blob/main/projects/network-engineering-labs/lab-05-troubleshooting.md" target="_blank" rel="noopener">Open challenge brief ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section proof">
+      <div class="section-head">
+        <div><p class="eyebrow">PORTFOLIO EVIDENCE</p><h2>What to capture from Packet Tracer</h2></div>
+      </div>
+      <div class="proof-grid">
+        <article><b>01</b><h3>Topology screenshot</h3><p>Show device names, links, VLAN/site labels, servers, and WAN relationships.</p></article>
+        <article><b>02</b><h3>Control-plane evidence</h3><p>Capture <code>show ip ospf neighbor</code>, <code>show standby brief</code>, EtherChannel, STP, and routing tables.</p></article>
+        <article><b>03</b><h3>Security evidence</h3><p>Capture ACL hit counters, NAT translations, SSH-only management, and successful/denied traffic tests.</p></article>
+        <article><b>04</b><h3>Failure test</h3><p>Shut a redundant link or gateway and demonstrate recovery without losing the intended service.</p></article>
+        <article><b>05</b><h3>Engineering write-up</h3><p>Explain design decisions, tradeoffs, verification, faults found, and corrective actions.</p></article>
+        <article><b>06</b><h3>Final .pkt artifact</h3><p>Save the implemented lab from Cisco Packet Tracer and add it beside the engineering brief in GitHub.</p></article>
+      </div>
+    </section>
+
+    <section class="section hiring">
+      <p class="eyebrow">HIRING SIGNAL</p>
+      <h2>Designed to demonstrate engineering judgment—not just CLI memorization.</h2>
+      <p>The suite emphasizes architecture, redundancy, segmentation, security boundaries, routing behavior, validation, and fault isolation. These are stronger interview signals than a collection of unrelated beginner labs.</p>
+    </section>
+  </main>
+
+  <footer>Jim Rodmark Camus · BSIT Network Technology · Enterprise Network Engineering Lab Suite</footer>
+</body>
+</html>
