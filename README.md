@@ -121,6 +121,22 @@ A browser-based file-sharing product focused on streamlined upload, sharing, and
 
 ---
 
+
+## Cisco Packet Tracer — Enterprise Network Engineering Lab Suite
+
+**Portfolio page:** https://jimcamus.vercel.app/projects/network-engineering-labs/
+
+A supplementary network-engineering portfolio containing five enterprise-style Cisco Packet Tracer lab designs:
+
+- Resilient Enterprise Campus — HSRP, EtherChannel, STP, VLANs, OSPF, DHCP relay, ACLs, NAT
+- Multi-Site OSPF Enterprise WAN — multi-area OSPF, ABRs, summarization, branch VLANs, DHCP and path failover
+- Secure Internet Edge & DMZ — ACLs, NAT/PAT, static publishing, guest/DMZ segmentation, SSH and port security
+- Dual-Stack IPv4/IPv6 Campus — OSPFv2, OSPFv3, SLAAC and dual-stack validation
+- Enterprise Troubleshooting Challenge — fault isolation, root-cause analysis and verification
+
+The repository contains build briefs and paste-ready IOS configuration templates. Final proprietary `.pkt` files should be saved from Cisco Packet Tracer after implementation and validation.
+
+---
 ## Portfolio Strategy
 
 The portfolio is intentionally limited to **five flagship systems**.
