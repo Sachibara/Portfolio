@@ -122,21 +122,31 @@ A browser-based file-sharing product focused on streamlined upload, sharing, and
 ---
 
 
-## Cisco Packet Tracer — Enterprise Network Engineering Lab Suite
+## Cisco Packet Tracer — Featured Enterprise Network Engineering Project
 
-**Portfolio page:** https://jimcamus.vercel.app/projects/network-engineering-labs/
+**Portfolio case study:** https://jimcamus.vercel.app/projects/cisco-enterprise-network/
 
-A supplementary network-engineering portfolio containing five enterprise-style Cisco Packet Tracer lab designs:
+### Resilient Enterprise Campus & Branch Network
 
-- Resilient Enterprise Campus — HSRP, EtherChannel, STP, VLANs, OSPF, DHCP relay, ACLs, NAT
-- Multi-Site OSPF Enterprise WAN — multi-area OSPF, ABRs, summarization, branch VLANs, DHCP and path failover
-- Secure Internet Edge & DMZ — ACLs, NAT/PAT, static publishing, guest/DMZ segmentation, SSH and port security
-- Dual-Stack IPv4/IPv6 Campus — OSPFv2, OSPFv3, SLAAC and dual-stack validation
-- Enterprise Troubleshooting Challenge — fault isolation, root-cause analysis and verification
+A single enterprise-scale Cisco Packet Tracer project designed to demonstrate practical Network Engineer skills in one coherent topology:
 
-The repository contains build briefs and paste-ready IOS configuration templates. Final proprietary `.pkt` files should be saved from Cisco Packet Tracer after implementation and validation.
+- dual HQ distribution using HSRP gateway redundancy
+- Rapid-PVST root placement aligned with HSRP roles
+- LACP EtherChannel between distribution switches
+- VLAN segmentation and Layer-3 switching
+- OSPF area 0 across HQ/WAN with Branch area 10 and summarization
+- centralized DHCP/DNS with DHCP relay
+- guest network isolation using extended ACLs
+- Internet PAT and static NAT publishing for a DMZ web server
+- SSH-only device management and switch port security
+- documented HSRP, OSPF, STP, ACL, NAT, DHCP, and failover verification
+
+The project folder contains the topology/addressing design, per-device IOS configuration templates, services plan, verification checklist, and engineering report.
+
+> Cisco Packet Tracer's proprietary `.pkt` file must be saved from the Cisco Packet Tracer desktop application after the topology is built and validated. The portfolio does not claim simulator execution until that real artifact and screenshots are added.
 
 ---
+
 ## Portfolio Strategy
 
 The portfolio is intentionally limited to **five flagship systems**.
