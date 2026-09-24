@@ -1,0 +1,56 @@
+! Device: BR1 (Cisco 2911 suggested)
+
+hostname BR1
+no ip domain-lookup
+ip domain-name corp.lab
+username netadmin privilege 15 secret LabOnly-ChangeMe!
+ip ssh version 2
+
+interface Serial0/0/0
+ description WAN-TO-EDGE1
+ ip address 10.255.10.2 255.255.255.252
+ no shutdown
+
+interface GigabitEthernet0/0
+ description 802.1Q-TRUNK-TO-BR-SW1
+ no shutdown
+
+interface GigabitEthernet0/0.110
+ encapsulation dot1Q 110
+ description BRANCH-USERS
+ ip address 10.20.10.1 255.255.255.0
+ ip helper-address 10.10.30.10
+
+interface GigabitEthernet0/0.120
+ encapsulation dot1Q 120
+ description BRANCH-GUEST
+ ip address 10.20.20.1 255.255.255.0
+ ip helper-address 10.10.30.10
+ ip access-group BR-GUEST-IN in
+
+interface GigabitEthernet0/0.199
+ encapsulation dot1Q 199
+ description BRANCH-MANAGEMENT
+ ip address 10.20.99.1 255.255.255.0
+
+ip access-list extended BR-GUEST-IN
+ deny ip 10.20.20.0 0.0.0.255 10.0.0.0 0.255.255.255
+ permit ip 10.20.20.0 0.0.0.255 any
+
+ip access-list standard MGMT-SSH
+ permit 10.10.20.0 0.0.0.255
+
+router ospf 10
+ router-id 20.20.20.20
+ passive-interface default
+ no passive-interface Serial0/0/0
+ network 10.255.10.0 0.0.0.3 area 0
+ network 10.20.10.0 0.0.0.255 area 10
+ network 10.20.20.0 0.0.0.255 area 10
+ network 10.20.99.0 0.0.0.255 area 10
+ area 10 range 10.20.0.0 255.255.0.0
+
+line vty 0 4
+ login local
+ transport input ssh
+ access-class MGMT-SSH in

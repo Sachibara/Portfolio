@@ -1,0 +1,137 @@
+! Device: DIST1 (Cisco 3560 multilayer switch suggested)
+
+hostname DIST1
+no ip domain-lookup
+ip routing
+ip domain-name corp.lab
+username netadmin privilege 15 secret LabOnly-ChangeMe!
+ip ssh version 2
+spanning-tree mode rapid-pvst
+
+vlan 10
+ name USERS
+vlan 20
+ name IT-ADMIN
+vlan 30
+ name SERVERS
+vlan 40
+ name GUEST
+vlan 50
+ name DMZ
+vlan 99
+ name MANAGEMENT
+
+interface Vlan10
+ description USERS-GATEWAY
+ ip address 10.10.10.2 255.255.255.0
+ standby 10 ip 10.10.10.1
+ standby 10 priority 120
+ standby 10 preempt
+ ip helper-address 10.10.30.10
+ no shutdown
+
+interface Vlan20
+ description IT-ADMIN-GATEWAY
+ ip address 10.10.20.2 255.255.255.0
+ standby 20 ip 10.10.20.1
+ standby 20 priority 100
+ standby 20 preempt
+ ip helper-address 10.10.30.10
+ no shutdown
+
+interface Vlan30
+ description SERVER-GATEWAY
+ ip address 10.10.30.2 255.255.255.0
+ standby 30 ip 10.10.30.1
+ standby 30 priority 120
+ standby 30 preempt
+ no shutdown
+
+interface Vlan40
+ description GUEST-GATEWAY
+ ip address 10.10.40.2 255.255.255.0
+ standby 40 ip 10.10.40.1
+ standby 40 priority 100
+ standby 40 preempt
+ ip helper-address 10.10.30.10
+ ip access-group HQ-GUEST-IN in
+ no shutdown
+
+interface Vlan50
+ description DMZ-GATEWAY
+ ip address 10.10.50.2 255.255.255.0
+ standby 50 ip 10.10.50.1
+ standby 50 priority 120
+ standby 50 preempt
+ ip access-group DMZ-IN in
+ no shutdown
+
+interface Vlan99
+ description MANAGEMENT-GATEWAY
+ ip address 10.10.99.2 255.255.255.0
+ standby 99 ip 10.10.99.1
+ standby 99 priority 120
+ standby 99 preempt
+ no shutdown
+
+ip access-list extended HQ-GUEST-IN
+ deny ip 10.10.40.0 0.0.0.255 10.0.0.0 0.255.255.255
+ permit ip 10.10.40.0 0.0.0.255 any
+
+ip access-list extended DMZ-IN
+ permit udp host 10.10.50.10 host 10.10.30.10 eq domain
+ permit tcp host 10.10.50.10 host 10.10.30.10 eq domain
+ permit tcp host 10.10.50.10 10.10.0.0 0.0.255.255 established
+ permit icmp host 10.10.50.10 10.10.0.0 0.0.255.255 echo-reply
+ deny ip 10.10.50.0 0.0.0.255 10.0.0.0 0.255.255.255
+ permit ip 10.10.50.0 0.0.0.255 any
+
+ip access-list standard MGMT-SSH
+ permit 10.10.20.0 0.0.0.255
+ permit 10.10.99.0 0.0.0.255
+
+interface GigabitEthernet0/1
+ description ROUTED-UPLINK-EDGE1
+ no switchport
+ ip address 10.255.0.2 255.255.255.252
+ no shutdown
+
+interface FastEthernet0/1
+ description TRUNK-ASW1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,99
+
+interface FastEthernet0/2
+ description TRUNK-ASW2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,99
+
+interface range FastEthernet0/23-24
+ description LACP-TO-DIST2
+ channel-group 1 mode active
+ no shutdown
+
+interface Port-channel1
+ description LACP-DISTRIBUTION-INTERCONNECT
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,99
+
+spanning-tree vlan 10,30,50,99 root primary
+spanning-tree vlan 20,40 root secondary
+
+router ospf 10
+ router-id 1.1.1.1
+ passive-interface default
+ no passive-interface GigabitEthernet0/1
+ network 10.10.0.0 0.0.255.255 area 0
+ network 10.255.0.0 0.0.0.3 area 0
+
+line vty 0 4
+ login local
+ transport input ssh
+ access-class MGMT-SSH in
+
+! Generate RSA keys in Packet Tracer after hostname/domain are configured.

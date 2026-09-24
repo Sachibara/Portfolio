@@ -1,0 +1,79 @@
+! Cisco Packet Tracer lab configuration
+! Device: EDGE1 (Cisco 2911 suggested)
+! Public lab-only credentials. Change for any real environment.
+
+hostname EDGE1
+no ip domain-lookup
+ip domain-name corp.lab
+username netadmin privilege 15 secret LabOnly-ChangeMe!
+ip ssh version 2
+
+interface GigabitEthernet0/0
+ description TO-ISP
+ ip address 203.0.113.2 255.255.255.248
+ ip nat outside
+ ip access-group OUTSIDE-IN in
+ no shutdown
+
+interface GigabitEthernet0/1
+ description TO-DIST1
+ ip address 10.255.0.1 255.255.255.252
+ ip nat inside
+ no shutdown
+
+interface GigabitEthernet0/2
+ description TO-DIST2
+ ip address 10.255.0.5 255.255.255.252
+ ip nat inside
+ no shutdown
+
+interface Serial0/0/0
+ description WAN-TO-BR1
+ ip address 10.255.10.1 255.255.255.252
+ ip nat inside
+ clock rate 64000
+ no shutdown
+
+ip access-list standard NAT-INSIDE
+ permit 10.0.0.0 0.255.255.255
+
+ip nat inside source list NAT-INSIDE interface GigabitEthernet0/0 overload
+ip nat inside source static tcp 10.10.50.10 80 203.0.113.3 80
+ip nat inside source static tcp 10.10.50.10 443 203.0.113.3 443
+
+ip access-list extended OUTSIDE-IN
+ remark Permit published DMZ web service
+ permit tcp any host 203.0.113.3 eq 80
+ permit tcp any host 203.0.113.3 eq 443
+ remark Permit return traffic for common outbound tests
+ permit tcp any any established
+ permit udp any eq domain any gt 1023
+ permit icmp any any echo-reply
+ permit icmp any any time-exceeded
+ permit icmp any any unreachable
+ deny ip any any log
+
+ip access-list standard MGMT-SSH
+ permit 10.10.20.0 0.0.0.255
+
+ip route 0.0.0.0 0.0.0.0 203.0.113.1
+
+router ospf 10
+ router-id 10.10.10.10
+ passive-interface default
+ no passive-interface GigabitEthernet0/1
+ no passive-interface GigabitEthernet0/2
+ no passive-interface Serial0/0/0
+ network 10.255.0.0 0.0.0.3 area 0
+ network 10.255.0.4 0.0.0.3 area 0
+ network 10.255.10.0 0.0.0.3 area 0
+ default-information originate
+
+line vty 0 4
+ login local
+ transport input ssh
+ access-class MGMT-SSH in
+
+! In Packet Tracer, generate RSA keys after setting hostname/domain:
+! crypto key generate rsa
+! Choose 1024 bits when prompted.
