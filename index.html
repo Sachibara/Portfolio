@@ -113,7 +113,7 @@
 
     .profile-card { position: relative; overflow: hidden; padding: 28px; border: 1px solid var(--border); border-radius: 28px; background: linear-gradient(180deg,rgba(255,255,255,.045),transparent),var(--surface); box-shadow: var(--shadow); }
     .profile-card::before { content: ""; position: absolute; width: 230px; height: 230px; border-radius: 50%; background: rgba(99,214,255,.14); filter: blur(42px); top: -90px; right: -70px; }
-    .avatar { width: 94px; height: 94px; object-fit: cover; border-radius: 24px; border: 1px solid var(--border); margin-bottom: 21px; position: relative; }
+    .avatar { width: 132px; height: 166px; object-fit: cover; object-position: center 18%; border-radius: 22px; border: 1px solid var(--border); margin-bottom: 21px; position: relative; box-shadow: 0 16px 38px rgba(0,0,0,.24); }
     .avatar-initials { display: grid; place-items: center; background: linear-gradient(135deg,var(--accent),var(--accent-2)); color: #06111e; font-size: 1.45rem; font-weight: 900; letter-spacing: -.04em; }
     .profile-card h2 { font-size: 1.5rem; margin-bottom: 5px; position: relative; }
     .profile-role { color: var(--accent); font-size: 14px; font-weight: 900; margin-bottom: 18px; position: relative; }
@@ -170,6 +170,15 @@
     .credential-list li { padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,.025); border: 1px solid var(--border); }
     .credential-list strong { display: block; margin-bottom: 2px; }
     .credential-list span { color: var(--muted); font-size: 13px; }
+    .certification-gallery { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-top: 18px; }
+    .certificate-tile { overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
+    .certificate-media { min-height: 145px; display: grid; place-items: center; padding: 20px; background: linear-gradient(135deg,rgba(99,214,255,.10),rgba(122,240,189,.05)); border-bottom: 1px solid var(--border); color: var(--accent); font-weight: 950; letter-spacing: .10em; font-size: 13px; text-align: center; }
+    .certificate-body { padding: 16px; }
+    .certificate-body h3 { font-size: .98rem; line-height: 1.35; margin-bottom: 7px; }
+    .certificate-body p { color: var(--muted); font-size: 12px; }
+    .certificate-tag { display: inline-flex; margin-top: 10px; padding: 5px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--accent-2); font-size: 11px; font-weight: 850; }
+    .additional-certifications { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .additional-certifications span { padding: 8px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.025); font-size: 12px; font-weight: 800; }
 
     .contact-card { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 30px; align-items: center; padding: 34px; border-radius: 26px; border: 1px solid var(--border); background: linear-gradient(135deg,rgba(99,214,255,.08),rgba(122,240,189,.055)),var(--surface); box-shadow: var(--shadow); }
     .contact-card h2 { font-size: clamp(2rem,4vw,3.15rem); letter-spacing: -.04em; margin-bottom: 10px; }
@@ -197,7 +206,7 @@
       .nav-wrap { min-height: 64px; }
       .hero { padding-top: 56px; }
       h1 { font-size: clamp(2.65rem,15vw,4.4rem); }
-      .quick-stats, .skills-grid, .credential-grid { grid-template-columns: 1fr; }
+      .quick-stats, .skills-grid, .credential-grid, .certification-gallery { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: 1fr; }
       .project-card, .project-card.featured { grid-column: auto; }
       .hero-actions, .project-actions, .contact-actions { flex-direction: column; }
@@ -271,7 +280,7 @@
         </div>
 
         <aside class="profile-card" aria-label="Professional profile">
-          <div class="avatar avatar-initials" aria-hidden="true">JC</div>
+          <img class="avatar" src="assets/profile/Ghost_profile.jpg" alt="Professional portrait of Jim Rodmark Camus">
           <h2>Jim Rodmark Camus</h2>
           <div class="profile-role">IT Network Support • Network Technology • Cybersecurity • Developer</div>
           <p>
@@ -633,38 +642,86 @@
         <div class="section-heading">
           <div>
             <div class="section-kicker">Education & credentials</div>
-            <h2>Formal IT training backed by hands-on work.</h2>
+            <h2>Education, technical credentials, and industry-focused training.</h2>
           </div>
           <p>
-            Academic performance, technical training, and cybersecurity certifications complement the practical
-            experience shown in my projects and IT support work.
+            Credentials are selected for relevance to network engineering, infrastructure, IT support,
+            cybersecurity, automation, and software development roles.
           </p>
         </div>
 
         <div class="credential-grid">
           <article class="credential-card">
-            <h3>Education & Technical Training</h3>
+            <h3>Education</h3>
             <ul class="credential-list">
               <li>
                 <strong>BS Information Technology — Network Technology</strong>
                 <span>Pamantasan ng Lungsod ng San Pablo • 2022–2026 • Academic Achiever • GWA 1.50</span>
               </li>
               <li>
-                <strong>Computer Systems Servicing NC II</strong>
-                <span>Marcelino Fule Memorial College • 2026</span>
+                <strong>486-hour IT Network Support Internship</strong>
+                <span>Concentrix • Nuvali, Sta. Rosa, Laguna</span>
               </li>
             </ul>
           </article>
 
           <article class="credential-card">
-            <h3>IT & Cybersecurity Certifications</h3>
-            <ul class="credential-list">
-              <li><strong>Computer Systems Servicing NC II (CSS NC II)</strong></li>
-              <li><strong>Ethical Hacking and Data Security</strong></li>
-              <li><strong>Certified Cybersecurity Educator Professional (CCEP)</strong></li>
-              <li><strong>Certified Red Team Operations Management (CRTOM)</strong></li>
-              <li><strong>Certified C++ Practitioner (CCPC)</strong></li>
-            </ul>
+            <h3>Credential focus</h3>
+            <p>
+              Featured certificates emphasize hands-on systems servicing, Python, cybersecurity,
+              red-team operations, and programming. Language and teaching credentials are listed as supporting qualifications.
+            </p>
+            <div class="additional-certifications">
+              <span>English Fluency</span>
+              <span>TESOL</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="certification-gallery" aria-label="Featured certifications">
+          <article class="certificate-tile">
+            <div class="certificate-media">CSS NC II</div>
+            <div class="certificate-body">
+              <h3>Computer Systems Servicing NC II</h3>
+              <p>Hardware, operating systems, network setup, maintenance, and technical support.</p>
+              <span class="certificate-tag">Featured credential</span>
+            </div>
+          </article>
+
+          <article class="certificate-tile">
+            <div class="certificate-media">PYTHON</div>
+            <div class="certificate-body">
+              <h3>freeCodeCamp Python Certification</h3>
+              <p>Python programming, object-oriented programming, algorithms, data structures, graphs, and recursion.</p>
+              <span class="certificate-tag">Featured credential</span>
+            </div>
+          </article>
+
+          <article class="certificate-tile">
+            <div class="certificate-media">CCEP</div>
+            <div class="certificate-body">
+              <h3>Certified Cybersecurity Educator Professional</h3>
+              <p>Cybersecurity concepts, awareness, education, and security-focused technical communication.</p>
+              <span class="certificate-tag">Cybersecurity</span>
+            </div>
+          </article>
+
+          <article class="certificate-tile">
+            <div class="certificate-media">RED TEAM</div>
+            <div class="certificate-body">
+              <h3>Certified Red Team Operations Management</h3>
+              <p>Red-team operations, security assessment workflows, and offensive-security management concepts.</p>
+              <span class="certificate-tag">Cybersecurity</span>
+            </div>
+          </article>
+
+          <article class="certificate-tile">
+            <div class="certificate-media">C++</div>
+            <div class="certificate-body">
+              <h3>Certified C++ Practitioner (CCPC)</h3>
+              <p>C++ programming fundamentals and practical software-development competency.</p>
+              <span class="certificate-tag">Programming</span>
+            </div>
           </article>
         </div>
       </div>
