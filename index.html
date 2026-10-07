@@ -172,7 +172,11 @@
     .credential-list span { color: var(--muted); font-size: 13px; }
     .certification-gallery { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-top: 18px; }
     .certificate-tile { overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
-    .certificate-media { min-height: 145px; display: grid; place-items: center; padding: 20px; background: linear-gradient(135deg,rgba(99,214,255,.10),rgba(122,240,189,.05)); border-bottom: 1px solid var(--border); color: var(--accent); font-weight: 950; letter-spacing: .10em; font-size: 13px; text-align: center; }
+    .certificate-media { min-height: 180px; display: grid; place-items: center; padding: 10px; background: linear-gradient(135deg,rgba(99,214,255,.10),rgba(122,240,189,.05)); border-bottom: 1px solid var(--border); color: var(--accent); font-weight: 950; letter-spacing: .10em; font-size: 13px; text-align: center; overflow: hidden; }
+    .certificate-media img { width: 100%; height: 180px; object-fit: contain; border-radius: 10px; background: rgba(0,0,0,.08); }
+    .certificate-media a { display: block; width: 100%; }
+    .certificate-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .certificate-actions .btn { min-height: 38px; padding: 0 12px; font-size: 12px; }
     .certificate-body { padding: 16px; }
     .certificate-body h3 { font-size: .98rem; line-height: 1.35; margin-bottom: 7px; }
     .certificate-body p { color: var(--muted); font-size: 12px; }
@@ -680,47 +684,70 @@
 
         <div class="certification-gallery" aria-label="Featured certifications">
           <article class="certificate-tile">
-            <div class="certificate-media">CSS NC II</div>
+            <div class="certificate-media">
+              <div>CSS NC II image pending PNG upload</div>
+            </div>
             <div class="certificate-body">
               <h3>Computer Systems Servicing NC II</h3>
               <p>Hardware, operating systems, network setup, maintenance, and technical support.</p>
               <span class="certificate-tag">Featured credential</span>
+              <div class="certificate-actions"><span class="btn btn-secondary">PNG required</span></div>
             </div>
           </article>
 
           <article class="certificate-tile">
-            <div class="certificate-media">PYTHON</div>
+            <div class="certificate-media">
+              <a href="assets/certifications/JCPythonCert.png" target="_blank" rel="noopener noreferrer" aria-label="View freeCodeCamp Python certificate">
+                <img src="assets/certifications/JCPythonCert.png" alt="freeCodeCamp Python Certification of Jim Rodmark Camus">
+              </a>
+            </div>
             <div class="certificate-body">
               <h3>freeCodeCamp Python Certification</h3>
               <p>Python programming, object-oriented programming, algorithms, data structures, graphs, and recursion.</p>
               <span class="certificate-tag">Featured credential</span>
+              <div class="certificate-actions"><a class="btn btn-secondary" href="assets/certifications/JCPythonCert.png" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
             </div>
           </article>
 
           <article class="certificate-tile">
-            <div class="certificate-media">CCEP</div>
+            <div class="certificate-media">
+              <a href="assets/certifications/CCEP.png" target="_blank" rel="noopener noreferrer" aria-label="View CCEP certificate">
+                <img src="assets/certifications/CCEP.png" alt="Certified Cybersecurity Educator Professional certificate of Jim Rodmark Camus">
+              </a>
+            </div>
             <div class="certificate-body">
               <h3>Certified Cybersecurity Educator Professional</h3>
               <p>Cybersecurity concepts, awareness, education, and security-focused technical communication.</p>
               <span class="certificate-tag">Cybersecurity</span>
+              <div class="certificate-actions"><a class="btn btn-secondary" href="assets/certifications/CCEP.png" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
             </div>
           </article>
 
           <article class="certificate-tile">
-            <div class="certificate-media">RED TEAM</div>
+            <div class="certificate-media">
+              <a href="assets/certifications/CRTOM.png" target="_blank" rel="noopener noreferrer" aria-label="View Red Team Operations Management certificate">
+                <img src="assets/certifications/CRTOM.png" alt="Certified Red Team Operations Management certificate of Jim Rodmark Camus">
+              </a>
+            </div>
             <div class="certificate-body">
               <h3>Certified Red Team Operations Management</h3>
               <p>Red-team operations, security assessment workflows, and offensive-security management concepts.</p>
               <span class="certificate-tag">Cybersecurity</span>
+              <div class="certificate-actions"><a class="btn btn-secondary" href="assets/certifications/CRTOM.png" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
             </div>
           </article>
 
           <article class="certificate-tile">
-            <div class="certificate-media">C++</div>
+            <div class="certificate-media">
+              <a href="assets/certifications/CCPC.png" target="_blank" rel="noopener noreferrer" aria-label="View C++ Practitioner certificate">
+                <img src="assets/certifications/CCPC.png" alt="Certified C++ Practitioner certificate of Jim Rodmark Camus">
+              </a>
+            </div>
             <div class="certificate-body">
               <h3>Certified C++ Practitioner (CCPC)</h3>
               <p>C++ programming fundamentals and practical software-development competency.</p>
               <span class="certificate-tag">Programming</span>
+              <div class="certificate-actions"><a class="btn btn-secondary" href="assets/certifications/CCPC.png" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
             </div>
           </article>
         </div>
