@@ -31,7 +31,7 @@ Windows-focused NGFW and network-control application built with Python and PyQt6
 ### 2. NetOps Enterprise — Unified Network Operations Platform
 
 **Repository:** [Sachibara/NetOps-Command-Center](https://github.com/Sachibara/NetOps-Command-Center)  
-**Live site:** [Open NetOps Enterprise](https://sachibara.github.io/NetOps-Command-Center/)
+**Live site:** [Open NetOps Enterprise](https://netops-enterprise.vercel.app/)
 
 A unified network-operations platform created by consolidating the strongest functionality from multiple infrastructure and networking projects.
 
@@ -62,7 +62,7 @@ A unified network-operations platform created by consolidating the strongest fun
 ### 3. OpsFusion — Unified IT Operations Platform
 
 **Repository:** [Sachibara/HelpDesk-Pro](https://github.com/Sachibara/HelpDesk-Pro)  
-**Live site:** [Open OpsFusion](https://sachibara.github.io/HelpDesk-Pro/)
+**Live site:** [Open OpsFusion](https://opsfusion-it.vercel.app/)
 
 An integrated IT operations platform connecting service-desk, endpoint, asset, identity, compliance, troubleshooting, and support workflows.
 
@@ -93,7 +93,7 @@ An integrated IT operations platform connecting service-desk, endpoint, asset, i
 
 ### 4. StudySync — LMS & Student Collaboration System
 
-**Live site:** [Open StudySync](https://study-sync-remod.vercel.app/)
+**Live site:** [Open StudySync](https://studysync-remod-demo.vercel.app//)
 
 Academic collaboration and productivity platform for students and professors.
 
