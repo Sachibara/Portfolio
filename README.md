@@ -62,32 +62,21 @@ A unified network-operations platform created by consolidating the strongest fun
 ### 3. OpsFusion — Unified IT Operations Platform
 
 **Repository:** [Sachibara/HelpDesk-Pro](https://github.com/Sachibara/HelpDesk-Pro)  
-**Live site:** [Open OpsFusion](https://opsfusion-it.vercel.app/)
+**Live site:** [Open Site](https://opsfusion-it.vercel.app/)
 
-An integrated IT operations platform connecting service-desk, endpoint, asset, identity, compliance, troubleshooting, and support workflows.
+A cloud-based IT operations platform integrating service desk, asset lifecycle management, workspace user records, and audit logging, with scheduled SLA, warranty, and maintenance alerts and Gemini-powered ticket analysis.
 
-**Unified capabilities**
-- Service Desk / ITSM
-- Endpoint inventory
-- IT asset lifecycle management
-- Identity and access management
-- Endpoint troubleshooting
-- Remote-support workflows
-- Patch and endpoint compliance
-- Knowledge-base workflows
-- Global search
-- Unified operational audit
-- Supabase Auth, RLS, and role-based cloud workspaces
+**Highlights**
+- Service Desk tickets, priorities, linked assets, work notes, and activity history
+- Asset lifecycle, maintenance tasks, and workspace identity records
+- Hourly server-side SLA, warranty, and maintenance checks with alert deduplication and clearing
+- Gemini ticket summaries, troubleshooting suggestions, and draft work notes with human review before saving
+- Supabase authentication, PostgreSQL persistence, workspace isolation, and audit logging
+- Version-checked cloud saves and 118 automated regression tests
 
-**Consolidated modules**
-- HelpDesk Pro
-- IT Asset Manager
-- AD User Provisioning Simulator
-- LAN Deployment & Remote Support Console
-- Patch & Endpoint Compliance Dashboard
-- Endpoint troubleshooting and documentation workflows
+**Integration scope:** Endpoint telemetry, remote device control, and real Active Directory provisioning require additional integrations. Portfolio Demo simulations are separate from the Cloud Workspace.
 
-**Core stack:** JavaScript · Supabase · Python · FastAPI · SQLite · ITSM workflows
+**Current application stack:** HTML5 · CSS3 · JavaScript · Supabase · PostgreSQL · Supabase Edge Functions (TypeScript/Deno) · Google Gemini API · Vercel
 
 ---
 
