@@ -33,23 +33,23 @@ Windows-focused NGFW and network-control application built with Python and PyQt6
 **Repository:** [Sachibara/HelpDesk-Pro](https://github.com/Sachibara/HelpDesk-Pro)  
 **IT Workspace:** [Open workspace](https://opsfusion-it.vercel.app/) · **Employee Support Portal:** [Get support](https://opsfusion-it.vercel.app/employee)
 
-A cloud-based platform for service desk, asset and identity management, audit logging, and scheduled alerts. Includes an employee portal for submitting requests, tracking progress, and messaging IT, plus Gemini-powered ticket assistance grounded in the Knowledge Base and approval-based work-note actions.
+OpsFusion connects a shared IT operations workspace with an employee support portal. Workspace owners manage individual staff accounts; authorized members handle tickets, inventory, Knowledge Base articles, AI-assisted work notes and scheduled alerts. Employees submit and track their own requests through a separate portal.
 
 **Highlights**
-- Employee support portal with guided requests, search, status filters, plain-language explanations, and public conversations with IT
-- Owner-managed employee enrollment; employees can access only their own portal requests, with internal work notes kept private
-- Employee registration, confirmation-email resend, password recovery, and responsive blue/indigo interface
-- Service desk tickets, linked assets, work notes, and activity history; editable endpoint, asset, maintenance and identity records
-- Database-enforced duplicate prevention and version-checked cloud saves
-- Scheduled hourly SLA, warranty and maintenance checks with alert deduplication and clearing
-- AI ticket analysis and work-note proposals retrieve relevant active Knowledge Base articles; analysis displays references and validated citations
-- Approval-based `add_work_note` actions with owner review, expiry, stale-state checks, replay protection, and audit records
-- Supabase authentication, PostgreSQL persistence, workspace isolation, and audit logging
-- **174 automated tests passed** in the 16 October 2026 release check; tests include mocked services and are not proof of every live integration
+- Independent workspace registration with email confirmation; authorized accounts can switch between their workspaces
+- Owner-only member provisioning, existing-account grants and membership removal; members use their own credentials and can change their passwords
+- Portal registration alone grants no IT workspace access; an owner can explicitly add a portal account as a member while retaining its portal enrollment
+- Guided employee requests, search, status filters, recovery and public conversations with IT; portal-only users cannot see internal notes or other employees' requests
+- Service desk, endpoint inventory, assets, identities and maintenance with database-enforced duplicate prevention and version-checked saves
+- Named audit entries with account IDs and server-derived name/email snapshots retained after membership removal
+- Gemini ticket analysis grounded in active Knowledge Base articles through keyword retrieval with validated citation IDs
+- Approval-based `add_work_note` proposals reviewed by the requesting owner or authorized editor, with expiry, stale-state checks, replay protection and audit records
+- Hourly SLA, warranty and maintenance scans; authorized editors can configure rules, acknowledge alerts and run checks
+- **191 automated tests passed** on 18 October 2026, plus rollback-only database permission tests; signed-in multi-account browser acceptance and live provider/email checks remain outstanding
 
-**Integration scope:** Endpoint telemetry, remote device control, and real Active Directory provisioning still require integrations. Employee access is manually linked by the workspace owner; automated invitations, attachments and automatic request-update emails are not implemented. Real email delivery and signed-in acceptance of the refreshed portal remain to be verified. The former Portfolio Demo and its sample-data/simulation paths have been removed.
+**Integration scope:** Endpoint telemetry, remote device control and Active Directory provisioning require separate integrations. Automated employee invitations, attachments, request-update emails, employee-facing Knowledge Base/AI and vector retrieval are not implemented. Owner-provisioned member accounts use an initial password shared privately; provisioning does not create an email inbox or send credentials.
 
-**Current application stack:** HTML5 · CSS3 · JavaScript · Supabase · PostgreSQL · Supabase Edge Functions (TypeScript/Deno) · Google Gemini API · Vercel
+**Current application stack:** HTML5 · CSS3 · JavaScript · Supabase Auth · PostgreSQL · Edge Functions (TypeScript/Deno) · Google Gemini API · Vercel
 
 ---
 
