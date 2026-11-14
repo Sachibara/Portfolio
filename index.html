@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090b10">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="description" content="Jim Rodmark Camus — IT, Network Operations, Cybersecurity and Software Engineering. Explore selected projects, skills, experience and credentials.">
 <meta property="og:title" content="Jim Rodmark Camus — Engineer & Builder">
 <meta property="og:description" content="Engineering practical systems across networks, security, automation and software.">
@@ -39,7 +40,7 @@ header{position:sticky;top:0;z-index:50;backdrop-filter:blur(22px);background:co
 .credential-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.credential{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:23px;display:flex;justify-content:space-between;align-items:center;gap:18px}.credential strong{font:600 16px "Space Grotesk"}.credential small{display:block;color:var(--muted);margin-top:5px}.credential a{flex-shrink:0;color:var(--accent);font-size:13px}
 .contact{border:1px solid var(--line);background:radial-gradient(circle at 95% 0%,rgba(180,241,122,.11),transparent 42%),var(--panel);border-radius:28px;padding:clamp(35px,6vw,75px)}.contact h2{font:600 clamp(40px,7.6vw,102px)/1.02 "Space Grotesk";letter-spacing:-.08em;max-width:820px;margin:20px 0 28px}.contact p{color:var(--muted);max-width:480px}.contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 footer{padding:35px 0 55px}.footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;color:var(--muted);font-size:13px}.footer a:hover{color:var(--accent)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}
+.reveal{opacity:1;transform:none;transition:opacity .65s ease,transform .65s ease}html.js-motion .reveal{opacity:0;transform:translateY(24px)}.reveal.visible{opacity:1;transform:none}
 @media(max-width:850px){.nav-links{display:none}.menu-btn{display:block}.mobile-nav.open{display:flex;flex-direction:column;gap:12px;padding:0 24px 24px}.mobile-nav a{padding:8px 0;color:var(--muted)}.hero{padding:83px 0}.hero h1{font-size:clamp(58px,12vw,95px)}.project.featured{display:flex}.featured .visual{order:0;min-height:280px}.projects .project{grid-column:span 12}.about-grid,.experience{grid-template-columns:1fr}.skill-grid{grid-template-columns:repeat(2,1fr)}.section{padding:82px 0}}
 @media(max-width:600px){.wrap{width:min(calc(100% - 32px),var(--width))}.hero h1{font-size:clamp(53px,13vw,80px)}.hero-bottom{display:block}.hero-aside{display:none}.section-head{display:block}.section-desc{margin-top:20px}.skill-grid,.credential-list{grid-template-columns:1fr}.contact{padding:30px}.project-content{padding:24px}.footer{display:block}.footer a{display:inline-block;margin:12px 14px 0 0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
@@ -59,7 +60,7 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 .project{position:relative;isolation:isolate;transform-style:preserve-3d}.project::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(180,241,122,.095),transparent 75%);opacity:0;transition:opacity .35s;z-index:0}.project:hover::after{opacity:1}.project>*{position:relative;z-index:1}.project .visual .mock{transform:rotate(-5deg);transition:transform .45s cubic-bezier(.2,.7,.2,1)}.project:hover .visual .mock{transform:rotate(-2deg) translateY(-7px) scale(1.025)}
 .project-links a,.contact-actions .btn,.hero-actions .btn{transition:transform .25s,background .25s,border-color .25s,color .25s}.project-links a:hover{color:var(--accent)}.nav-links a{position:relative}.nav-links a::after{content:"";height:2px;position:absolute;left:0;right:100%;bottom:-7px;background:var(--accent);transition:right .25s}.nav-links a[aria-current=location]::after,.nav-links a:hover::after{right:0}.nav-links a[aria-current=location]{color:var(--ink)}
 .section-title{transition:letter-spacing .5s}.section-head.visible .section-title{letter-spacing:-.065em}
-.reveal{transition:opacity .82s cubic-bezier(.2,.7,.2,1),transform .82s cubic-bezier(.2,.7,.2,1);transform:translate3d(0,38px,0)}.reveal.visible{transform:translateZ(0)}.projects .project:nth-child(even),.trial-grid .trial-card:nth-child(even),.skill-grid .skill:nth-child(even){transition-delay:.08s}
+.reveal{transition:opacity .82s cubic-bezier(.2,.7,.2,1),transform .82s cubic-bezier(.2,.7,.2,1)}html.js-motion .reveal{transform:translate3d(0,38px,0)}html.js-motion .reveal.visible{opacity:1;transform:translateZ(0)}.projects .project:nth-child(even),.trial-grid .trial-card:nth-child(even),.skill-grid .skill:nth-child(even){transition-delay:.08s}
 .ticker:hover .ticker-track,.ticker:focus-within .ticker-track{animation-play-state:paused}
 @media(hover:none),(pointer:coarse){.cursor-glow{display:none}.project::after{display:none}.portrait-frame{transform:none!important}}
 @media(prefers-reduced-motion:reduce){.hero-headline .headline-line>span,.hero-enter{animation:none!important;opacity:1!important;transform:none!important}.scroll-progress span{transition:none}.cursor-glow{display:none}.portrait-frame,.portrait-frame img,.project,.project .visual .mock,.reveal{transition:none!important;transform:none!important}.ticker-track{animation:none!important}.project::after{display:none}}
@@ -134,7 +135,7 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 <dialog id="siteSearch" class="portfolio-dialog search-dialog" aria-labelledby="searchTitle"><div class="dialog-inner">
 <div class="dialog-top"><span class="mono kicker" id="searchTitle">Explore portfolio</span><button type="button" class="dialog-close" data-close="siteSearch" aria-label="Close search">✕</button></div>
 <label for="searchInput" class="search-label">Where would you like to go?</label><input id="searchInput" type="search" autocomplete="off" placeholder="Search projects, experience, skills…" aria-controls="searchResults">
-<div id="searchResults" class="search-results" role="list"></div><p class="search-hint mono">Press Ctrl + K to open · Esc to close</p>
+<div id="searchResults" class="search-results" aria-live="polite"></div><p class="search-hint mono">Press Ctrl + K to open · Esc to close</p>
 </div></dialog>
 <dialog id="caseStudy" class="portfolio-dialog case-dialog" aria-labelledby="caseTitle"><div class="dialog-inner">
 <div class="dialog-top"><span class="mono kicker" id="caseEyebrow">Selected project</span><button type="button" class="dialog-close" data-close="caseStudy" aria-label="Close case study">✕</button></div>
@@ -156,7 +157,7 @@ menuButton.addEventListener('click',function(){var opened=menu.classList.toggle(
 menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');menuButton.setAttribute('aria-expanded','false')})});
 document.getElementById('year').textContent=new Date().getFullYear();
 var filters=document.querySelectorAll('.filter'),cards=document.querySelectorAll('.project');filters.forEach(function(button){button.addEventListener('click',function(){var selected=button.getAttribute('data-filter');filters.forEach(function(b){b.setAttribute('aria-pressed',String(b===button))});cards.forEach(function(card){card.hidden=selected!=='all'&&!card.getAttribute('data-categories').split(' ').includes(selected)})})});
-if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)})}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')})}
+if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('js-motion');var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)})}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')})}
 
 /* Decorative motion is disabled for reduced-motion users and touch devices. */
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -254,7 +255,7 @@ var q=query.trim().toLowerCase();searchResults.replaceChildren();
 var matches=searchItems.filter(function(item){return !q||[item.title,item.detail,item.case||''].join(' ').toLowerCase().includes(q)}).slice(0,12);
 if(!matches.length){var empty=document.createElement('p');empty.className='search-empty';empty.textContent='No results. Try “AI”, “network” or “projects”.';searchResults.appendChild(empty);return}
 matches.forEach(function(item){
-var button=document.createElement('button');button.type='button';button.className='search-result';button.setAttribute('role','listitem');
+var button=document.createElement('button');button.type='button';button.className='search-result';button.setAttribute('aria-label',item.title+' — '+item.detail);
 var label=document.createElement('span');label.textContent=item.title;var hint=document.createElement('small');hint.textContent=item.detail;
 button.append(label,hint);
 button.addEventListener('click',function(){searchDialog.close();if(item.case)openCaseStudy(item.case);else{var section=document.querySelector(item.href);if(section)section.scrollIntoView({behavior:reduced.matches?'auto':'smooth'})}});
@@ -266,7 +267,7 @@ document.getElementById('searchOpen').addEventListener('click',openSearch);
 searchInput.addEventListener('input',function(){showSearchResults(searchInput.value)});
 document.addEventListener('keydown',function(e){
 if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();if(searchDialog.open)searchDialog.close();else openSearch()}
-if(e.key==='/'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)&&!document.querySelector('dialog[open]')){e.preventDefault();openSearch()}
+if(e.key==='/'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)&&!document.activeElement.isContentEditable&&!document.querySelector('dialog[open]')){e.preventDefault();openSearch()}
 });
 var count=document.getElementById('projectCount');
 document.querySelectorAll('.filter').forEach(function(btn){btn.addEventListener('click',function(){if(count){var shown=Array.from(document.querySelectorAll('.project')).filter(function(card){return !card.hidden}).length;count.textContent=shown+' '+(shown===1?'project':'projects')}})});
