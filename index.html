@@ -1,836 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="IT portfolio of Jim Rodmark Camus — BSIT Network Technology graduate focused on IT Network Support, cybersecurity, Python desktop development, and full-stack systems.">
-  <meta name="theme-color" content="#07111f">
-  <title>Jim Rodmark Camus | IT Network Support & Developer</title>
-  <style>
-    :root {
-      --bg: #07111f;
-      --bg-soft: #0c1727;
-      --surface: rgba(18,31,49,.86);
-      --surface-solid: #111f31;
-      --surface-2: #17283e;
-      --text: #eef5ff;
-      --muted: #9aadc3;
-      --border: rgba(160,188,220,.18);
-      --accent: #63d6ff;
-      --accent-2: #7af0bd;
-      --accent-soft: rgba(99,214,255,.11);
-      --shadow: 0 24px 70px rgba(0,0,0,.28);
-      --header: rgba(7,17,31,.82);
-      --max: 1180px;
-    }
-
-    html[data-theme="light"] {
-      --bg: #f6f9fd;
-      --bg-soft: #edf3fa;
-      --surface: rgba(255,255,255,.9);
-      --surface-solid: #fff;
-      --surface-2: #edf4fb;
-      --text: #122238;
-      --muted: #5e7187;
-      --border: rgba(35,66,100,.14);
-      --accent: #087ea4;
-      --accent-2: #0a8f64;
-      --accent-soft: rgba(8,126,164,.09);
-      --shadow: 0 22px 60px rgba(45,72,105,.12);
-      --header: rgba(246,249,253,.86);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      min-height: 100vh;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      line-height: 1.65;
-      background:
-        radial-gradient(circle at 10% 8%, rgba(99,214,255,.13), transparent 27%),
-        radial-gradient(circle at 88% 14%, rgba(122,240,189,.09), transparent 25%),
-        var(--bg);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-      opacity: .22;
-      background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: linear-gradient(to bottom, #000, transparent 82%);
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    img { display: block; max-width: 100%; }
-    .container { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
-    .skip-link { position: fixed; top: 12px; left: 12px; transform: translateY(-160%); padding: 10px 14px; background: var(--text); color: var(--bg); border-radius: 10px; z-index: 100; }
-    .skip-link:focus { transform: translateY(0); }
-
-    .site-header {
-      position: sticky; top: 0; z-index: 40;
-      background: var(--header);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav-wrap { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -.02em; }
-    .brand-mark { width: 39px; height: 39px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg,var(--accent),var(--accent-2)); color: #06111e; font-size: 14px; box-shadow: 0 10px 30px rgba(99,214,255,.2); }
-    .desktop-nav { display: flex; align-items: center; gap: 5px; }
-    .desktop-nav a { padding: 9px 11px; border-radius: 10px; color: var(--muted); font-size: 13px; font-weight: 800; }
-    .desktop-nav a:hover, .desktop-nav a:focus-visible { background: var(--accent-soft); color: var(--text); outline: none; }
-    .nav-actions { display: flex; gap: 8px; }
-    .icon-btn { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
-    .menu-btn { display: none; }
-    .mobile-nav { display: none; padding-bottom: 16px; }
-    .mobile-nav.open { display: grid; gap: 8px; }
-    .mobile-nav a { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); font-weight: 800; }
-
-    main section { scroll-margin-top: 90px; }
-    .hero { min-height: calc(100vh - 72px); display: grid; align-items: center; padding: 72px 0 58px; }
-    .hero-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(300px,.8fr); gap: 48px; align-items: center; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 7px 11px; border-radius: 999px; background: var(--accent-soft); border: 1px solid var(--border); color: var(--accent); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 900; margin-bottom: 20px; }
-    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 0 5px rgba(122,240,189,.11); }
-    h1 { max-width: 900px; font-size: clamp(3rem,7vw,6.25rem); line-height: .96; letter-spacing: -.055em; margin-bottom: 24px; }
-    .gradient { background: linear-gradient(90deg,var(--accent),var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero-copy { max-width: 730px; color: var(--muted); font-size: clamp(1.05rem,2vw,1.23rem); margin-bottom: 28px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
-    .btn { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 18px; border-radius: 13px; border: 1px solid var(--border); font-weight: 900; font-size: 14px; transition: transform .2s ease, border-color .2s ease; }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: linear-gradient(135deg,var(--accent),var(--accent-2)); color: #06111e; border-color: transparent; }
-    .btn-secondary { background: var(--surface); color: var(--text); }
-    .hero-facts { display: flex; flex-wrap: wrap; gap: 14px 24px; color: var(--muted); font-size: 13px; font-weight: 800; }
-    .hero-facts span { display: inline-flex; align-items: center; gap: 8px; }
-    .fact-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-
-    .profile-card { position: relative; overflow: hidden; padding: 28px; border: 1px solid var(--border); border-radius: 28px; background: linear-gradient(180deg,rgba(255,255,255,.045),transparent),var(--surface); box-shadow: var(--shadow); }
-    .profile-card::before { content: ""; position: absolute; width: 230px; height: 230px; border-radius: 50%; background: rgba(99,214,255,.14); filter: blur(42px); top: -90px; right: -70px; }
-    .avatar { width: 132px; height: 166px; object-fit: cover; object-position: center 18%; border-radius: 22px; border: 1px solid var(--border); margin-bottom: 21px; position: relative; box-shadow: 0 16px 38px rgba(0,0,0,.24); }
-    .avatar-initials { display: grid; place-items: center; background: linear-gradient(135deg,var(--accent),var(--accent-2)); color: #06111e; font-size: 1.45rem; font-weight: 900; letter-spacing: -.04em; }
-    .profile-card h2 { font-size: 1.5rem; margin-bottom: 5px; position: relative; }
-    .profile-role { color: var(--accent); font-size: 14px; font-weight: 900; margin-bottom: 18px; position: relative; }
-    .profile-card p { color: var(--muted); font-size: 14px; position: relative; }
-    .quick-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 22px; position: relative; }
-    .quick-stat { padding: 13px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255,255,255,.025); }
-    .quick-stat strong { display: block; color: var(--text); font-size: 1.1rem; }
-    .quick-stat span { color: var(--muted); font-size: 12px; }
-
-    .section { padding: 82px 0; }
-    .section-heading { display: grid; grid-template-columns: minmax(0,1fr) minmax(260px,.58fr); gap: 30px; align-items: end; margin-bottom: 34px; }
-    .section-kicker { color: var(--accent); font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: .13em; margin-bottom: 10px; }
-    .section-heading h2 { font-size: clamp(2rem,4vw,3.45rem); line-height: 1.05; letter-spacing: -.04em; }
-    .section-heading p { color: var(--muted); max-width: 540px; justify-self: end; }
-
-    .experience-grid { display: grid; gap: 16px; }
-    .experience-card { display: grid; grid-template-columns: 220px minmax(0,1fr); gap: 28px; padding: 26px; border-radius: 22px; border: 1px solid var(--border); background: var(--surface); }
-    .experience-meta { color: var(--muted); font-size: 13px; }
-    .experience-meta strong { display: block; color: var(--accent); font-size: 14px; margin-bottom: 6px; }
-    .experience-card h3 { font-size: 1.28rem; margin-bottom: 4px; }
-    .experience-card .company { color: var(--accent-2); font-weight: 800; margin-bottom: 15px; }
-    .bullet-list { list-style: none; display: grid; gap: 9px; color: var(--muted); font-size: 14px; }
-    .bullet-list li { display: flex; gap: 10px; }
-    .bullet-list li::before { content: "↗"; color: var(--accent); font-weight: 900; }
-
-    .projects-grid { display: grid; grid-template-columns: repeat(12,1fr); gap: 18px; }
-    .project-card { grid-column: span 6; display: flex; flex-direction: column; min-height: 100%; padding: 25px; border-radius: 22px; border: 1px solid var(--border); background: var(--surface); transition: transform .22s ease, border-color .22s ease; }
-    .project-card:hover { transform: translateY(-4px); border-color: rgba(99,214,255,.42); }
-    .project-card.featured { grid-column: span 12; display: grid; grid-template-columns: minmax(0,1.1fr) minmax(300px,.9fr); gap: 25px; }
-    .project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
-    .project-number { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--border); font-weight: 900; }
-    .status { padding: 6px 9px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .06em; }
-    .project-card h3 { font-size: 1.55rem; margin-bottom: 8px; }
-    .project-card p { color: var(--muted); margin-bottom: 18px; }
-    .tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
-    .tag { padding: 6px 9px; border-radius: 9px; border: 1px solid var(--border); background: rgba(255,255,255,.025); color: var(--muted); font-size: 12px; font-weight: 800; }
-    .project-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
-    .project-panel { padding: 22px; border-radius: 18px; border: 1px solid var(--border); background: linear-gradient(135deg,rgba(99,214,255,.08),rgba(122,240,189,.04)),var(--surface-2); display: grid; gap: 18px; align-content: space-between; }
-    .terminal { font-family: Consolas, "SFMono-Regular", monospace; font-size: 12px; color: #bcefff; padding: 17px; border-radius: 14px; background: #07111f; border: 1px solid rgba(255,255,255,.08); overflow: auto; }
-    .terminal .ok { color: #7af0bd; }
-    .terminal .dim { color: #718aa5; }
-
-    .skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
-    .skill-card { padding: 21px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
-    .skill-icon { width: 39px; height: 39px; border-radius: 11px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 900; margin-bottom: 15px; }
-    .skill-card h3 { font-size: 1rem; margin-bottom: 10px; }
-    .skill-card p { color: var(--muted); font-size: 13px; }
-
-    .credential-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
-    .credential-card { padding: 24px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
-    .credential-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
-    .credential-card p { color: var(--muted); font-size: 14px; }
-    .credential-list { list-style: none; display: grid; gap: 11px; }
-    .credential-list li { padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,.025); border: 1px solid var(--border); }
-    .credential-list strong { display: block; margin-bottom: 2px; }
-    .credential-list span { color: var(--muted); font-size: 13px; }
-    .certification-gallery { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-top: 18px; }
-    .certificate-tile { overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
-    .certificate-media { min-height: 180px; display: grid; place-items: center; padding: 10px; background: linear-gradient(135deg,rgba(99,214,255,.10),rgba(122,240,189,.05)); border-bottom: 1px solid var(--border); color: var(--accent); font-weight: 950; letter-spacing: .10em; font-size: 13px; text-align: center; overflow: hidden; }
-    .certificate-media img { width: 100%; height: 180px; object-fit: contain; border-radius: 10px; background: rgba(0,0,0,.08); }
-    .certificate-media a { display: block; width: 100%; }
-    .certificate-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .certificate-actions .btn { min-height: 38px; padding: 0 12px; font-size: 12px; }
-    .certificate-body { padding: 16px; }
-    .certificate-body h3 { font-size: .98rem; line-height: 1.35; margin-bottom: 7px; }
-    .certificate-body p { color: var(--muted); font-size: 12px; }
-    .certificate-tag { display: inline-flex; margin-top: 10px; padding: 5px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--accent-2); font-size: 11px; font-weight: 850; }
-    .additional-certifications { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .additional-certifications span { padding: 8px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.025); font-size: 12px; font-weight: 800; }
-
-    .contact-card { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 30px; align-items: center; padding: 34px; border-radius: 26px; border: 1px solid var(--border); background: linear-gradient(135deg,rgba(99,214,255,.08),rgba(122,240,189,.055)),var(--surface); box-shadow: var(--shadow); }
-    .contact-card h2 { font-size: clamp(2rem,4vw,3.15rem); letter-spacing: -.04em; margin-bottom: 10px; }
-    .contact-card p { color: var(--muted); max-width: 720px; }
-    .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
-
-    footer { padding: 28px 0 42px; color: var(--muted); font-size: 13px; }
-    .footer-wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid var(--border); padding-top: 24px; }
-    .footer-links { display: flex; gap: 14px; }
-    :focus-visible { outline: 3px solid rgba(99,214,255,.55); outline-offset: 3px; }
-
-    @media (max-width: 960px) {
-      .desktop-nav { display: none; }
-      .menu-btn { display: grid; }
-      .hero { min-height: auto; }
-      .hero-grid, .section-heading, .project-card.featured, .contact-card { grid-template-columns: 1fr; }
-      .section-heading p { justify-self: start; }
-      .experience-card { grid-template-columns: 1fr; gap: 14px; }
-      .skills-grid { grid-template-columns: repeat(2,1fr); }
-      .contact-actions { justify-content: flex-start; }
-    }
-
-    @media (max-width: 680px) {
-      .container { width: min(calc(100% - 28px),var(--max)); }
-      .nav-wrap { min-height: 64px; }
-      .hero { padding-top: 56px; }
-      h1 { font-size: clamp(2.65rem,15vw,4.4rem); }
-      .quick-stats, .skills-grid, .credential-grid, .certification-gallery { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card, .project-card.featured { grid-column: auto; }
-      .hero-actions, .project-actions, .contact-actions { flex-direction: column; }
-      .btn { width: 100%; }
-      .footer-wrap { flex-direction: column; align-items: flex-start; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b10">
+<meta name="description" content="Jim Rodmark Camus — IT, Network Operations, Cybersecurity and Software Engineering. Explore selected projects, skills, experience and credentials.">
+<meta property="og:title" content="Jim Rodmark Camus — Engineer & Builder">
+<meta property="og:description" content="Engineering practical systems across networks, security, automation and software.">
+<meta property="og:type" content="website">
+<title>Jim Rodmark Camus — Engineer & Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#090b10;--panel:#11141b;--panel2:#181c25;--ink:#f4f5f8;--muted:#a3a9b5;--line:#292e38;--accent:#b4f17a;--accent2:#92a7ff;--radius:22px;--width:1210px}
+html[data-theme=light]{color-scheme:light;--bg:#f6f7f4;--panel:#fff;--panel2:#ebede8;--ink:#111720;--muted:#52606e;--line:#d6ddd5;--accent:#448918;--accent2:#475acf}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "DM Sans",sans-serif;overflow-x:hidden}body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 65% 36% at 78% -5%,rgba(146,167,255,.09),transparent),radial-gradient(ellipse 35% 25% at -10% 20%,rgba(180,241,122,.045),transparent);z-index:-1}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{max-width:100%;display:block}::selection{background:var(--accent);color:var(--bg)}:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.wrap{width:min(calc(100% - 48px),var(--width));margin:auto}.mono{font-family:"DM Mono",monospace;font-size:12px;letter-spacing:.13em;text-transform:uppercase}.muted{color:var(--muted)}.accent{color:var(--accent)}.line{border-top:1px solid var(--line)}.skip{position:absolute;top:-100px;left:12px;padding:12px;background:var(--accent);color:var(--bg);z-index:100}.skip:focus{top:12px}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(22px);background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom:1px solid var(--line)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.wordmark{font:700 20px "Space Grotesk",sans-serif;letter-spacing:-.06em}.wordmark span{color:var(--accent)}.nav-links{display:flex;gap:26px;align-items:center}.nav-links a{font-size:13px;color:var(--muted);transition:color .2s}.nav-links a:hover{color:var(--ink)}.nav-end{display:flex;gap:10px;align-items:center}.icon-btn{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;color:var(--ink);background:var(--panel)}.menu-btn{display:none}.mobile-nav{display:none}
+.hero{padding:120px 0 118px;position:relative}.hero-top{display:flex;align-items:center;gap:12px}.live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 13%,transparent)}.hero h1{font:600 clamp(64px,10.3vw,152px)/.94 "Space Grotesk",sans-serif;letter-spacing:-.093em;max-width:1150px;margin:38px 0 33px}.hero h1 em{font-style:normal;color:var(--accent)}.hero-bottom{display:flex;justify-content:space-between;gap:40px;align-items:end}.hero-copy{max-width:620px;color:var(--muted);font-size:clamp(17px,2vw,21px);line-height:1.6}.hero-copy strong{color:var(--ink);font-weight:600}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 21px;border:1px solid var(--line);border-radius:12px;font-weight:700;font-size:14px;transition:transform .2s,background .2s,border-color .2s}.btn:hover{transform:translateY(-3px)}.btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent)}.btn.secondary{background:var(--panel)}.hero-aside{min-width:178px;text-align:right}.scroll-icon{font:400 64px/1 "Space Grotesk";color:var(--accent);display:block}.hero-aside .mono{display:block;margin-top:12px;color:var(--muted)}
+.ticker{border-block:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--panel)}.ticker-track{display:flex;gap:38px;width:max-content;animation:marquee 37s linear infinite}.ticker-item{color:var(--muted);font:500 12px "DM Mono";letter-spacing:.09em;white-space:nowrap}.ticker-item b{color:var(--accent);padding-left:38px}@keyframes marquee{to{transform:translateX(-50%)}}
+.section{padding:112px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:36px}.section-title{font:600 clamp(38px,5vw,68px)/1.06 "Space Grotesk";letter-spacing:-.065em;margin:12px 0 0}.section-desc{max-width:400px;color:var(--muted);margin:0}.kicker{color:var(--accent);font-weight:500}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:25px 0 30px}.filter{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-size:13px}.filter[aria-pressed=true],.filter:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.projects{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.project{grid-column:span 6;min-height:470px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}.project:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));transform:translateY(-5px)}.project.featured{grid-column:span 12;display:grid;grid-template-columns:1.1fr 1fr;min-height:460px}.visual{min-height:225px;padding:32px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 65% 30%,rgba(146,167,255,.16),transparent 50%),linear-gradient(135deg,#151a25,#0b0e14)}.featured .visual{min-height:460px;order:2}.visual::before{content:"";position:absolute;inset:0;opacity:.16;background-image:linear-gradient(#fff2 1px,transparent 1px),linear-gradient(90deg,#fff2 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(90deg,transparent,#000)}.mock{position:relative;width:min(88%,410px);border:1px solid #41485a;box-shadow:0 30px 80px #0009;border-radius:12px;transform:rotate(-5deg);background:#131a27;color:#d5dfed;overflow:hidden;transition:transform .4s}.project:hover .mock{transform:rotate(-2deg) translateY(-6px)}.mock-top{height:29px;background:#1e2735;border-bottom:1px solid #303c4e;display:flex;gap:5px;align-items:center;padding:0 12px}.mock-top i{width:6px;height:6px;border-radius:50%;background:#718099}.mock-body{padding:19px}.mock-title{font:600 16px "Space Grotesk";letter-spacing:-.04em}.mock-bars{display:flex;gap:8px;margin:18px 0}.mock-bars i{display:block;flex:1;height:40px;border-radius:5px;background:linear-gradient(125deg,#283c47,#273947)}.mock-bars i:nth-child(2){background:linear-gradient(125deg,#3a3750,#222e50)}.mock-bars i:nth-child(3){background:linear-gradient(125deg,#304f40,#264038)}.mock-rows{display:grid;gap:8px}.mock-rows span{height:9px;border-radius:3px;background:#283346}.mock-rows span:nth-child(2){width:87%}.mock-rows span:nth-child(3){width:64%}.mock-code{font:11px/1.8 "DM Mono";color:#aee6c4}.project-content{padding:31px;display:flex;flex-direction:column;flex:1}.project-index{display:flex;justify-content:space-between;color:var(--muted);margin-bottom:25px}.project h3{font:600 clamp(26px,3vw,37px)/1.13 "Space Grotesk";letter-spacing:-.055em;margin:0 0 13px}.project p{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:520px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:15px}.tag{font:11px "DM Mono";border:1px solid var(--line);padding:7px 9px;border-radius:7px;color:var(--muted)}.project-links{display:flex;gap:17px;margin-top:24px}.project-links a{font-weight:700;font-size:13px;border-bottom:1px solid var(--accent);padding-bottom:4px}.project[hidden]{display:none}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:start}.statement{font:500 clamp(28px,3.8vw,48px)/1.23 "Space Grotesk";letter-spacing:-.055em;margin:0}.about-copy{color:var(--muted);font-size:17px;max-width:530px}.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:25px}.stat{padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}.stat strong{display:block;font:600 27px "Space Grotesk";letter-spacing:-.05em}.stat span{font-size:13px;color:var(--muted)}
+.experience{display:grid;grid-template-columns:1fr 1fr;gap:18px}.exp-card{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:32px}.exp-card .mono{color:var(--accent)}.exp-card h3{font:600 25px "Space Grotesk";letter-spacing:-.045em;margin:16px 0 12px}.exp-card p{color:var(--muted);margin:0}
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.skill{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}.skill h3{font:600 20px "Space Grotesk";margin:0 0 16px}.skill p{color:var(--muted);font-size:14px;margin:0}
+.credential-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.credential{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:23px;display:flex;justify-content:space-between;align-items:center;gap:18px}.credential strong{font:600 16px "Space Grotesk"}.credential small{display:block;color:var(--muted);margin-top:5px}.credential a{flex-shrink:0;color:var(--accent);font-size:13px}
+.contact{border:1px solid var(--line);background:radial-gradient(circle at 95% 0%,rgba(180,241,122,.11),transparent 42%),var(--panel);border-radius:28px;padding:clamp(35px,6vw,75px)}.contact h2{font:600 clamp(40px,7.6vw,102px)/1.02 "Space Grotesk";letter-spacing:-.08em;max-width:820px;margin:20px 0 28px}.contact p{color:var(--muted);max-width:480px}.contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+footer{padding:35px 0 55px}.footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;color:var(--muted);font-size:13px}.footer a:hover{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:850px){.nav-links{display:none}.menu-btn{display:block}.mobile-nav.open{display:flex;flex-direction:column;gap:12px;padding:0 24px 24px}.mobile-nav a{padding:8px 0;color:var(--muted)}.hero{padding:83px 0}.hero h1{font-size:clamp(58px,12vw,95px)}.project.featured{display:flex}.featured .visual{order:0;min-height:280px}.projects .project{grid-column:span 12}.about-grid,.experience{grid-template-columns:1fr}.skill-grid{grid-template-columns:repeat(2,1fr)}.section{padding:82px 0}}
+@media(max-width:600px){.wrap{width:min(calc(100% - 32px),var(--width))}.hero h1{font-size:clamp(53px,13vw,80px)}.hero-bottom{display:block}.hero-aside{display:none}.section-head{display:block}.section-desc{margin-top:20px}.skill-grid,.credential-list{grid-template-columns:1fr}.contact{padding:30px}.project-content{padding:24px}.footer{display:block}.footer a{display:inline-block;margin:12px 14px 0 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <div class="container">
-      <div class="nav-wrap">
-        <a class="brand" href="#home" aria-label="Go to home">
-          <span class="brand-mark">JC</span>
-          <span>Jim Rodmark Camus</span>
-        </a>
-
-        <nav class="desktop-nav" aria-label="Primary navigation">
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#credentials">Credentials</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <div class="nav-actions">
-          <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch theme" title="Switch theme"><span id="themeIcon" aria-hidden="true">☼</span></button>
-          <button class="icon-btn menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open navigation"><span aria-hidden="true">☰</span></button>
-        </div>
-      </div>
-
-      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#credentials">Credentials</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow"><span class="eyebrow-dot"></span> IT Support • Networking • Cybersecurity • Development</div>
-          <h1>IT Network Support with a <span class="gradient">builder's mindset.</span></h1>
-          <p class="hero-copy">
-            BS Information Technology graduate specializing in Network Technology, with hands-on IT support experience,
-            cybersecurity training, and practical software development in Python, PyQt6, databases, and web technologies.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#experience">View IT experience <span aria-hidden="true">→</span></a>
-            <a class="btn btn-secondary" href="https://github.com/Sachibara" target="_blank" rel="noopener noreferrer">View GitHub</a>
-          </div>
-
-          <div class="hero-facts">
-            <span><i class="fact-dot"></i> BSIT — Network Technology</span>
-            <span><i class="fact-dot"></i> Academic Achiever — GWA 1.50</span>
-            <span><i class="fact-dot"></i> TESDA CSS NC II</span>
-            <span><i class="fact-dot"></i> 486-hour IT Network Support internship</span>
-          </div>
-        </div>
-
-        <aside class="profile-card" aria-label="Professional profile">
-          <img class="avatar" src="assets/profile/Ghost.png" alt="Professional portrait of Jim Rodmark Camus">
-          <h2>Jim Rodmark Camus</h2>
-          <div class="profile-role">IT Network Support • Network Technology • Cybersecurity • Developer</div>
-          <p>
-            Focused on IT support, troubleshooting, network operations, Windows administration, cybersecurity,
-            and building practical software tools that solve operational problems.
-          </p>
-
-          <div class="quick-stats">
-            <div class="quick-stat"><strong>486 hrs</strong><span>Concentrix IT Network Support</span></div>
-            <div class="quick-stat"><strong>1.50</strong><span>BSIT GWA</span></div>
-            <div class="quick-stat"><strong>CSS NC II</strong><span>Computer Systems Servicing</span></div>
-            <div class="quick-stat"><strong>15+</strong><span>Major IT systems developed</span></div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="experience">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">IT experience</div>
-            <h2>Hands-on support and technical operations.</h2>
-          </div>
-          <p>
-            My professional IT experience combines end-user support, network and system troubleshooting,
-            device maintenance, documentation, and application development.
-          </p>
-        </div>
-
-        <div class="experience-grid">
-          <article class="experience-card">
-            <div class="experience-meta">
-              <strong>Feb 2026 — May 2026</strong>
-              486 Hours<br>
-              Nuvali, Sta. Rosa, Laguna
-            </div>
-            <div>
-              <h3>IT Network Support Intern</h3>
-              <div class="company">Concentrix</div>
-              <ul class="bullet-list">
-                <li>Troubleshot network, hardware, and software issues.</li>
-                <li>Assisted users with technical and connectivity concerns.</li>
-                <li>Configured and maintained computer systems and devices.</li>
-                <li>Supported daily IT operations and system maintenance.</li>
-                <li>Documented technical issues and resolutions.</li>
-                <li>Collaborated with IT teams to help maintain smooth operations.</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="experience-card">
-            <div class="experience-meta">
-              <strong>2016 — Present</strong>
-              Remote<br>
-              Philippines
-            </div>
-            <div>
-              <h3>Freelance Full-Stack Developer & IT Services</h3>
-              <div class="company">Independent / Freelance</div>
-              <ul class="bullet-list">
-                <li>Provides IT-related technical services and troubleshooting support.</li>
-                <li>Develops software and web-based solutions for practical user needs.</li>
-                <li>Works across front-end, application logic, databases, and system configuration.</li>
-                <li>Applies problem-solving and technical consulting to computer and software-related requirements.</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">Flagship systems</div>
-            <h2>Five integrated products that demonstrate networking, security, IT operations, and full-stack engineering.</h2>
-          </div>
-          <p>
-            The portfolio is intentionally consolidated around five flagship systems. Smaller networking and IT-operations
-            utilities have been absorbed into NetOps Enterprise and OpsFusion so recruiters can evaluate integrated,
-            cross-module workflows instead of a long list of overlapping demos.
-          </p>
-        </div>
-
-        <div class="projects-grid">
-          <article class="project-card featured">
-            <div>
-              <div class="project-top">
-                <span class="project-number">01</span>
-                <span class="status">Flagship Desktop Application</span>
-              </div>
-
-              <h3>PyreWall — Python-Based Next Generation Firewall</h3>
-              <p>
-                The original Windows/PyQt6 next-generation firewall application developed as a BSIT Network Technology capstone.
-                PyreWall provides local packet filtering, website/application controls, connected-device management, custom rules,
-                threats, history, settings, and administration through its desktop interface.
-              </p>
-
-              <ul class="bullet-list">
-                <li>Start/stop firewall engine with WinDivert and Windows Firewall integration.</li>
-                <li>Website blocking through domain, DNS, TLS SNI, HTTP Host, and resolved-IP policy.</li>
-                <li>Network device discovery with IP/MAC visibility and device block/unblock controls.</li>
-                <li>Administrator-managed application signatures and custom IP/port/protocol firewall rules.</li>
-                <li>Threat monitoring, logs/history, settings, database backups, and admin user management.</li>
-                <li>The linked website is a browser remake of this original desktop application for portfolio viewing.</li>
-              </ul>
-
-              <div class="tag-list" aria-label="PyreWall technologies">
-                <span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">SQLite</span>
-                <span class="tag">WinDivert</span><span class="tag">Windows Firewall</span><span class="tag">DNS/SNI Filtering</span>
-                <span class="tag">Device Control</span><span class="tag">NGFW</span>
-              </div>
-            </div>
-
-            <div class="project-panel" aria-hidden="true">
-              <div class="terminal">
-                <div><span class="ok">$</span> python main.py</div><br>
-                <div>PyQt6 dashboard ......... <span class="ok">desktop</span></div>
-                <div>WinDivert filtering ..... <span class="ok">enabled</span></div>
-                <div>Website blocking ........ <span class="ok">enabled</span></div>
-                <div>Device control .......... <span class="ok">enabled</span></div>
-                <div>Firewall rules .......... <span class="ok">enabled</span></div>
-                <div>Threat / history ........ <span class="ok">enabled</span></div><br>
-                <div class="dim">Open Site launches a faithful browser remake of the original desktop application.</div>
-              </div>
-            </div>
-                      <div class="project-actions">
-              <a class="btn btn-primary" href="https://jimcamus.vercel.app/projects/pyrewall-web/" target="_blank" rel="noopener noreferrer">Open Site</a>
-              <a class="btn btn-secondary" href="https://github.com/Sachibara/Pyrewall" target="_blank" rel="noopener noreferrer">Open .exe</a>
-            </div>
-          </article>
-
-          <article class="project-card featured">
-            <div>
-              <div class="project-top">
-                <span class="project-number">02</span>
-                <span class="status">IT Operations Flagship</span>
-              </div>
-              <h3>OpsFusion — IT Operations &amp; Employee Support</h3>
-              <p>OpsFusion connects a shared IT operations workspace with an employee support portal. Workspace owners manage individual staff accounts; authorized members handle tickets, inventory, Knowledge Base articles, AI-assisted work notes and scheduled alerts. Employees submit and track their own requests through a separate portal.</p>
-              <ul class="bullet-list">
-                <li>Employee portal: guided requests, status tracking, search, and conversations with IT in plain language.</li>
-                <li>Independent workspaces and owner-managed members with individual logins; portal-only accounts require explicit membership for IT access.</li>
-                <li>Named audit history retains account IDs after membership removal; portal requests keep internal IT work notes private.</li>
-                <li>Service desk, endpoint inventory, assets, identities, and maintenance with database-enforced duplicate prevention.</li>
-                <li>Gemini assistance retrieves active Knowledge Base articles; proposed work notes require approval by the requesting owner or authorized editor.</li>
-                <li>Hourly SLA, warranty, and maintenance alerts; authenticated workspace access and version-checked saves.</li>
-                <li>191 automated tests passed. Live device control and directory provisioning require separate integrations.</li>
-              </ul>
-              <div class="tag-list">
-                <span class="tag">JavaScript</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span>
-                <span class="tag">Gemini API</span><span class="tag">TypeScript</span><span class="tag">Approval-Based Tools</span><span class="tag">Scheduled Automation</span><span class="tag">ITSM</span><span class="tag">Employee Self-Service</span>
-              </div>
-            </div>
-            <div class="project-panel" aria-hidden="true">
-              <div class="terminal">
-                <div>OpsFusion · IT &amp; Employee Support</div><br>
-                <div>Service Desk ............ <span class="ok">cloud records</span></div>
-                <div>Asset Management ........ <span class="ok">cloud records</span></div>
-                <div>Employee Portal ......... <span class="ok">request &amp; track</span></div>
-                <div>Knowledge Retrieval ..... <span class="ok">cited references</span></div>
-                <div>Gemini Assistance ....... <span class="ok">human reviewed</span></div>
-                <div>Scheduled Checks ........ <span class="ok">hourly</span></div>
-                <div>Work Note Tool .......... <span class="ok">editor approval</span></div>
-                <div>Regression Tests ........ <span class="ok">191 passing</span></div><br>
-                <div class="dim">One system. Staff operations and employee support.</div>
-              </div>
-            </div>
-            <div class="project-actions">
-              <a class="btn btn-primary" href="https://opsfusion-it.vercel.app/" target="_blank" rel="noopener noreferrer">IT Workspace ↗</a>
-              <a class="btn btn-secondary" href="https://opsfusion-it.vercel.app/employee" target="_blank" rel="noopener noreferrer">Employee Support Portal ↗</a>
-              <a class="btn" href="https://github.com/Sachibara/HelpDesk-Pro" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-          </article>
-
-          <article class="project-card featured">
-            <div>
-              <div class="project-top">
-                <span class="project-number">03</span>
-                <span class="status">Network Operations Flagship</span>
-              </div>
-              <h3>NetOps Enterprise — Unified Network Operations Platform</h3>
-              <p>
-                A unified NOC and network engineering workspace combining monitoring, topology, IPAM,
-                configuration backup, guided troubleshooting, infrastructure health, documentation, alerts, and audit.
-              </p>
-              <ul class="bullet-list">
-                <li>Shared device inventory across topology, monitoring, IPAM, configuration history, and documentation.</li>
-                <li>Operational radar, latency telemetry, site health, subnet utilization, and service monitoring.</li>
-                <li>IPAM with VLAN planning, address assignments, conflict detection, CIDR tools, and capacity alerts.</li>
-                <li>Versioned network configuration backups with change detection and visual diff comparison.</li>
-                <li>Guided diagnostics that correlate reachability, paths, services, alerts, and configuration state.</li>
-                <li>Supabase cloud workspace with authentication, RLS, admin/engineer/viewer roles, and server audit history.</li>
-              </ul>
-              <div class="tag-list">
-                <span class="tag">NOC</span><span class="tag">Network Monitoring</span><span class="tag">IPAM</span>
-                <span class="tag">Topology</span><span class="tag">Config Backup</span><span class="tag">Troubleshooting</span>
-                <span class="tag">Supabase</span><span class="tag">RBAC</span>
-              </div>
-            </div>
-            <div class="project-panel" aria-hidden="true">
-              <div class="terminal">
-                <div><span class="ok">$</span> netops-enterprise --noc unified</div><br>
-                <div>Topology Fabric .......... <span class="ok">online</span></div>
-                <div>Health Monitoring ....... <span class="ok">online</span></div>
-                <div>IPAM / VLAN ............. <span class="ok">online</span></div>
-                <div>Config Vault ............ <span class="ok">online</span></div>
-                <div>Diagnostics ............. <span class="ok">online</span></div>
-                <div>Documentation ........... <span class="ok">online</span></div><br>
-                <div class="dim">One shared model for network operations from address space to incident response.</div>
-              </div>
-            </div>
-            <div class="project-actions">
-              <a class="btn btn-primary" href="https://netops-enterprise.vercel.app/" target="_blank" rel="noopener noreferrer">Open Site</a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-top">
-              <span class="project-number">04</span>
-              <span class="status">Academic Collaboration Platform</span>
-            </div>
-            <h3>StudySync — LMS & Student Collaboration System</h3>
-            <p>
-              A student productivity and collaboration system developed with Python, PyQt6, and Supabase,
-              with Gmail integration for notifications and communication.
-            </p>
-            <ul class="bullet-list">
-              <li>Task management and academic organization.</li>
-              <li>Calendar scheduling and student productivity workflows.</li>
-              <li>Group collaboration features.</li>
-              <li>Supabase-backed application data.</li>
-              <li>Gmail integration for email notifications and communication.</li>
-            </ul>
-            <div class="tag-list">
-              <span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">Supabase</span>
-              <span class="tag">Gmail Integration</span><span class="tag">Database Development</span>
-            </div>
-                        <div class="project-actions">
-              <a class="btn btn-primary" href="https://studysync-remod-demo.vercel.app/" target="_blank" rel="noopener noreferrer">Open Site</a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-top">
-              <span class="project-number">05</span>
-              <span class="status">Secure File-Sharing Platform</span>
-            </div>
-            <h3><a href="https://finalomnishare.vercel.app" target="_blank" rel="noopener noreferrer">OmniShare</a></h3>
-            <p>
-              A cloud-backed file-sharing application with authenticated uploads, private storage,
-              secure sharing links, resumable transfer support, and responsive previews.
-            </p>
-            <ul class="bullet-list">
-              <li>Supabase Auth, private Storage, and per-user file access controls.</li>
-              <li>Generated share IDs, expiration policies, and signed download URLs.</li>
-              <li>Resumable uploads, supported file previews, and activity history.</li>
-            </ul>
-            <div class="tag-list">
-              <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Supabase</span><span class="tag">Vercel</span>
-            </div>
-                        <div class="project-actions">
-              <a class="btn btn-primary" href="https://finalomnishare.vercel.app" target="_blank" rel="noopener noreferrer">Open Site</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="skills">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">Technical & professional skills</div>
-            <h2>Complete skill set from my CV.</h2>
-          </div>
-          <p>
-            This section reflects the skills listed in my CV, grouped under IT Support & Infrastructure,
-            Cybersecurity, Programming & Development, and Soft Skills.
-          </p>
-        </div>
-
-        <div class="skills-grid">
-          <article class="skill-card">
-            <div class="skill-icon">IT</div>
-            <h3>IT Support & Infrastructure</h3>
-            <ul class="bullet-list">
-              <li>Technical Support</li>
-              <li>Helpdesk Operations</li>
-              <li>IT Asset Management</li>
-              <li>Hardware/Software Troubleshooting</li>
-              <li>Network Troubleshooting/Configuration</li>
-              <li>System Configuration</li>
-              <li>Windows Administration</li>
-              <li>Active Directory</li>
-              <li>User Account Management</li>
-              <li>Microsoft 365 Administration</li>
-              <li>Remote Desktop Support</li>
-              <li>System Maintenance</li>
-              <li>OS Installation</li>
-              <li>Technical Documentation</li>
-            </ul>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-icon">SEC</div>
-            <h3>Cybersecurity</h3>
-            <ul class="bullet-list">
-              <li>Firewall Management</li>
-              <li>Access Control</li>
-              <li>Packet Analysis</li>
-              <li>Network Monitoring</li>
-              <li>Traffic Logging</li>
-              <li>Vulnerability Assessment</li>
-            </ul>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-icon">DEV</div>
-            <h3>Programming & Development</h3>
-            <ul class="bullet-list">
-              <li>C++</li>
-              <li>Python</li>
-              <li>PHP</li>
-              <li>Java</li>
-              <li>HTML5/CSS3/JavaScript</li>
-              <li>SQL</li>
-              <li>MySQL</li>
-              <li>SQLite</li>
-              <li>Supabase</li>
-              <li>REST API Integration</li>
-              <li>OOP</li>
-              <li>UI/UX Design</li>
-              <li>Desktop and Mobile Application Development</li>
-              <li>Git/GitHub</li>
-            </ul>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-icon">PRO</div>
-            <h3>Soft Skills</h3>
-            <ul class="bullet-list">
-              <li>Problem-Solving</li>
-              <li>Communication</li>
-              <li>Team Collaboration</li>
-              <li>Leadership</li>
-              <li>Critical Thinking</li>
-              <li>Adaptability</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="credentials">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">Education & credentials</div>
-            <h2>Education, technical credentials, and industry-focused training.</h2>
-          </div>
-          <p>
-            Credentials are selected for relevance to network engineering, infrastructure, IT support,
-            cybersecurity, automation, and software development roles.
-          </p>
-        </div>
-
-        <div class="credential-grid">
-          <article class="credential-card">
-            <h3>Education</h3>
-            <ul class="credential-list">
-              <li>
-                <strong>BS Information Technology — Network Technology</strong>
-                <span>Pamantasan ng Lungsod ng San Pablo • 2022–2026 • Academic Achiever • GWA 1.50</span>
-              </li>
-              <li>
-                <strong>486-hour IT Network Support Internship</strong>
-                <span>Concentrix • Nuvali, Sta. Rosa, Laguna</span>
-              </li>
-            </ul>
-          </article>
-
-          <article class="credential-card">
-            <h3>Credential focus</h3>
-            <p>
-              Featured certificates emphasize hands-on systems servicing, Python, cybersecurity,
-              red-team operations, and programming. Language and teaching credentials are listed as supporting qualifications.
-            </p>
-            <div class="additional-certifications">
-              <span>English Fluency</span>
-              <span>TESOL</span>
-            </div>
-          </article>
-        </div>
-
-        <div class="certification-gallery" aria-label="Featured certifications">
-          <article class="certificate-tile">
-            <div class="certificate-media">
-              <a href="assets/certifications/NCII.jpg" target="_blank" rel="noopener noreferrer" aria-label="View TESDA CSS NC II certificate">
-                <img src="assets/certifications/NCII.jpg" alt="TESDA Computer Systems Servicing NC II certificate of Jim Rodmark Camus">
-              </a>
-            </div>
-            <div class="certificate-body">
-              <h3>Computer Systems Servicing NC II</h3>
-              <p>Hardware, operating systems, network setup, maintenance, and technical support.</p>
-              <span class="certificate-tag">Featured credential</span>
-              <div class="certificate-actions"><a class="btn btn-secondary" href="assets/certifications/NCII.jpg" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
-            </div>
-          </article>
-
-          <article class="certificate-tile">
-            <div class="certificate-media">
-              <a href="assets/certifications/JCPythonCert.png" target="_blank" rel="noopener noreferrer" aria-label="View freeCodeCamp Python certificate">
-                <img src="assets/certifications/JCPythonCert.png" alt="freeCodeCamp Python Certification of Jim Rodmark Camus">
-              </a>
-            </div>
-            <div class="certificate-body">
-              <h3>freeCodeCamp Python Certification</h3>
-              <p>Python programming, object-oriented programming, algorithms, data structures, graphs, and recursion.</p>
-              <span class="certificate-tag">Featured credential</span>
-              <div class="certificate-actions"><a class="btn btn-secondary" href="assets/certifications/JCPythonCert.png" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
-            </div>
-          </article>
-
-          <article class="certificate-tile">
-            <div class="certificate-media">
-              <a href="assets/certifications/CCEP.png" target="_blank" rel="noopener noreferrer" aria-label="View CCEP certificate">
-                <img src="assets/certifications/CCEP.png" alt="Certified Cybersecurity Educator Professional certificate of Jim Rodmark Camus">
-              </a>
-            </div>
-            <div class="certificate-body">
-              <h3>Certified Cybersecurity Educator Professional</h3>
-              <p>Cybersecurity concepts, awareness, education, and security-focused technical communication.</p>
-              <span class="certificate-tag">Cybersecurity</span>
-              <div class="certificate-actions"><a class="btn btn-secondary" href="assets/certifications/CCEP.png" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
-            </div>
-          </article>
-
-          <article class="certificate-tile">
-            <div class="certificate-media">
-              <a href="assets/certifications/CRTOM.png" target="_blank" rel="noopener noreferrer" aria-label="View Red Team Operations Management certificate">
-                <img src="assets/certifications/CRTOM.png" alt="Certified Red Team Operations Management certificate of Jim Rodmark Camus">
-              </a>
-            </div>
-            <div class="certificate-body">
-              <h3>Certified Red Team Operations Management</h3>
-              <p>Red-team operations, security assessment workflows, and offensive-security management concepts.</p>
-              <span class="certificate-tag">Cybersecurity</span>
-              <div class="certificate-actions"><a class="btn btn-secondary" href="assets/certifications/CRTOM.png" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
-            </div>
-          </article>
-
-          <article class="certificate-tile">
-            <div class="certificate-media">
-              <a href="assets/certifications/CCPC.png" target="_blank" rel="noopener noreferrer" aria-label="View C++ Practitioner certificate">
-                <img src="assets/certifications/CCPC.png" alt="Certified C++ Practitioner certificate of Jim Rodmark Camus">
-              </a>
-            </div>
-            <div class="certificate-body">
-              <h3>Certified C++ Practitioner (CCPC)</h3>
-              <p>C++ programming fundamentals and practical software-development competency.</p>
-              <span class="certificate-tag">Programming</span>
-              <div class="certificate-actions"><a class="btn btn-secondary" href="assets/certifications/CCPC.png" target="_blank" rel="noopener noreferrer">View Certificate</a></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-card">
-          <div>
-            <div class="section-kicker">Contact</div>
-            <h2>Open to IT and network-support opportunities.</h2>
-            <p>
-              I am interested in roles involving IT support, helpdesk operations, network support, infrastructure,
-              Windows administration, cybersecurity, and technical application development.
-            </p>
-          </div>
-          <div class="contact-actions">
-            <a class="btn btn-primary" href="mailto:markcamus06@gmail.com">Email me</a>
-            <a class="btn btn-secondary" href="https://github.com/Sachibara" target="_blank" rel="noopener noreferrer">GitHub profile</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-wrap">
-      <div>© <span id="year"></span> Jim Rodmark Camus • IT Network Support & Technology Portfolio</div>
-      <div class="footer-links">
-        <a href="#home">Top</a>
-        <a href="https://github.com/Sachibara" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    (function () {
-      "use strict";
-
-      var root = document.documentElement;
-      var themeToggle = document.getElementById("themeToggle");
-      var themeIcon = document.getElementById("themeIcon");
-      var menuToggle = document.getElementById("menuToggle");
-      var mobileNav = document.getElementById("mobileNav");
-
-      function preferredTheme() {
-        var saved = localStorage.getItem("portfolio-theme");
-        if (saved === "light" || saved === "dark") return saved;
-        return window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-      }
-
-      function setTheme(theme) {
-        root.setAttribute("data-theme", theme);
-        themeIcon.textContent = theme === "dark" ? "☼" : "☾";
-        themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
-        localStorage.setItem("portfolio-theme", theme);
-      }
-
-      setTheme(preferredTheme());
-
-      themeToggle.addEventListener("click", function () {
-        setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
-      });
-
-      menuToggle.addEventListener("click", function () {
-        var open = mobileNav.classList.toggle("open");
-        menuToggle.setAttribute("aria-expanded", String(open));
-        menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
-      });
-
-      mobileNav.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-          mobileNav.classList.remove("open");
-          menuToggle.setAttribute("aria-expanded", "false");
-        });
-      });
-
-      document.getElementById("year").textContent = String(new Date().getFullYear());
-    })();
-  </script>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="wrap nav">
+<a class="wordmark" href="#home" aria-label="Jim Camus home">jimcamus<span>.</span></a>
+<nav class="nav-links" aria-label="Main navigation"><a href="#work">Work</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a></nav>
+<div class="nav-end"><button class="icon-btn" id="themeToggle" aria-label="Switch to light theme" title="Toggle theme">☼</button><button class="icon-btn menu-btn" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button></div>
+</div><nav class="mobile-nav wrap" id="mobileNav" aria-label="Mobile navigation"><a href="#work">Work</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a></nav></header>
+<main id="main">
+<section class="hero wrap" id="home">
+<div class="hero-top mono muted"><span class="live-dot" aria-hidden="true"></span>ENGINEERING · NETWORKS · SECURITY · SOFTWARE</div>
+<h1>Building what<br><em>matters.</em></h1>
+<div class="hero-bottom"><div><p class="hero-copy">Hey, I'm <strong>Jim Rodmark Camus.</strong> An IT and network technology graduate who designs practical solutions across infrastructure, cybersecurity, automation and software engineering.</p>
+<div class="hero-actions"><a class="btn primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#contact">Get in touch <span aria-hidden="true">↗</span></a></div></div>
+<div class="hero-aside"><span class="scroll-icon" aria-hidden="true">↓</span><span class="mono">Scroll to explore</span></div></div>
+</section>
+<div class="ticker" aria-label="Specialties"><div class="ticker-track">
+<span class="ticker-item">NETWORK OPERATIONS <b>✳</b></span><span class="ticker-item">CYBERSECURITY <b>✳</b></span><span class="ticker-item">SOFTWARE ENGINEERING <b>✳</b></span><span class="ticker-item">AI & AUTOMATION <b>✳</b></span><span class="ticker-item">IT INFRASTRUCTURE <b>✳</b></span>
+<span class="ticker-item" aria-hidden="true">NETWORK OPERATIONS <b>✳</b></span><span class="ticker-item" aria-hidden="true">CYBERSECURITY <b>✳</b></span><span class="ticker-item" aria-hidden="true">SOFTWARE ENGINEERING <b>✳</b></span><span class="ticker-item" aria-hidden="true">AI & AUTOMATION <b>✳</b></span><span class="ticker-item" aria-hidden="true">IT INFRASTRUCTURE <b>✳</b></span>
+</div></div>
+<section class="section wrap" id="work"><div class="section-head reveal"><div><span class="mono kicker">01 / Selected work</span><h2 class="section-title">Projects with<br>purpose.</h2></div><p class="section-desc">Five flagship systems that turn engineering ideas into working tools. Explore the demos, code and technical focus behind each one.</p></div>
+<div class="filters" role="group" aria-label="Filter projects"><button class="filter" data-filter="all" aria-pressed="true">All projects</button><button class="filter" data-filter="security" aria-pressed="false">Security</button><button class="filter" data-filter="operations" aria-pressed="false">Operations</button><button class="filter" data-filter="applications" aria-pressed="false">Applications</button></div>
+<div class="projects">
+<article class="project featured reveal" data-categories="security operations"><div class="visual"><div class="mock"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-body"><div class="mock-title">PYREWALL / Security overview</div><div class="mock-bars"><i></i><i></i><i></i></div><div class="mock-rows"><span></span><span></span><span></span></div></div></div></div><div class="project-content"><div class="project-index mono"><span>01 / Featured project</span><span>↗</span></div><h3>PyreWall</h3><p>A Windows-focused next-generation firewall and network control system with packet filtering, custom rules, threat visibility, device discovery and operational history.</p><div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">WinDivert</span><span class="tag">Network Security</span></div><div class="project-links"><a href="/projects/pyrewall-web/">Explore demo ↗</a><a href="https://github.com/Sachibara/Pyrewall" target="_blank" rel="noopener noreferrer">Source code ↗</a></div></div></article>
+<article class="project reveal" data-categories="operations applications"><div class="visual"><div class="mock"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-body"><div class="mock-title">OpsFusion / Service workspace</div><div class="mock-bars"><i></i><i></i><i></i></div><div class="mock-rows"><span></span><span></span><span></span></div></div></div></div><div class="project-content"><div class="project-index mono"><span>02 / IT operations</span><span>↗</span></div><h3>OpsFusion</h3><p>A unified IT service desk and employee support portal for tickets, assets, accounts, knowledge management and AI-assisted workflows.</p><div class="tags"><span class="tag">Supabase</span><span class="tag">JavaScript</span><span class="tag">PostgreSQL</span></div><div class="project-links"><a href="https://opsfusion-it.vercel.app/" target="_blank" rel="noopener noreferrer">Live application ↗</a><a href="https://github.com/Sachibara/HelpDesk-Pro" target="_blank" rel="noopener noreferrer">Repository ↗</a></div></div></article>
+<article class="project reveal" data-categories="operations"><div class="visual"><div class="mock"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-body"><div class="mock-title">NETOPS / Command center</div><div class="mock-bars"><i></i><i></i><i></i></div><div class="mock-rows"><span></span><span></span><span></span></div></div></div></div><div class="project-content"><div class="project-index mono"><span>03 / Network engineering</span><span>↗</span></div><h3>NetOps Enterprise</h3><p>A unified network-operations platform connecting device inventory, monitoring, topology, IPAM, configuration backups, incidents and troubleshooting.</p><div class="tags"><span class="tag">Networking</span><span class="tag">FastAPI</span><span class="tag">Supabase</span></div><div class="project-links"><a href="https://netops-enterprise.vercel.app/" target="_blank" rel="noopener noreferrer">Live application ↗</a><a href="https://github.com/Sachibara/NetOps-Command-Center" target="_blank" rel="noopener noreferrer">Repository ↗</a></div></div></article>
+<article class="project reveal" data-categories="applications"><div class="visual"><div class="mock"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-body"><div class="mock-title">STUDYSYNC / Collaborative learning</div><div class="mock-bars"><i></i><i></i><i></i></div><div class="mock-rows"><span></span><span></span><span></span></div></div></div></div><div class="project-content"><div class="project-index mono"><span>04 / Product development</span><span>↗</span></div><h3>StudySync</h3><p>A learning and student collaboration experience with task planning, group communication, file sharing, calendars and progress tracking.</p><div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">Supabase</span></div><div class="project-links"><a href="https://studysync-remod-demo.vercel.app/" target="_blank" rel="noopener noreferrer">Explore demo ↗</a></div></div></article>
+<article class="project reveal" data-categories="applications"><div class="visual"><div class="mock"><div class="mock-top"><i></i><i></i><i></i></div><div class="mock-body"><div class="mock-title">OMNISHARE / File sharing</div><div class="mock-bars"><i></i><i></i><i></i></div><div class="mock-rows"><span></span><span></span><span></span></div></div></div></div><div class="project-content"><div class="project-index mono"><span>05 / Web applications</span><span>↗</span></div><h3>OmniShare</h3><p>A browser-based file sharing platform designed around a streamlined experience for uploads, sharing and file management.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div><div class="project-links"><a href="https://finalomnishare.vercel.app/" target="_blank" rel="noopener noreferrer">Live application ↗</a><a href="https://github.com/Sachibara/final_omnishare" target="_blank" rel="noopener noreferrer">Repository ↗</a></div></div></article>
+</div></section>
+<section class="section line" id="about"><div class="wrap about-grid"><div class="reveal"><span class="mono kicker">02 / A little about me</span><h2 class="section-title">Curious by nature.<br>Technical by craft.</h2><p class="statement">I bridge the gap between <span class="accent">infrastructure</span> and <span class="accent">software.</span></p></div><div class="reveal"><p class="about-copy">I'm Jim, a BS Information Technology graduate specializing in Network Technology. I enjoy building systems that make complex technical work easier: secure networks, practical tools, helpful dashboards and efficient workflows.</p><p class="about-copy">My approach combines hands-on troubleshooting, thoughtful engineering, clear documentation and a willingness to keep learning.</p><div class="stat-grid"><div class="stat"><strong>05</strong><span>Flagship projects</span></div><div class="stat"><strong>IT + Dev</strong><span>Cross-disciplinary focus</span></div></div></div></div></section>
+<section class="section wrap" id="experience"><div class="section-head reveal"><div><span class="mono kicker">03 / Professional journey</span><h2 class="section-title">Experience.</h2></div></div><div class="experience"><article class="exp-card reveal"><span class="mono">IT / Infrastructure</span><h3>IT Network Support Intern</h3><p>Concentrix — practical IT support exposure, troubleshooting and network-focused technical operations.</p></article><article class="exp-card reveal"><span class="mono">Software / Systems</span><h3>Freelance Full-Stack Developer & IT Services</h3><p>Building practical software solutions and supporting technical operations, from application workflows to infrastructure-oriented tools.</p></article></div></section>
+<section class="section line" id="skills"><div class="wrap"><div class="section-head reveal"><div><span class="mono kicker">04 / What I work with</span><h2 class="section-title">Tools & disciplines.</h2></div></div><div class="skill-grid"><article class="skill reveal"><h3>Network & infrastructure</h3><p>Network troubleshooting · TCP/IP · Routing & switching · Windows · Network monitoring · Technical support</p></article><article class="skill reveal"><h3>Cybersecurity</h3><p>Firewall design · Network filtering · Threat analysis · Access controls · Logs & auditing</p></article><article class="skill reveal"><h3>Software development</h3><p>Python · JavaScript · HTML · CSS · PyQt6 · Flask · FastAPI · SQL</p></article><article class="skill reveal"><h3>Cloud & backend</h3><p>Supabase · PostgreSQL · Authentication · REST APIs · Vercel</p></article><article class="skill reveal"><h3>AI & automation</h3><p>AI-assisted workflows · API integrations · Process automation · Practical tooling</p></article><article class="skill reveal"><h3>Collaboration</h3><p>Documentation · Support communication · Problem-solving · Adaptability · Teamwork</p></article></div></div></section>
+<section class="section wrap" id="credentials"><div class="section-head reveal"><div><span class="mono kicker">05 / Learning & credentials</span><h2 class="section-title">Proof of practice.</h2></div></div><div class="credential-list">
+<div class="credential reveal"><div><strong>BS Information Technology</strong><small>Network Technology</small></div><span class="mono accent">Education</span></div>
+<div class="credential reveal"><div><strong>Computer Systems Servicing NC II</strong><small>TESDA certification</small></div><a href="assets/certifications/NCII.jpg" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+<div class="credential reveal"><div><strong>freeCodeCamp Python Certification</strong><small>Programming</small></div><a href="assets/certifications/JCPythonCert.png" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+<div class="credential reveal"><div><strong>Certified Cybersecurity Educator Professional</strong><small>Cybersecurity</small></div><a href="assets/certifications/CCEP.png" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+<div class="credential reveal"><div><strong>Certified Red Team Operations Management</strong><small>Security operations</small></div><a href="assets/certifications/CRTOM.png" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+<div class="credential reveal"><div><strong>Certified C++ Practitioner (CCPC)</strong><small>Software development</small></div><a href="assets/certifications/CCPC.png" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+</div></section>
+<section class="section wrap" id="contact"><div class="contact reveal"><span class="mono kicker">06 / What's next?</span><h2>Let's build<br><span class="accent">something useful.</span></h2><p>Interested in working together, discussing an opportunity, or just talking technology? I'd love to hear from you.</p><div class="contact-actions"><a class="btn primary" href="mailto:markcamus06@gmail.com">Send an email ↗</a><a class="btn secondary" href="https://github.com/Sachibara" target="_blank" rel="noopener noreferrer">Explore GitHub ↗</a></div></div></section>
+</main>
+<footer class="line"><div class="wrap footer"><span>© <span id="year"></span> Jim Rodmark Camus. Built with purpose.</span><div><a href="#home">Back to top ↑</a> &nbsp;&nbsp; <a href="https://github.com/Sachibara" target="_blank" rel="noopener noreferrer">GitHub ↗</a> &nbsp;&nbsp; <a href="mailto:markcamus06@gmail.com">Email ↗</a></div></div></footer>
+<script>
+(function(){
+'use strict';
+var root=document.documentElement,themeButton=document.getElementById('themeToggle'),menuButton=document.getElementById('menuToggle'),menu=document.getElementById('mobileNav');
+function setTheme(mode){root.setAttribute('data-theme',mode);themeButton.textContent=mode==='dark'?'☼':'☾';themeButton.setAttribute('aria-label',mode==='dark'?'Switch to light theme':'Switch to dark theme');try{localStorage.setItem('jim-theme',mode)}catch(e){}}
+var stored=null;try{stored=localStorage.getItem('jim-theme')}catch(e){}
+setTheme(stored==='light'||stored==='dark'?stored:(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'));
+themeButton.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+menuButton.addEventListener('click',function(){var opened=menu.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(opened));menuButton.setAttribute('aria-label',opened?'Close navigation':'Open navigation')});
+menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');menuButton.setAttribute('aria-expanded','false')})});
+document.getElementById('year').textContent=new Date().getFullYear();
+var filters=document.querySelectorAll('.filter'),cards=document.querySelectorAll('.project');filters.forEach(function(button){button.addEventListener('click',function(){var selected=button.getAttribute('data-filter');filters.forEach(function(b){b.setAttribute('aria-pressed',String(b===button))});cards.forEach(function(card){card.hidden=selected!=='all'&&!card.getAttribute('data-categories').split(' ').includes(selected)})})});
+if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)})}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')})}
+})();
+</script>
 </body>
 </html>
