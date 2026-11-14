@@ -74,6 +74,15 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 .hero h1{max-width:none}.hero-layout .hero-copy{max-width:680px}.project-links{flex-wrap:wrap}.project-content .case-study-btn{margin-top:20px}.section-title{text-wrap:balance}.hero-headline{text-wrap:balance}.section-desc{text-wrap:pretty}
 @media(max-width:1180px){.nav-links{gap:14px}.nav-links a{font-size:12px}.nav-search kbd{display:none}}@media(max-width:1000px){.nav-links{display:none}.menu-btn{display:block}}@media(max-width:640px){.case-detail-grid{grid-template-columns:1fr}.filter-count{width:100%;margin-left:0}.nav-search{padding:8px 10px}.search-dialog input{font-size:16px}}
 @media(prefers-reduced-motion:reduce){.portfolio-dialog[open]{animation:none}.case-study-btn span{transition:none}}
+
+/* Accessible floating regional clock - browser IANA timezone based */
+.world-clock{position:fixed;bottom:clamp(14px,2vw,25px);left:clamp(14px,2.4vw,32px);z-index:48;font-family:"DM Sans",sans-serif;width:max-content;max-width:calc(100vw - 28px)}
+.world-clock-toggle{display:flex;align-items:center;gap:12px;min-height:59px;background:color-mix(in srgb,var(--panel) 96%,transparent);backdrop-filter:blur(22px);color:var(--ink);border:1px solid var(--line);border-radius:17px;padding:10px 14px;box-shadow:0 14px 45px #0005;text-align:left;transition:border-color .2s,transform .2s,box-shadow .2s}.world-clock-toggle:hover,.world-clock-toggle[aria-expanded=true]{border-color:var(--accent);box-shadow:0 14px 45px #0007}.clock-pulse{width:7px;height:7px;flex-shrink:0;background:var(--accent);border-radius:50%;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}.clock-main{display:grid;gap:1px;min-width:91px}.clock-label{font:500 9px "DM Mono",monospace;letter-spacing:.1em;color:var(--muted);white-space:nowrap}.clock-main time{font:600 17px/1.2 "Space Grotesk",sans-serif;letter-spacing:-.025em;font-variant-numeric:tabular-nums;white-space:nowrap}.clock-divider{height:30px;width:1px;background:var(--line)}.clock-chevron{font-size:18px;color:var(--accent);margin-left:4px;transition:transform .2s}.world-clock-toggle[aria-expanded=true] .clock-chevron{transform:rotate(180deg)}
+.world-clock-panel{position:absolute;bottom:calc(100% + 12px);left:0;width:min(450px,calc(100vw - 28px));max-height:min(76vh,640px);overflow-y:auto;overscroll-behavior:contain;background:var(--panel);border:1px solid var(--line);box-shadow:0 30px 100px #0009;border-radius:22px;padding:24px;color:var(--ink)}.world-clock-panel[hidden]{display:none}.world-clock-heading{display:flex;align-items:start;justify-content:space-between;gap:15px}.world-clock-heading h2{font:600 26px/1.2 "Space Grotesk";letter-spacing:-.05em;margin:6px 0}.clock-close{width:36px;height:36px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--ink)}.clock-description{font-size:13px;line-height:1.6;color:var(--muted);margin:8px 0 20px}.clock-select-label{font-size:12px;font-weight:600;display:block;margin-bottom:7px}.world-clock-panel select{width:100%;min-height:45px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:0 12px;font:14px "DM Sans";cursor:pointer}
+.clock-timecards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.clock-timecard{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:16px;min-width:0;display:flex;flex-direction:column;gap:6px}.clock-timecard-title{font:600 11px/1.45 "DM Sans";color:var(--muted)}.clock-timecard time{font:600 clamp(17px,3.8vw,24px)/1.2 "Space Grotesk";letter-spacing:-.04em;font-variant-numeric:tabular-nums}.clock-timecard-date{font-size:12px;line-height:1.5}.clock-timecard-zone{font:10px/1.5 "DM Mono";color:var(--accent)}.clock-info{border-top:1px solid var(--line);margin-top:17px;padding-top:13px;color:var(--muted);font-size:12px;line-height:1.6}
+@media(max-width:600px){.world-clock{bottom:12px;left:12px}.world-clock-toggle{padding:9px 11px;gap:8px;min-height:51px}.clock-main time{font-size:14px}.clock-main{min-width:73px}.clock-label{font-size:8px}.clock-local{min-width:84px}.world-clock-panel{padding:18px;width:min(420px,calc(100vw - 24px))}.clock-timecards{grid-template-columns:1fr 1fr}.clock-timecard{padding:12px}.clock-timecard time{font-size:19px}footer{padding-bottom:94px}}
+@media(max-width:350px){.world-clock-toggle{gap:6px}.clock-pulse{display:none}.clock-local{min-width:74px}.clock-main{min-width:68px}.clock-chevron{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.world-clock-toggle,.clock-chevron{transition:none}}
 </style>
 </head>
 <body>
@@ -144,6 +153,42 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 <div class="case-result"><span class="mono kicker">What this demonstrates</span><p id="caseOutcome"></p></div>
 <div class="case-tools" id="caseTools"></div><div class="case-actions" id="caseActions"></div>
 </div></dialog>
+<aside class="world-clock" aria-label="Live regional clock" id="worldClock">
+<button class="world-clock-toggle" type="button" id="worldClockToggle" aria-expanded="false" aria-controls="worldClockPanel" aria-label="Show world clock and time zones">
+<span class="clock-pulse" aria-hidden="true"></span><span class="clock-main"><span class="clock-label">EASTERN TIME</span><time id="clockEastern">--:--:--</time></span>
+<span class="clock-divider" aria-hidden="true"></span><span class="clock-main clock-local"><span class="clock-label" id="clockLocalLabel">YOUR LOCAL TIME</span><time id="clockLocal">--:--:--</time></span><span class="clock-chevron" aria-hidden="true">⌃</span>
+</button>
+<div class="world-clock-panel" id="worldClockPanel" hidden>
+<div class="world-clock-heading"><div><span class="mono kicker">Live world clock</span><h2>Where in the world?</h2></div><button type="button" class="clock-close" id="worldClockClose" aria-label="Close world clock">✕</button></div>
+<p class="clock-description">The date, time and DST offset adapt to each region. Based on your device clock.</p>
+<label class="clock-select-label" for="clockZone">Compare a region</label>
+<select id="clockZone" aria-label="Choose a regional time zone">
+<option value="local">My current time zone</option>
+<option value="Asia/Manila">Manila, Philippines</option>
+<option value="America/New_York">New York, USA (Eastern)</option>
+<option value="America/Chicago">Chicago, USA (Central)</option>
+<option value="America/Denver">Denver, USA (Mountain)</option>
+<option value="America/Los_Angeles">Los Angeles, USA (Pacific)</option>
+<option value="America/Toronto">Toronto, Canada</option>
+<option value="Europe/London">London, United Kingdom</option>
+<option value="Europe/Paris">Paris, France</option>
+<option value="Asia/Dubai">Dubai, UAE</option>
+<option value="Asia/Riyadh">Riyadh, Saudi Arabia</option>
+<option value="Asia/Kolkata">Mumbai, India</option>
+<option value="Asia/Singapore">Singapore</option>
+<option value="Asia/Hong_Kong">Hong Kong</option>
+<option value="Asia/Shanghai">Shanghai, China</option>
+<option value="Asia/Tokyo">Tokyo, Japan</option>
+<option value="Australia/Sydney">Sydney, Australia</option>
+<option value="Pacific/Auckland">Auckland, New Zealand</option>
+</select>
+<div class="clock-timecards">
+<div class="clock-timecard"><span class="clock-timecard-title" id="clockRegionTitle">Selected region</span><time id="clockRegionTime">--:--:--</time><span class="clock-timecard-date" id="clockRegionDate">Loading date…</span><span class="clock-timecard-zone" id="clockRegionZone"></span></div>
+<div class="clock-timecard"><span class="clock-timecard-title">New York · Eastern Time</span><time id="clockETTime">--:--:--</time><span class="clock-timecard-date" id="clockETDate">Loading date…</span><span class="clock-timecard-zone" id="clockETZone"></span></div>
+</div>
+<div class="clock-info" id="clockInfo">Your region is detected from your browser's time zone.</div>
+</div>
+</aside>
 <footer class="line"><div class="wrap footer"><span>© <span id="year"></span> Jim Rodmark Camus. Built with purpose.</span><div><a href="#home">Back to top ↑</a> &nbsp;&nbsp; <a href="https://github.com/Sachibara" target="_blank" rel="noopener noreferrer">GitHub ↗</a> &nbsp;&nbsp; <a href="mailto:markcamus06@gmail.com">Email ↗</a></div></div></footer>
 <script>
 (function(){
@@ -277,6 +322,71 @@ var email='markcamus06@gmail.com';var status=document.getElementById('copyStatus
 if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(email).then(function(){status.textContent='Email copied: '+email}).catch(function(){status.textContent='Copy unavailable — email: '+email})}
 else status.textContent='Email: '+email;
 })}
+
+
+/* World clock uses IANA time zones and Intl.DateTimeFormat.
+   New Date() obtains current device time; formatting converts the same instant
+   into each selected region, automatically accounting for DST and date boundaries. */
+(function initWorldClock(){
+var root=document.getElementById('worldClock');
+if(!root||!window.Intl||!Intl.DateTimeFormat)return;
+var toggle=document.getElementById('worldClockToggle');
+var panel=document.getElementById('worldClockPanel');
+var close=document.getElementById('worldClockClose');
+var zoneSelect=document.getElementById('clockZone');
+var localTime=document.getElementById('clockLocal');
+var easternTime=document.getElementById('clockEastern');
+var formatters=new Map();
+var browserZone;
+try{browserZone=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';new Intl.DateTimeFormat('en-US',{timeZone:browserZone})}catch(e){browserZone='UTC'}
+document.getElementById('clockLocalLabel').textContent=browserZone.split('/').pop().replace(/_/g,' ').toUpperCase();
+var targetZone=browserZone;
+function getFormatter(zone,kind){
+var key=zone+'|'+kind;
+if(formatters.has(key))return formatters.get(key);
+var options=kind==='time'?{timeZone:zone,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}:kind==='date'?{timeZone:zone,weekday:'short',month:'short',day:'numeric',year:'numeric'}:{timeZone:zone,timeZoneName:'shortOffset',hour:'numeric'};
+var formatter=new Intl.DateTimeFormat('en-US',options);
+formatters.set(key,formatter);
+return formatter;
+}
+function shortOffset(zone,now){
+try{var parts=getFormatter(zone,'offset').formatToParts(now);return (parts.find(function(p){return p.type==='timeZoneName'})||{value:zone}).value}catch(e){return zone}
+}
+function zoneLabel(zone){
+return zone.split('/').pop().replace(/_/g,' ');
+}
+function renderClock(){
+var now=new Date();
+var et='America/New_York';
+try{
+var localText=getFormatter(browserZone,'time').format(now);
+var eastText=getFormatter(et,'time').format(now);
+var chosenText=getFormatter(targetZone,'time').format(now);
+localTime.textContent=localText;easternTime.textContent=eastText;
+localTime.dateTime=now.toISOString();easternTime.dateTime=now.toISOString();
+document.getElementById('clockRegionTime').textContent=chosenText;
+document.getElementById('clockETTime').textContent=eastText;
+document.getElementById('clockRegionDate').textContent=getFormatter(targetZone,'date').format(now);
+document.getElementById('clockETDate').textContent=getFormatter(et,'date').format(now);
+document.getElementById('clockRegionZone').textContent=targetZone+' · '+shortOffset(targetZone,now);
+document.getElementById('clockETZone').textContent=et+' · '+shortOffset(et,now);
+document.getElementById('clockRegionTitle').textContent=targetZone===browserZone?'Your local region':zoneLabel(targetZone);
+root.title='Eastern: '+getFormatter(et,'date').format(now)+' '+eastText+' ('+shortOffset(et,now)+') · Local: '+getFormatter(browserZone,'date').format(now)+' '+localText;
+}catch(error){document.getElementById('clockInfo').textContent='Time zone formatting is unavailable in this browser.'}
+}
+function openPanel(){panel.hidden=false;toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Hide world clock and time zones');zoneSelect.focus();renderClock()}
+function closePanel(restoreFocus){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Show world clock and time zones');if(restoreFocus)toggle.focus()}
+toggle.addEventListener('click',function(){panel.hidden?openPanel():closePanel(false)});
+close.addEventListener('click',function(){closePanel(true)});
+document.addEventListener('pointerdown',function(e){if(!root.contains(e.target)&&!panel.hidden)closePanel(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden){e.stopPropagation();closePanel(true)}});
+zoneSelect.addEventListener('change',function(){targetZone=this.value==='local'?browserZone:this.value;renderClock()});
+document.getElementById('clockInfo').textContent='Detected local time zone: '+browserZone+'. Times follow your device clock; each region uses its own daylight saving rules.';
+renderClock();
+var tick=setInterval(renderClock,1000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)renderClock()});
+window.addEventListener('pageshow',renderClock);
+})();
 
 })();
 </script>
