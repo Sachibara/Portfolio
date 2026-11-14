@@ -33,3 +33,28 @@ for(const name of ['work','about','experience','sywtc','skills','credentials','c
 }
 assert(html.includes('prefers-reduced-motion'),'Reduced-motion styles not found');
 console.log('Portfolio smoke checks passed: internal links, local assets, scripts, sections and HTML tag balance.');
+
+
+// Regional clock regression checks: DST boundaries and cross-midnight dates.
+assert(html.includes('id="worldClock"'),'World clock control missing');
+assert(html.includes('id="clockZone"'),'World clock zone selector missing');
+assert(html.includes("America/New_York"),'Eastern IANA zone missing');
+assert(html.includes("Intl.DateTimeFormat"),'Time zone-aware formatter missing');
+const parts=(iso,zone)=>{
+ const date=new Date(iso);
+ const formatter=new Intl.DateTimeFormat('en-GB',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+ return Object.fromEntries(formatter.formatToParts(date).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));
+};
+const offset=(iso,zone)=>{
+ const formatter=new Intl.DateTimeFormat('en-US',{timeZone:zone,hour:'numeric',timeZoneName:'shortOffset'});
+ return formatter.formatToParts(new Date(iso)).find(x=>x.type==='timeZoneName')?.value;
+};
+assert.deepEqual(parts('2026-03-08T06:59:00Z','America/New_York'),{day:'08',month:'03',year:'2026',hour:'01',minute:'59'});
+assert.deepEqual(parts('2026-03-08T07:00:00Z','America/New_York'),{day:'08',month:'03',year:'2026',hour:'03',minute:'00'});
+assert.equal(offset('2026-03-08T06:59:00Z','America/New_York'),'GMT-5');
+assert.equal(offset('2026-03-08T07:00:00Z','America/New_York'),'GMT-4');
+assert.equal(offset('2026-11-01T05:59:00Z','America/New_York'),'GMT-4');
+assert.equal(offset('2026-11-01T06:00:00Z','America/New_York'),'GMT-5');
+assert.deepEqual(parts('2026-11-14T16:30:00Z','Asia/Manila'),{day:'15',month:'11',year:'2026',hour:'00',minute:'30'});
+assert.deepEqual(parts('2026-01-01T14:00:00Z','Australia/Sydney'),{day:'02',month:'01',year:'2026',hour:'01',minute:'00'});
+console.log('World clock DST, regional offset and calendar rollover checks passed.');
