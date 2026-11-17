@@ -105,29 +105,31 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 @media(max-width:680px){.unique-visual{min-height:240px;padding:12px}.thumb-app{width:min(98%,400px);transform:none}.thumb-header{padding:10px}.thumb-app strong{font-size:13px}.thumb-ops-grid{grid-template-columns:85px 1fr}.thumb-ops-sidebar{padding:13px 8px}.thumb-ops-main{padding:12px}.thumb-topology{height:120px}.thumb-study-grid{grid-template-columns:1fr 1fr}.thumb-study-tasks span{font-size:8px}.thumb-network-foot{font-size:7px}}
 @media(prefers-reduced-motion:reduce){.thumb-app{transition:none!important;transform:none!important}.project:hover .thumb-app{transform:none!important}}
 .portrait-frame picture{display:block;width:100%;height:100%;position:relative;z-index:2}
-/* Project thumbnails for OpsFusion, NetOps Enterprise and OmniShare mirror the apps' current charcoal-and-amber interface. */
-.ops-visual,.netops-visual,.omni-visual{--thumb-panel:#13161c;--thumb-border:#30343c;--thumb-accent:#f5bc39;--thumb-text:#f8f5ef;--thumb-muted:#9da3ae}
-.ops-visual{--thumb-bg:radial-gradient(circle at 52% 14%,#3a2f14,#0b0d11 72%)}
-.netops-visual{--thumb-bg:radial-gradient(circle at 60% 25%,#232833,#0b0d11 75%)}
-.omni-visual{--thumb-bg:radial-gradient(circle at 50% 10%,#33290f,#0b0d11 75%)}
-.ops-app{color:#f8f5ef}
-.thumb-ops-sidebar{background:#101217}
-.thumb-ops-sidebar span{color:#a2a8b3}
-.thumb-ops-sidebar .active{color:#f5bc39}
-.thumb-ops-cards>div{border-color:#2b2f37;background:#191d24}
-.thumb-ops-cards b{color:#f5bc39}
-.thumb-ticket{border-top-color:#2b2f37}
-.thumb-ticket span{color:#f5bc39}
-.thumb-ticket i{color:#9da3ae}
-.thumb-topology g[fill="none"]{stroke:#4a505c}
-.thumb-topology g[fill="#1d3444"]{fill:#191d24;stroke:#f5bc39}
-.thumb-topology text{fill:#f8f5ef}
-.thumb-network-foot{color:#91d7a2}
-.thumb-omni-drop{border-color:#4a505c;background:#0b0d11}
-.thumb-upload-symbol{background:#f5bc39;color:#16120a}
-.thumb-omni-drop>span{background:#f5bc39;color:#16120a}
-.thumb-file-row>div{background:rgba(245,188,57,.14);color:#f5bc39}
-.thumb-file-row i{color:#91d7a2}
+/* Project thumbnails mirror each app's own interface identity: OpsFusion is a light blue service desk,
+   NetOps a cyan network console, OmniShare a violet file vault. */
+.ops-visual{--thumb-bg:radial-gradient(circle at 52% 14%,#3c63b8,#101a36 72%);--thumb-panel:#f3f7fd;--thumb-border:#dce6f3;--thumb-accent:#2563e8;--thumb-text:#142742;--thumb-muted:#5c708c}
+.ops-app{color:#142742}
+.thumb-ops-sidebar{background:#fff;border-right:1px solid #dce6f3}
+.thumb-ops-sidebar span{color:#5c708c}
+.thumb-ops-sidebar .active{color:#2456ca}
+.thumb-ops-cards>div{border-color:#dce6f3;background:#fff}
+.thumb-ops-cards b{color:#2563e8}
+.thumb-ticket{border-top-color:#dce6f3}
+.thumb-ticket span{color:#2563e8}
+.thumb-ticket i{color:#2456ca}
+.netops-visual{--thumb-bg:radial-gradient(circle at 60% 25%,#0f3f55,#07121d 75%);--thumb-panel:#0d1e2a;--thumb-border:#254253;--thumb-accent:#39d8e9;--thumb-text:#e7f6fc;--thumb-muted:#9eb9c8}
+.netops-app{border-radius:7px}
+.thumb-topology g[fill="none"]{stroke:#3b6072}
+.thumb-topology g[fill="#1d3444"]{fill:#142938;stroke:#39d8e9}
+.thumb-topology text{fill:#e7f6fc}
+.thumb-network-foot{color:#56e6a6}
+.omni-visual{--thumb-bg:linear-gradient(135deg,#6a45f5,#9a4df0 60%,#ff7d6b 125%);--thumb-panel:#fff;--thumb-border:#e3def3;--thumb-accent:#6a45f5;--thumb-text:#1c1736;--thumb-muted:#625c7e}
+.omni-app{border-radius:20px}
+.thumb-omni-drop{border-color:#cbc3e8;background:#f6f4fd;border-radius:16px}
+.thumb-upload-symbol{background:linear-gradient(140deg,#6a45f5,#9a4df0);color:#fff}
+.thumb-omni-drop>span{background:#6a45f5;color:#fff;border-radius:999px}
+.thumb-file-row>div{background:rgba(106,69,245,.1);color:#5a35e3}
+.thumb-file-row i{color:#14805e}
 </style>
 </head>
 <body>
