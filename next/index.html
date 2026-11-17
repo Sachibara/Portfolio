@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b10">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+<meta name="description" content="Jim Rodmark Camus — IT, Network Operations, Cybersecurity and Software Engineering. Explore selected projects, skills, experience and credentials.">
+<meta property="og:title" content="Jim Rodmark Camus — Engineer & Builder">
+<meta property="og:description" content="Engineering practical systems across networks, security, automation and software.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://jimcamus.vercel.app/">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:url" content="https://jimcamus.vercel.app/">
+<meta property="og:site_name" content="Jim Rodmark Camus | Portfolio">
+<meta property="og:image" content="https://jimcamus.vercel.app/assets/profile/Ghost.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jim Rodmark Camus — Software, Network & AI Engineering">
+<meta name="twitter:description" content="Explore practical systems across IT operations, network security, software and AI workflows.">
+<title>Jim Rodmark Camus — Software, Network & AI Engineering (preview)</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Jim Rodmark Camus","url":"https://jimcamus.vercel.app/","sameAs":["https://github.com/Sachibara"],"jobTitle":"IT & Software Engineering Professional","knowsAbout":["Network Operations","Cybersecurity","Python","Full-Stack Development","AI Workflow Automation"]}</script>
+<link rel="preload" href="/assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/dm-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fonts are self-hosted (SIL Open Font License) so the page makes no third-party requests. */
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:300 700;font-display:swap;src:url("/assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2")}
+@font-face{font-family:"DM Sans";font-style:normal;font-weight:100 1000;font-display:swap;src:url("/assets/fonts/dm-sans-latin-wght-normal.woff2") format("woff2")}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:400;font-display:swap;src:url("/assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"DM Mono";font-style:normal;font-weight:500;font-display:swap;src:url("/assets/fonts/dm-mono-latin-500-normal.woff2") format("woff2")}
+:root{color-scheme:dark;--bg:#090b10;--panel:#11141b;--panel2:#181c25;--ink:#f4f5f8;--muted:#a3a9b5;--line:#292e38;--accent:#b4f17a;--accent2:#92a7ff;--radius:22px;--width:1210px}
+html[data-theme=light]{color-scheme:light;--bg:#f6f7f4;--panel:#fff;--panel2:#ebede8;--ink:#111720;--muted:#52606e;--line:#d6ddd5;--accent:#448918;--accent2:#475acf}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "DM Sans",sans-serif;overflow-x:hidden}body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 65% 36% at 78% -5%,rgba(146,167,255,.09),transparent),radial-gradient(ellipse 35% 25% at -10% 20%,rgba(180,241,122,.045),transparent);z-index:-1}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{max-width:100%;display:block}::selection{background:var(--accent);color:var(--bg)}:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.wrap{width:min(calc(100% - 48px),var(--width));margin:auto}.mono{font-family:"DM Mono",monospace;font-size:12px;letter-spacing:.13em;text-transform:uppercase}.muted{color:var(--muted)}.accent{color:var(--accent)}.line{border-top:1px solid var(--line)}.skip{position:absolute;top:-100px;left:12px;padding:12px;background:var(--accent);color:var(--bg);z-index:100}.skip:focus{top:12px}
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(22px);background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom:1px solid var(--line)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.wordmark{font:700 20px "Space Grotesk",sans-serif;letter-spacing:-.06em}.wordmark span{color:var(--accent)}.nav-links{display:flex;gap:26px;align-items:center}.nav-links a{font-size:13px;color:var(--muted);transition:color .2s}.nav-links a:hover{color:var(--ink)}.nav-end{display:flex;gap:10px;align-items:center}.icon-btn{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;color:var(--ink);background:var(--panel)}.menu-btn{display:none}.mobile-nav{display:none}
+.hero{padding:120px 0 118px;position:relative}.hero-top{display:flex;align-items:center;gap:12px}.live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 13%,transparent)}.hero h1{font:600 clamp(64px,10.3vw,152px)/.94 "Space Grotesk",sans-serif;letter-spacing:-.093em;max-width:1150px;margin:38px 0 33px}.hero h1 em{font-style:normal;color:var(--accent)}.hero-bottom{display:flex;justify-content:space-between;gap:40px;align-items:end}.hero-copy{max-width:620px;color:var(--muted);font-size:clamp(17px,2vw,21px);line-height:1.6}.hero-copy strong{color:var(--ink);font-weight:600}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 21px;border:1px solid var(--line);border-radius:12px;font-weight:700;font-size:14px;transition:transform .2s,background .2s,border-color .2s}.btn:hover{transform:translateY(-3px)}.btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent)}.btn.secondary{background:var(--panel)}.hero-aside{min-width:178px;text-align:right}.scroll-icon{font:400 64px/1 "Space Grotesk";color:var(--accent);display:block}.hero-aside .mono{display:block;margin-top:12px;color:var(--muted)}
+.ticker{border-block:1px solid var(--line);overflow:hidden;padding:16px 0;background:var(--panel)}.ticker-track{display:flex;gap:38px;width:max-content;animation:marquee 37s linear infinite}.ticker-item{color:var(--muted);font:500 12px "DM Mono";letter-spacing:.09em;white-space:nowrap}.ticker-item b{color:var(--accent);padding-left:38px}@keyframes marquee{to{transform:translateX(-50%)}}
+.section{padding:112px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:36px}.section-title{font:600 clamp(38px,5vw,68px)/1.06 "Space Grotesk";letter-spacing:-.065em;margin:12px 0 0}.section-desc{max-width:400px;color:var(--muted);margin:0}.kicker{color:var(--accent);font-weight:500}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:25px 0 30px}.filter{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-size:13px}.filter[aria-pressed=true],.filter:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.projects{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.project{grid-column:span 6;min-height:470px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}.project:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));transform:translateY(-5px)}.project.featured{grid-column:span 12;display:grid;grid-template-columns:1.1fr 1fr;min-height:460px}.visual{min-height:225px;padding:32px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 65% 30%,rgba(146,167,255,.16),transparent 50%),linear-gradient(135deg,#151a25,#0b0e14)}.featured .visual{min-height:460px;order:2}.visual::before{content:"";position:absolute;inset:0;opacity:.16;background-image:linear-gradient(#fff2 1px,transparent 1px),linear-gradient(90deg,#fff2 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(90deg,transparent,#000)}.mock{position:relative;width:min(88%,410px);border:1px solid #41485a;box-shadow:0 30px 80px #0009;border-radius:12px;transform:rotate(-5deg);background:#131a27;color:#d5dfed;overflow:hidden;transition:transform .4s}.project:hover .mock{transform:rotate(-2deg) translateY(-6px)}.mock-top{height:29px;background:#1e2735;border-bottom:1px solid #303c4e;display:flex;gap:5px;align-items:center;padding:0 12px}.mock-top i{width:6px;height:6px;border-radius:50%;background:#718099}.mock-body{padding:19px}.mock-title{font:600 16px "Space Grotesk";letter-spacing:-.04em}.mock-bars{display:flex;gap:8px;margin:18px 0}.mock-bars i{display:block;flex:1;height:40px;border-radius:5px;background:linear-gradient(125deg,#283c47,#273947)}.mock-bars i:nth-child(2){background:linear-gradient(125deg,#3a3750,#222e50)}.mock-bars i:nth-child(3){background:linear-gradient(125deg,#304f40,#264038)}.mock-rows{display:grid;gap:8px}.mock-rows span{height:9px;border-radius:3px;background:#283346}.mock-rows span:nth-child(2){width:87%}.mock-rows span:nth-child(3){width:64%}.mock-code{font:11px/1.8 "DM Mono";color:#aee6c4}.project-content{padding:31px;display:flex;flex-direction:column;flex:1}.project-index{display:flex;justify-content:space-between;color:var(--muted);margin-bottom:25px}.project h3{font:600 clamp(26px,3vw,37px)/1.13 "Space Grotesk";letter-spacing:-.055em;margin:0 0 13px}.project p{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:520px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto;padding-top:15px}.tag{font:11px "DM Mono";border:1px solid var(--line);padding:7px 9px;border-radius:7px;color:var(--muted)}.project-links{display:flex;gap:17px;margin-top:24px}.project-links a{font-weight:700;font-size:13px;border-bottom:1px solid var(--accent);padding-bottom:4px}.project[hidden]{display:none}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:start}.statement{font:500 clamp(28px,3.8vw,48px)/1.23 "Space Grotesk";letter-spacing:-.055em;margin:0}.about-copy{color:var(--muted);font-size:17px;max-width:530px}.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:25px}.stat{padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}.stat strong{display:block;font:600 27px "Space Grotesk";letter-spacing:-.05em}.stat span{font-size:13px;color:var(--muted)}
+.experience{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.exp-card{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:32px}.exp-card .mono{color:var(--accent)}.exp-card h3{font:600 25px "Space Grotesk";letter-spacing:-.045em;margin:16px 0 12px}.exp-card p{color:var(--muted);margin:0}
+.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.skill{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:28px}.skill h3{font:600 20px "Space Grotesk";margin:0 0 16px}.skill p{color:var(--muted);font-size:14px;margin:0}
+.credential-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.credential{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:23px;display:flex;justify-content:space-between;align-items:center;gap:18px}.credential strong{font:600 16px "Space Grotesk"}.credential small{display:block;color:var(--muted);margin-top:5px}.credential a{flex-shrink:0;color:var(--accent);font-size:13px}
+.contact{border:1px solid var(--line);background:radial-gradient(circle at 95% 0%,rgba(180,241,122,.11),transparent 42%),var(--panel);border-radius:28px;padding:clamp(35px,6vw,75px)}.contact h2{font:600 clamp(40px,7.6vw,102px)/1.02 "Space Grotesk";letter-spacing:-.08em;max-width:820px;margin:20px 0 28px}.contact p{color:var(--muted);max-width:480px}.contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+footer{padding:35px 0 55px}.footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;color:var(--muted);font-size:13px}.footer a:hover{color:var(--accent)}
+.reveal{opacity:1;transform:none;transition:opacity .65s ease,transform .65s ease}html.js-motion .reveal{opacity:0;transform:translateY(24px)}.reveal.visible{opacity:1;transform:none}
+@media(max-width:850px){.nav-links{display:none}.menu-btn{display:block}.mobile-nav.open{display:flex;flex-direction:column;gap:12px;padding:0 24px 24px}.mobile-nav a{padding:8px 0;color:var(--muted)}.hero{padding:83px 0}.hero h1{font-size:clamp(58px,12vw,95px)}.project.featured{display:flex}.featured .visual{order:0;min-height:280px}.projects .project{grid-column:span 12}.about-grid,.experience{grid-template-columns:1fr}.skill-grid{grid-template-columns:repeat(2,1fr)}.section{padding:82px 0}}
+@media(max-width:600px){.wrap{width:min(calc(100% - 32px),var(--width))}.hero h1{font-size:clamp(53px,13vw,80px)}.hero-bottom{display:block}.hero-aside{display:none}.section-head{display:block}.section-desc{margin-top:20px}.skill-grid,.credential-list{grid-template-columns:1fr}.contact{padding:30px}.project-content{padding:24px}.footer{display:block}.footer a{display:inline-block;margin:12px 14px 0 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+.hero-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(250px,.75fr);gap:clamp(30px,5vw,78px);align-items:center}.hero-intro{min-width:0}.hero-layout h1{font-size:clamp(54px,7.6vw,116px);margin-top:36px}.hero-layout .hero-bottom{display:block}.hero-layout .hero-aside{display:none}.hero-portrait{position:relative;align-self:center}.portrait-frame{height:clamp(310px,39vw,530px);overflow:hidden;border:1px solid var(--line);border-radius:190px 190px 24px 24px;background:radial-gradient(circle at 50% 30%,#2b3441,#15191f 65%);position:relative;box-shadow:0 45px 100px rgba(0,0,0,.28)}.portrait-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;position:relative;z-index:2}.portrait-fallback{position:absolute;inset:0;display:grid;place-items:center;color:var(--accent);font:700 90px "Space Grotesk";letter-spacing:-.09em}.portrait-caption{display:flex;justify-content:space-between;gap:10px;margin-top:14px;color:var(--muted);font-size:10px}
+.sywtc-section{background:linear-gradient(150deg,color-mix(in srgb,var(--accent2) 5%,var(--bg)),var(--bg) 45%)}.sywtc-lead{display:grid;grid-template-columns:1.2fr .8fr;gap:35px;border:1px solid var(--line);border-radius:24px;background:var(--panel);padding:clamp(26px,4vw,50px)}.sywtc-lead h3{font:600 clamp(29px,4vw,50px)/1.1 "Space Grotesk";letter-spacing:-.06em;margin:18px 0}.sywtc-lead p{color:var(--muted);margin:0;max-width:610px}.sywtc-focus{border-left:1px solid var(--line);padding-left:35px}.focus-row{padding:15px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;font:600 15px "Space Grotesk"}.focus-row span{color:var(--accent)}.sywtc-subhead{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:48px 0 21px}.sywtc-subhead p{max-width:650px;font-size:14px;margin:0}.trial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.trial-card{padding:27px;border:1px solid var(--line);border-radius:19px;background:var(--panel);display:flex;flex-direction:column;min-height:292px;transition:transform .2s,border-color .2s}.trial-card:hover{transform:translateY(-3px);border-color:var(--accent)}.trial-number{color:var(--accent)}.trial-card h3{font:600 23px/1.16 "Space Grotesk";letter-spacing:-.04em;margin:19px 0 11px}.trial-card p{color:var(--muted);font-size:14px;margin:0 0 12px}.trial-card .tags{margin-top:auto}.tool-panel{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;margin-top:17px;background:var(--panel2);border:1px solid var(--line);border-radius:22px;padding:clamp(28px,4vw,48px)}.tool-panel h3{font:600 clamp(28px,3.5vw,44px)/1.1 "Space Grotesk";letter-spacing:-.055em;margin:15px 0}.tool-panel p{color:var(--muted);font-size:14px;max-width:340px}.tool-collections{display:grid;gap:18px}.tool-collections h4{font:600 14px "Space Grotesk";margin:0 0 12px}.tool-tags{display:flex;gap:8px;flex-wrap:wrap}.tool-tags span{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:9px 12px;font:12px "DM Mono";color:var(--ink)}.trial-note{font-size:13px;color:var(--muted);margin:20px 0 0}.trial-note strong{color:var(--ink)}
+@media(max-width:980px){.trial-grid{grid-template-columns:repeat(2,1fr)}.hero-layout{grid-template-columns:1.3fr .7fr}.hero-layout h1{font-size:clamp(48px,7vw,78px)}}@media(max-width:700px){.hero-layout{grid-template-columns:1fr}.hero-portrait{max-width:390px;width:100%;margin:0 auto}.hero-layout h1{font-size:clamp(53px,12vw,78px)}.sywtc-lead,.tool-panel{grid-template-columns:1fr}.sywtc-focus{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:22px}.sywtc-subhead{display:block}.sywtc-subhead p{margin-top:12px}.trial-grid{grid-template-columns:1fr}.trial-card{min-height:auto}}
+
+/* Motion system: progressive enhancement, with accessible fallback */
+.scroll-progress{position:fixed;left:0;right:0;top:0;height:3px;z-index:100;pointer-events:none}.scroll-progress span{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--accent),var(--accent2));will-change:transform}
+.cursor-glow{position:fixed;inset:0 auto auto 0;width:440px;height:440px;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(180,241,122,.065) 0%,rgba(146,167,255,.025) 38%,transparent 70%);opacity:0;transform:translate3d(-50%,-50%,0);transition:opacity .35s;will-change:transform}
+body>header,body>main,body>footer{position:relative}body>header{position:sticky}body>main,body>footer{z-index:1}
+.hero-headline .headline-line{display:block;overflow:hidden;padding:0 .04em .09em 0;margin-bottom:-.09em}.hero-headline .headline-line>span{display:block;animation:headline-up 1s cubic-bezier(.2,.8,.2,1) both}.hero-headline .headline-line:nth-child(2)>span{animation-delay:.18s}
+.hero-enter{animation:rise-in .9s cubic-bezier(.2,.8,.2,1) both}.hero-enter-1{animation-delay:.08s}.hero-enter-2{animation-delay:.28s}.hero-enter-3{animation-delay:.38s}.hero-enter-4{animation-delay:.55s}
+@keyframes headline-up{from{opacity:0;transform:translate3d(0,110%,0)}to{opacity:1;transform:translateZ(0)}}@keyframes rise-in{from{opacity:0;transform:translate3d(0,28px,0)}to{opacity:1;transform:translateZ(0)}}
+.hero-portrait{transform-style:preserve-3d}.portrait-frame{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .4s;will-change:transform}.portrait-frame:hover{box-shadow:0 55px 110px rgba(0,0,0,.4)}.portrait-frame img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}.portrait-frame:hover img{transform:scale(1.045)}
+.project{position:relative;isolation:isolate;transform-style:preserve-3d}.project::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(180,241,122,.095),transparent 75%);opacity:0;transition:opacity .35s;z-index:0}.project:hover::after{opacity:1}.project>*{position:relative;z-index:1}.project .visual .mock{transform:rotate(-5deg);transition:transform .45s cubic-bezier(.2,.7,.2,1)}.project:hover .visual .mock{transform:rotate(-2deg) translateY(-7px) scale(1.025)}
+.project-links a,.contact-actions .btn,.hero-actions .btn{transition:transform .25s,background .25s,border-color .25s,color .25s}.project-links a:hover{color:var(--accent)}.nav-links a{position:relative}.nav-links a::after{content:"";height:2px;position:absolute;left:0;right:100%;bottom:-7px;background:var(--accent);transition:right .25s}.nav-links a[aria-current=location]::after,.nav-links a:hover::after{right:0}.nav-links a[aria-current=location]{color:var(--ink)}
+.section-title{transition:letter-spacing .5s}.section-head.visible .section-title{letter-spacing:-.065em}
+.reveal{transition:opacity .82s cubic-bezier(.2,.7,.2,1),transform .82s cubic-bezier(.2,.7,.2,1)}html.js-motion .reveal{transform:translate3d(0,38px,0)}html.js-motion .reveal.visible{opacity:1;transform:translateZ(0)}.projects .project:nth-child(even),.trial-grid .trial-card:nth-child(even),.skill-grid .skill:nth-child(even){transition-delay:.08s}
+.ticker:hover .ticker-track,.ticker:focus-within .ticker-track{animation-play-state:paused}
+@media(hover:none),(pointer:coarse){.cursor-glow{display:none}.project::after{display:none}.portrait-frame{transform:none!important}}
+@media(prefers-reduced-motion:reduce){.hero-headline .headline-line>span,.hero-enter{animation:none!important;opacity:1!important;transform:none!important}.scroll-progress span{transition:none}.cursor-glow{display:none}.portrait-frame,.portrait-frame img,.project,.project .visual .mock,.reveal{transition:none!important;transform:none!important}.ticker-track{animation:none!important}.project::after{display:none}}
+
+/* Portfolio quality pass */
+.nav-search{background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:12px;padding:8px 11px;display:flex;gap:13px;align-items:center;font-size:12px}.nav-search:hover{border-color:var(--accent);color:var(--ink)}.nav-search kbd{font:10px "DM Mono";border:1px solid var(--line);border-radius:5px;padding:3px 5px}
+.filter-count{align-self:center;margin-left:auto;color:var(--muted);letter-spacing:.02em}
+.case-study-btn{margin-top:18px;align-self:flex-start;color:var(--accent);background:transparent;padding:8px 0;border:0;border-bottom:1px solid var(--accent);font:700 13px "DM Sans"}.case-study-btn:hover{color:var(--ink);border-color:var(--ink)}.case-study-btn span{display:inline-block;transition:transform .2s}.case-study-btn:hover span{transform:translate(3px,-3px)}
+.portfolio-dialog{max-height:min(88vh,980px);width:min(92vw,760px);border:1px solid var(--line);border-radius:22px;padding:0;background:var(--panel);color:var(--ink);box-shadow:0 30px 120px #000b;overscroll-behavior:contain}.portfolio-dialog::backdrop{background:rgba(2,4,9,.78);backdrop-filter:blur(9px)}.portfolio-dialog[open]{animation:dialog-in .25s ease-out both}@keyframes dialog-in{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}.dialog-inner{padding:clamp(22px,4vw,42px)}.dialog-top{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:20px}.dialog-close{background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--ink);width:40px;height:40px}.dialog-close:hover{border-color:var(--accent)}.search-label{display:block;font:600 clamp(24px,4vw,36px) "Space Grotesk";letter-spacing:-.05em;margin-bottom:15px}.search-dialog input{width:100%;padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:12px;color:var(--ink);font:16px "DM Sans"}.search-results{max-height:45vh;overflow-y:auto;margin-top:18px}.search-result{width:100%;display:flex;justify-content:space-between;gap:16px;text-align:left;padding:16px 8px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink)}.search-result:hover,.search-result:focus-visible{background:var(--panel2)}.search-result span{font-weight:600}.search-result small{color:var(--muted)}.search-hint{color:var(--muted);font-size:10px;margin:22px 0 0}.search-empty{padding:15px 8px;color:var(--muted)}.case-dialog h2{font:600 clamp(38px,6vw,70px)/1.1 "Space Grotesk";letter-spacing:-.065em;margin:0 0 18px}.case-lead{font-size:18px;color:var(--muted);max-width:600px}.case-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:27px 0}.case-detail-grid>div,.case-result{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:22px}.case-detail-grid p,.case-result p{color:var(--muted);margin:10px 0 0;font-size:14px}.case-tools{display:flex;gap:8px;flex-wrap:wrap;margin:25px 0}.case-tools span{padding:8px 10px;border:1px solid var(--line);border-radius:8px;color:var(--muted);font:12px "DM Mono"}.case-actions{display:flex;flex-wrap:wrap;gap:10px}.case-actions a{min-height:44px}.copy-status{min-height:22px;font-size:13px!important;color:var(--accent)!important}
+.hero-portrait::after{content:"";pointer-events:none;position:absolute;inset:16% -7% -3% 10%;background:radial-gradient(circle,rgba(180,241,122,.12),transparent 65%);z-index:-1;filter:blur(45px)}.portrait-frame{border-radius:24px 180px 24px 24px}
+.hero h1{max-width:none}.hero-layout .hero-copy{max-width:680px}.project-links{flex-wrap:wrap}.project-content .case-study-btn{margin-top:20px}.section-title{text-wrap:balance}.hero-headline{text-wrap:balance}.section-desc{text-wrap:pretty}
+@media(max-width:1180px){.nav-links{gap:14px}.nav-links a{font-size:12px}.nav-search kbd{display:none}}@media(max-width:1000px){.nav-links{display:none}.menu-btn{display:block}}@media(max-width:640px){.case-detail-grid{grid-template-columns:1fr}.filter-count{width:100%;margin-left:0}.nav-search{padding:8px 10px}.search-dialog input{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.portfolio-dialog[open]{animation:none}.case-study-btn span{transition:none}}
+
+/* Accessible floating regional clock - browser IANA timezone based */
+.world-clock{position:fixed;bottom:clamp(14px,2vw,25px);left:clamp(14px,2.4vw,32px);z-index:48;font-family:"DM Sans",sans-serif;width:max-content;max-width:calc(100vw - 28px)}
+.world-clock-toggle{display:flex;align-items:center;gap:12px;min-height:59px;background:color-mix(in srgb,var(--panel) 96%,transparent);backdrop-filter:blur(22px);color:var(--ink);border:1px solid var(--line);border-radius:17px;padding:10px 14px;box-shadow:0 14px 45px #0005;text-align:left;transition:border-color .2s,transform .2s,box-shadow .2s}.world-clock-toggle:hover,.world-clock-toggle[aria-expanded=true]{border-color:var(--accent);box-shadow:0 14px 45px #0007}.clock-pulse{width:7px;height:7px;flex-shrink:0;background:var(--accent);border-radius:50%;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}.clock-main{display:grid;gap:1px;min-width:91px}.clock-label{font:500 9px "DM Mono",monospace;letter-spacing:.1em;color:var(--muted);white-space:nowrap}.clock-main time{font:600 17px/1.2 "Space Grotesk",sans-serif;letter-spacing:-.025em;font-variant-numeric:tabular-nums;white-space:nowrap}.clock-divider{height:30px;width:1px;background:var(--line)}.clock-chevron{font-size:18px;color:var(--accent);margin-left:4px;transition:transform .2s}.world-clock-toggle[aria-expanded=true] .clock-chevron{transform:rotate(180deg)}
+.world-clock-panel{position:absolute;bottom:calc(100% + 12px);left:0;width:min(450px,calc(100vw - 28px));max-height:min(76vh,640px);overflow-y:auto;overscroll-behavior:contain;background:var(--panel);border:1px solid var(--line);box-shadow:0 30px 100px #0009;border-radius:22px;padding:24px;color:var(--ink)}.world-clock-panel[hidden]{display:none}.world-clock-heading{display:flex;align-items:start;justify-content:space-between;gap:15px}.world-clock-heading h2{font:600 26px/1.2 "Space Grotesk";letter-spacing:-.05em;margin:6px 0}.clock-close{width:36px;height:36px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--ink)}.clock-description{font-size:13px;line-height:1.6;color:var(--muted);margin:8px 0 20px}.clock-select-label{font-size:12px;font-weight:600;display:block;margin-bottom:7px}.world-clock-panel select{width:100%;min-height:45px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:0 12px;font:14px "DM Sans";cursor:pointer}
+.clock-timecards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.clock-timecard{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:16px;min-width:0;display:flex;flex-direction:column;gap:6px}.clock-timecard-title{font:600 11px/1.45 "DM Sans";color:var(--muted)}.clock-timecard time{font:600 clamp(17px,3.8vw,24px)/1.2 "Space Grotesk";letter-spacing:-.04em;font-variant-numeric:tabular-nums}.clock-timecard-date{font-size:12px;line-height:1.5}.clock-timecard-zone{font:10px/1.5 "DM Mono";color:var(--accent)}.clock-info{border-top:1px solid var(--line);margin-top:17px;padding-top:13px;color:var(--muted);font-size:12px;line-height:1.6}
+@media(max-width:600px){.world-clock{bottom:12px;left:12px}.world-clock-toggle{padding:9px 11px;gap:8px;min-height:51px}.clock-main time{font-size:14px}.clock-main{min-width:73px}.clock-label{font-size:8px}.clock-local{min-width:84px}.world-clock-panel{padding:18px;width:min(420px,calc(100vw - 24px))}.clock-timecards{grid-template-columns:1fr 1fr}.clock-timecard{padding:12px}.clock-timecard time{font-size:19px}footer{padding-bottom:94px}}
+@media(max-width:350px){.world-clock-toggle{gap:6px}.clock-pulse{display:none}.clock-local{min-width:74px}.clock-main{min-width:68px}.clock-chevron{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.world-clock-toggle,.clock-chevron{transition:none}}
+
+/* SYWTC repository discovery */
+.trial-project-details{margin-top:19px;border-top:1px solid var(--line);padding-top:15px}.trial-project-details summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;cursor:pointer;font:700 13px "DM Sans";color:var(--accent);padding:6px 0}.trial-project-details summary::-webkit-details-marker{display:none}.trial-project-details summary span{transition:transform .22s ease}.trial-project-details[open] summary span{transform:rotate(45deg)}.trial-project-details summary:hover{color:var(--ink)}.trial-project-body{padding:11px 0 4px;border-top:1px dashed var(--line);margin-top:9px;animation:repo-enter .22s ease both}.trial-project-body p{color:var(--muted);font-size:13px}.repo-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0 13px}.repo-visibility{display:inline-flex;border:1px solid var(--line);padding:5px 9px;border-radius:999px;font-size:11px;font-weight:700}.repo-visibility.is-public{color:var(--accent)}.repo-visibility.is-private{color:var(--muted)}.repo-owner{font-size:10px;color:var(--muted)}.repo-source-link{display:inline-flex;gap:8px;align-items:center;color:var(--ink);font-weight:700;font-size:13px;min-height:38px;border-bottom:1px solid var(--accent)}.repo-source-link:hover{color:var(--accent)}.repo-caution{display:block;color:var(--muted);font-size:11px;line-height:1.5;margin-top:10px}.trial-note a{text-decoration:underline;text-underline-offset:3px;color:var(--accent)}@keyframes repo-enter{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){.trial-project-body{animation:none}.trial-project-details summary span{transition:none}}
+
+/* CamusOS: original branded project preview, no third-party assets */
+.camus-visual{background:linear-gradient(143deg,#181a20,#090a0e)!important;display:flex;align-items:center;justify-content:center;overflow:hidden}.camus-product-preview{width:min(85%,420px);border:1px solid #4c422d;border-radius:13px;background:#13161c;color:#fff;padding:20px 22px;transform:rotate(-4deg);box-shadow:0 28px 80px #0009;transition:transform .45s cubic-bezier(.2,.7,.2,1)}.camus-visual:hover .camus-product-preview{transform:rotate(-1deg) translateY(-8px) scale(1.02)}.camus-preview-nav{display:flex;align-items:center;gap:9px;font:800 14px "Space Grotesk";letter-spacing:.08em}.camus-preview-nav>span:nth-child(2)>span{color:#f5bc39}.camus-logomark{font-weight:800;background:#f5bc39;color:#171410;padding:4px 9px;border-radius:7px}.camus-logomark span{color:#fff}.camus-preview-nav i{margin-left:auto;width:36px;height:5px;border-radius:3px;background:#2f333c}.camus-preview-kicker{font:9px "DM Mono",monospace;color:#f5bc39;letter-spacing:.1em;margin:35px 0 10px}.camus-preview-title{font:800 clamp(31px,4vw,58px)/.95 "Space Grotesk";letter-spacing:-.065em}.camus-preview-title b{color:#f5bc39}.camus-preview-widgets{display:flex;gap:7px;flex-wrap:wrap;margin-top:25px}.camus-preview-widgets span{border:1px solid #323842;border-radius:6px;padding:8px;font:8px "DM Mono";color:#bcc2ce}.camus-preview-widgets strong{color:#f5bc39;margin-right:5px}@media(max-width:650px){.camus-product-preview{padding:16px}.camus-preview-title{font-size:35px}.camus-preview-kicker{margin-top:22px}}@media(prefers-reduced-motion:reduce){.camus-product-preview{transition:none!important;transform:none!important}}
+
+/* One-of-a-kind illustrated project thumbnails, authored for each product */
+.unique-visual{isolation:isolate;background:var(--thumb-bg,#141a27)!important;min-height:265px;padding:23px}.unique-visual::before{opacity:.22;background-image:radial-gradient(#ffffff22 1px,transparent 1px);background-size:19px 19px;mask-image:linear-gradient(115deg,transparent,#000)}.thumb-app{font-family:"DM Sans",sans-serif;z-index:1;position:relative;width:min(95%,430px);color:var(--thumb-text,#ebf6ff);background:var(--thumb-panel,#101b28);border:1px solid var(--thumb-border,#37485b);border-radius:14px;box-shadow:0 26px 85px #0007;overflow:hidden;transform:rotate(-3deg);transition:transform .45s cubic-bezier(.18,.75,.2,1),box-shadow .4s}.project:hover .thumb-app{transform:rotate(-1deg) translateY(-7px) scale(1.015);box-shadow:0 33px 100px #0009}.thumb-header{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 15px;border-bottom:1px solid var(--thumb-border,#37485b);font-size:10px;letter-spacing:.06em}.thumb-brand{font-weight:800;white-space:nowrap}.thumb-brand-symbol{font-size:18px;color:var(--thumb-accent,#a7f2cd);vertical-align:middle;margin-right:3px}.thumb-mini-pill{font:8px "DM Mono",monospace;letter-spacing:.02em;color:var(--thumb-accent,#a7f2cd);border:1px solid var(--thumb-border,#37485b);border-radius:6px;padding:5px 7px;white-space:nowrap}.thumb-app small{font:8px "DM Mono",monospace;letter-spacing:.04em;color:var(--thumb-muted,#a6b7c8)}.thumb-app strong{display:block;font-size:15px;line-height:1.2;letter-spacing:-.025em}
+.pyre-visual{--thumb-bg:radial-gradient(circle at 55% 26%,#17432f,#071711 75%);--thumb-panel:#081a17;--thumb-border:#285347;--thumb-accent:#64eead;--thumb-text:#d9f8ed;--thumb-muted:#8eb5a7}.thumb-tabs{display:flex;gap:14px;padding:10px 15px;color:var(--thumb-muted);font:8px "DM Mono"}.thumb-tabs span{opacity:.65}.thumb-pyre-main{display:flex;align-items:center;gap:22px;padding:12px 21px 18px}.thumb-shield{font-size:63px;line-height:1;color:#69e5a6;position:relative;text-shadow:0 0 35px #69e5a655}.thumb-shield span{position:absolute;left:21px;top:19px;font-size:25px;color:#b8ffd9}.thumb-pyre-copy strong{margin:9px 0;font-size:17px}.thumb-inline-bars{display:flex;gap:4px;align-items:end;height:27px}.thumb-inline-bars i{width:11px;background:#2e9e79;height:37%;border-radius:2px}.thumb-inline-bars i:nth-child(2){height:83%;background:#69e5a6}.thumb-inline-bars i:nth-child(3){height:53%}.thumb-inline-bars i:nth-child(4){height:100%;background:#69e5a6}.thumb-inline-bars i:nth-child(5){height:72%}.thumb-pyre-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 15px 15px}.thumb-pyre-grid>div{border:1px solid #244a3e;background:#103127;border-radius:7px;padding:10px}.thumb-pyre-grid strong{margin-top:5px;font-size:21px}
+.ops-visual{--thumb-bg:radial-gradient(circle at 52% 14%,#344a7a,#10182f 72%);--thumb-panel:#f3f6ff;--thumb-border:#d1daf0;--thumb-accent:#4665ef;--thumb-text:#18233e;--thumb-muted:#71809e}.ops-app{color:#18233e}.thumb-ops-grid{display:grid;grid-template-columns:105px 1fr;min-height:215px}.thumb-ops-sidebar{background:#e6edff;display:grid;align-content:start;gap:12px;padding:18px 10px}.thumb-ops-sidebar span{color:#6e7c9b;font-size:9px;white-space:nowrap}.thumb-ops-sidebar .active{color:#375bea;font-weight:800}.thumb-ops-main{padding:18px 17px}.thumb-ops-main>strong{font-size:19px;margin:8px 0 15px}.thumb-ops-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:0 0 11px}.thumb-ops-cards>div{border:1px solid #dbe3f2;padding:9px;border-radius:7px}.thumb-ops-cards b{display:block;color:#335ce4;font-size:20px}.thumb-ticket{display:flex;gap:7px;font-size:9px;padding:7px 0;border-top:1px solid #dce3f0}.thumb-ticket span{color:#5572f4}.thumb-ticket i{margin-left:auto;font:7px "DM Mono";color:#5678d8;white-space:nowrap}
+.netops-visual{--thumb-bg:radial-gradient(circle at 60% 25%,#123451,#071522 75%);--thumb-panel:#0b1e2f;--thumb-border:#235170;--thumb-accent:#74cdff;--thumb-text:#d9f4ff;--thumb-muted:#75a5c2}.thumb-network-title{padding:15px 20px 1px}.thumb-network-title strong{font-size:19px;margin:5px 0}.thumb-topology{display:block;width:calc(100% - 30px);height:145px;margin:1px 15px 0}.thumb-network-foot{display:flex;justify-content:space-between;padding:12px 16px 15px;font:8px "DM Mono";color:#86caff}
+.study-visual{--thumb-bg:radial-gradient(circle at 65% 25%,#775bb0,#20203d 75%);--thumb-panel:#fdfbff;--thumb-border:#d9d3eb;--thumb-accent:#7b4dc1;--thumb-text:#282540;--thumb-muted:#84809e}.thumb-study-heading{padding:17px 18px 8px}.thumb-study-heading strong{font-size:18px;margin-top:6px}.thumb-study-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:9px;padding:9px 15px 15px}.thumb-study-calendar,.thumb-study-tasks{border:1px solid #e5e0f2;border-radius:8px;padding:12px;background:#f8f6ff}.thumb-study-month{font-size:10px;font-weight:800;display:flex;justify-content:space-between}.thumb-study-month span{color:#8a81ac}.thumb-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:13px;text-align:center}.thumb-days>*{font:9px "DM Mono";padding:4px 0}.thumb-days b{color:#968eaf}.thumb-days i{font-style:normal}.thumb-days .marked{background:#845bc5;border-radius:50%;color:white}.thumb-study-tasks{display:grid;gap:9px;align-content:start}.thumb-study-tasks span{font-size:9px;white-space:nowrap;color:#615d76}.thumb-study-foot{padding:0 15px 14px;color:#8771ad;font:8px "DM Mono"}
+.omni-visual{--thumb-bg:radial-gradient(circle at 50% 10%,#166e78,#0b2632 75%);--thumb-panel:#f6fffe;--thumb-border:#bde5e5;--thumb-accent:#007f8c;--thumb-text:#133b45;--thumb-muted:#6d9ba0}.thumb-omni-drop{margin:18px 20px 12px;padding:19px 15px;border:2px dashed #8bcfcf;border-radius:12px;text-align:center;display:grid;justify-items:center;gap:6px;background:#ebfcfb}.thumb-upload-symbol{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:#ccf3ee;color:#007f8c;font-weight:900;font-size:21px}.thumb-omni-drop strong{font-size:16px}.thumb-omni-drop>span{background:#007d86;border-radius:6px;padding:7px 12px;color:#fff;font-size:9px;font-weight:700;margin-top:4px}.thumb-file-row{display:flex;align-items:center;gap:9px;margin:0 20px 17px}.thumb-file-row>div{background:#d7f5ef;border-radius:7px;padding:6px;color:#078e8b}.thumb-file-row>span{display:grid}.thumb-file-row b{font-size:9px}.thumb-file-row i{font:7px "DM Mono";color:#07877e;margin-left:auto;white-space:nowrap}
+.trial-thumb{display:flex;align-items:center;gap:12px;height:90px;border-radius:12px;border:1px solid var(--line);padding:15px;margin-bottom:20px;background:linear-gradient(125deg,#151d2b,#202338);position:relative;overflow:hidden}.trial-thumb:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0,transparent 23px,#ffffff08 24px);pointer-events:none}.trial-thumb-symbol{z-index:1;display:grid;place-items:center;flex-shrink:0;width:46px;height:46px;border-radius:12px;background:#303f58;color:#b4f17a;font-size:27px}.trial-thumb-content{z-index:1;display:grid;gap:7px;flex:1}.trial-thumb-label{font:9px "DM Mono";color:#c6cde2;letter-spacing:.1em}.trial-thumb-line{height:5px;width:88%;background:#546078;border-radius:4px}.trial-thumb-line.short{width:52%;opacity:.6}.trial-thumb-arrow{z-index:1;color:#b4f17a}.trial-timer{background:linear-gradient(125deg,#18372c,#1d3e35)}.trial-timer .trial-thumb-symbol{background:#1f5c43;color:#a0f0c9}.trial-exec{background:linear-gradient(125deg,#222a4c,#30375f)}.trial-exec .trial-thumb-symbol{background:#44548e;color:#a3b9ff}.trial-pitch{background:linear-gradient(125deg,#3c2d1d,#483a23)}.trial-pitch .trial-thumb-symbol{background:#705128;color:#ffd78d}.trial-offer{background:linear-gradient(125deg,#2e2439,#443057)}.trial-offer .trial-thumb-symbol{background:#66438b;color:#e1b5ff}.trial-webinar{background:linear-gradient(125deg,#3c2228,#532a36)}.trial-webinar .trial-thumb-symbol{background:#773c51;color:#ffbed1}
+@media(max-width:680px){.unique-visual{min-height:240px;padding:12px}.thumb-app{width:min(98%,400px);transform:none}.thumb-header{padding:10px}.thumb-app strong{font-size:13px}.thumb-ops-grid{grid-template-columns:85px 1fr}.thumb-ops-sidebar{padding:13px 8px}.thumb-ops-main{padding:12px}.thumb-topology{height:120px}.thumb-study-grid{grid-template-columns:1fr 1fr}.thumb-study-tasks span{font-size:8px}.thumb-network-foot{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.thumb-app{transition:none!important;transform:none!important}.project:hover .thumb-app{transform:none!important}}
+.portrait-frame picture{display:block;width:100%;height:100%;position:relative;z-index:2}
+/* Project thumbnails mirror each app's own interface identity: OpsFusion is a light blue service desk,
+   NetOps a cyan network console, OmniShare a violet file vault. */
+.ops-visual{--thumb-bg:radial-gradient(circle at 52% 14%,#3c63b8,#101a36 72%);--thumb-panel:#f3f7fd;--thumb-border:#dce6f3;--thumb-accent:#2563e8;--thumb-text:#142742;--thumb-muted:#5c708c}
+.ops-app{color:#142742}
+.thumb-ops-sidebar{background:#fff;border-right:1px solid #dce6f3}
+.thumb-ops-sidebar span{color:#5c708c}
+.thumb-ops-sidebar .active{color:#2456ca}
+.thumb-ops-cards>div{border-color:#dce6f3;background:#fff}
+.thumb-ops-cards b{color:#2563e8}
+.thumb-ticket{border-top-color:#dce6f3}
+.thumb-ticket span{color:#2563e8}
+.thumb-ticket i{color:#2456ca}
+.netops-visual{--thumb-bg:radial-gradient(circle at 60% 25%,#0f3f55,#07121d 75%);--thumb-panel:#0d1e2a;--thumb-border:#254253;--thumb-accent:#39d8e9;--thumb-text:#e7f6fc;--thumb-muted:#9eb9c8}
+.netops-app{border-radius:7px}
+.thumb-topology g[fill="none"]{stroke:#3b6072}
+.thumb-topology g[fill="#1d3444"]{fill:#142938;stroke:#39d8e9}
+.thumb-topology text{fill:#e7f6fc}
+.thumb-network-foot{color:#56e6a6}
+.omni-visual{--thumb-bg:linear-gradient(135deg,#6a45f5,#9a4df0 60%,#ff7d6b 125%);--thumb-panel:#fff;--thumb-border:#e3def3;--thumb-accent:#6a45f5;--thumb-text:#1c1736;--thumb-muted:#625c7e}
+.omni-app{border-radius:20px}
+.thumb-omni-drop{border-color:#cbc3e8;background:#f6f4fd;border-radius:16px}
+.thumb-upload-symbol{background:linear-gradient(140deg,#6a45f5,#9a4df0);color:#fff}
+.thumb-omni-drop>span{background:#6a45f5;color:#fff;border-radius:999px}
+.thumb-file-row>div{background:rgba(106,69,245,.1);color:#5a35e3}
+.thumb-file-row i{color:#14805e}
+
+/* ==========================================================================
+   Layout v2 — larger editorial hero, numbered work cards with counted tabs,
+   metric blocks, "proven in" skills, pull statement, footer wordmark and a
+   portfolio assistant. Colours and type stay on the existing lime identity.
+   ========================================================================== */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Navigation */
+.brand2{display:flex;align-items:center;gap:11px}
+.brand2-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:var(--accent);color:var(--bg);font:700 15px "Space Grotesk",sans-serif;letter-spacing:-.04em}
+.brand2-text strong{display:block;font:700 15px/1.15 "Space Grotesk",sans-serif;letter-spacing:-.03em}
+.brand2-text small{display:block;font:500 10px/1.4 "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nav-links{gap:22px}
+.nav-ask{min-height:40px;padding:0 15px;font-size:13px;border-radius:11px}
+
+/* Hero */
+.hero2{padding:54px 0 84px;position:relative}
+.hero2-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.hero2-id,.hero2-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.avail{display:inline-flex;align-items:center;gap:10px;padding:7px 13px 7px 12px;border:1px solid color-mix(in srgb,var(--accent) 38%,var(--line));border-radius:999px;background:color-mix(in srgb,var(--accent) 9%,transparent);font-size:12.5px;font-weight:600}
+.hero2-headline{margin:26px 0 0;font:600 clamp(64px,13.4vw,196px)/.86 "Space Grotesk",sans-serif;letter-spacing:-.075em;text-wrap:balance}
+.hero2-headline .headline-line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero2-headline .headline-line>span{display:block}
+.hero2-headline em{font-style:normal;color:var(--accent)}
+.hero2-stats{margin:22px 0 0;padding-bottom:26px;border-bottom:1px solid var(--line);color:var(--muted);letter-spacing:.08em}
+.hero2-stats b{color:var(--ink);font-weight:500}
+.hero2-stats i{font-style:normal;color:var(--accent);margin:0 8px}
+.hero2-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(220px,.62fr) minmax(260px,.82fr);gap:clamp(22px,3.4vw,48px);align-items:start;margin-top:38px}
+.hero2-copy .hero-copy{max-width:520px;margin:0 0 26px}
+.hero2-copy .hero-aside{display:flex;align-items:center;gap:10px;margin-top:34px;color:var(--muted)}
+.hero2 .portrait-frame{height:clamp(280px,27vw,400px);border-radius:150px 150px 22px 22px}
+.ask-card{padding:22px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 100% 0,color-mix(in srgb,var(--accent) 11%,transparent),transparent 46%),var(--panel)}
+.ask-card-head{display:flex;align-items:center;gap:12px;margin:14px 0 12px}
+.ask-avatar{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:13px;background:var(--accent);color:var(--bg);font:700 15px "Space Grotesk",sans-serif}
+.ask-card-head strong{display:block;font:600 16px/1.2 "Space Grotesk",sans-serif;letter-spacing:-.03em}
+.ask-card-head small{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.ask-card-head small::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.ask-card>p{margin:0 0 14px;font-size:14px;color:var(--muted)}
+.ask-chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font-size:12.5px;transition:border-color .2s,color .2s,background .2s}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.ask-open{width:100%;margin-top:16px;min-height:46px}
+
+/* Work */
+.filter{display:inline-flex;align-items:center;gap:9px}
+.filter-n{font:500 10.5px "DM Mono",monospace;padding:2px 6px;border-radius:6px;background:var(--panel2);color:var(--muted)}
+.filter[aria-pressed=true] .filter-n{background:color-mix(in srgb,var(--bg) 22%,transparent);color:inherit}
+.project{min-height:0}
+.pmeta{display:flex;align-items:center;gap:13px;margin-bottom:20px}
+.pnum{font:600 34px/1 "Space Grotesk",sans-serif;letter-spacing:-.06em;color:var(--accent)}
+.pcat{color:var(--muted);flex:1;min-width:0}
+.pills{display:flex;gap:6px}
+.pill{padding:5px 9px;border:1px solid var(--line);border-radius:999px;font:500 10px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pill-live{border-color:color-mix(in srgb,var(--accent) 45%,transparent);color:var(--accent)}
+.pill-live::before{content:"";display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:var(--accent);vertical-align:1px}
+.pill-new{border-color:color-mix(in srgb,var(--accent2) 55%,transparent);color:var(--accent2)}
+
+/* What I do */
+.svc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+.svc{display:flex;flex-direction:column;padding:28px 26px;border-right:1px solid var(--line);transition:background .25s}
+.svc:last-child{border-right:0}
+.svc:hover{background:var(--panel2)}
+.svc-n{color:var(--accent)}
+.svc-cat{display:block;margin:26px 0 10px;color:var(--muted)}
+.svc h3{margin:0 0 10px;font:600 21px/1.2 "Space Grotesk",sans-serif;letter-spacing:-.04em}
+.svc p{margin:0 0 26px;font-size:14.5px;color:var(--muted)}
+.svc-fig{margin-top:auto;padding-top:20px;border-top:1px solid var(--line)}
+.svc-fig strong{display:block;font:600 clamp(44px,4.6vw,66px)/1 "Space Grotesk",sans-serif;letter-spacing:-.07em}
+.svc-fig span{display:block;margin-top:8px;font-size:12.5px;color:var(--muted)}
+
+/* Skills */
+.skill2-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.skill2{display:flex;flex-direction:column;padding:26px;border:1px solid var(--line);border-radius:18px;background:var(--panel);transition:border-color .25s,transform .25s}
+.skill2:hover{border-color:color-mix(in srgb,var(--accent) 42%,var(--line));transform:translateY(-3px)}
+.skill-n{color:var(--accent)}
+.skill2 h3{margin:18px 0 8px;font:600 21px/1.2 "Space Grotesk",sans-serif;letter-spacing:-.04em}
+.skill2>p{margin:0;font-size:14.5px;color:var(--muted)}
+.skill2 .proof{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink)}
+.proof .mono{display:block;margin-bottom:5px;color:var(--muted);font-size:10.5px}
+.proof-link{padding:0;border:0;border-bottom:1px solid color-mix(in srgb,var(--accent) 55%,transparent);background:none;color:var(--accent);font:inherit;font-weight:600;cursor:pointer}
+.proof-link:hover{border-bottom-color:var(--accent)}
+.skill2 .tags{margin-top:auto;padding-top:18px}
+
+/* Pull statement */
+.pull{padding:clamp(70px,10vw,150px) 0}
+.pull-text{max-width:1080px;margin:0;font:500 clamp(30px,5.2vw,74px)/1.08 "Space Grotesk",sans-serif;letter-spacing:-.06em;text-wrap:balance}
+.pull-text em{font-style:normal;color:var(--accent)}
+.js-motion .pull-text .w{opacity:.16;transition:opacity .5s ease}
+.js-motion .pull-text .w.on{opacity:1}
+
+/* About */
+.about2{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,70px);align-items:start}
+.about2 .section-title{margin-bottom:26px}
+.about2 .hero-actions{margin-top:28px}
+.facts{margin:0;border-top:1px solid var(--line)}
+.facts>div{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+.facts dt{color:var(--muted);padding-top:3px}
+.facts dd{margin:0;font:500 18px/1.4 "Space Grotesk",sans-serif;letter-spacing:-.03em}
+
+/* Footer */
+.footer2{padding-top:0;padding-bottom:104px;overflow:hidden}
+.wordmark2{margin:0 0 26px;padding-top:38px;font:700 clamp(58px,17.4vw,270px)/.8 "Space Grotesk",sans-serif;letter-spacing:-.08em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px var(--line);background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 16%,transparent),transparent 92%);-webkit-background-clip:text;background-clip:text;user-select:none}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a:hover{color:var(--accent)}
+
+/* Assistant dialog */
+.assistant-dialog{width:min(94vw,560px)}
+.assistant-inner{display:flex;flex-direction:column;gap:14px;padding:22px}
+.assistant-inner .dialog-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.assistant-inner .ask-card-head{margin:0}
+.chat{display:flex;flex-direction:column;gap:10px;min-height:220px;max-height:min(46vh,420px);overflow:auto;padding:4px 2px}
+.msg{max-width:88%;padding:12px 14px;border:1px solid var(--line);border-radius:16px 16px 16px 5px;background:var(--panel2);font-size:14.5px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.me{align-self:flex-end;border-radius:16px 16px 5px 16px;border-color:color-mix(in srgb,var(--accent) 40%,transparent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.msg small{display:block;margin-bottom:4px;font:500 10px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.msg.wait{color:var(--muted)}
+.chat-form{display:flex;gap:8px}
+.chat-form input{flex:1;min-width:0;min-height:46px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:14.5px;outline:0}
+.chat-form input:focus{border-color:var(--accent)}
+.chat-form .btn{min-height:46px}
+.chat-form .icon-btn{width:46px;height:46px}
+.chat-form .icon-btn.rec{border-color:var(--accent);color:var(--accent)}
+.chat-foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.chat-speak{display:inline-flex;align-items:center;gap:7px;cursor:pointer}
+.chat-speak input{accent-color:var(--accent)}
+
+@media(max-width:1180px){
+  .nav-links{gap:16px}
+  .brand2-text small{display:none}
+  .hero2-grid{grid-template-columns:minmax(0,1fr) minmax(200px,.6fr)}
+  .ask-card{grid-column:1/-1}
+  .svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc:nth-child(2n){border-right:0}
+  .svc:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .skill2-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:980px){
+  .nav-ask{display:none}
+  .about2{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .hero2{padding:34px 0 60px}
+  .hero2-grid{grid-template-columns:1fr}
+  .hero2 .hero-portrait{max-width:300px}
+  .hero2-copy .hero-aside{display:none}
+  .svc-grid,.skill2-grid{grid-template-columns:1fr}
+  .svc{border-right:0;border-bottom:1px solid var(--line)}
+  .svc:last-child{border-bottom:0}
+  .facts>div{grid-template-columns:1fr;gap:4px}
+  .pcat{font-size:10px}
+  .msg{max-width:94%}
+}
+@media(prefers-reduced-motion:reduce){.skill2,.svc,.chip{transition:none}}
+.hero2 .portrait-caption{font-size:9px;letter-spacing:.06em;gap:8px}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+<div class="cursor-glow" aria-hidden="true" id="cursorGlow"></div>
+<header>
+<div class="wrap nav">
+<a class="brand2" href="#home" aria-label="Jim Camus home"><span class="brand2-mark" aria-hidden="true">JC</span><span class="brand2-text"><strong>Jim Camus</strong><small>IT &amp; Software Engineer</small></span></a>
+<nav class="nav-links" aria-label="Main navigation">
+<a href="#work">Work</a><a href="#services">What I do</a><a href="#skills">Skills</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a>
+</nav>
+<div class="nav-end">
+<button class="btn primary nav-ask" type="button" data-assistant-open aria-haspopup="dialog">Ask about my work</button>
+<button class="icon-btn" id="themeToggle" aria-label="Switch to light theme" title="Toggle theme">☼</button>
+<button class="icon-btn menu-btn" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+</div>
+</div>
+<nav class="mobile-nav wrap" id="mobileNav" aria-label="Mobile navigation">
+<a href="#work">Work</a><a href="#services">What I do</a><a href="#skills">Skills</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#sywtc">AI Trial</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a>
+</nav>
+</header>
+<main id="main">
+<section class="hero2 wrap" id="home">
+<div class="hero2-top hero-enter hero-enter-1">
+<div class="hero2-id"><span class="mono muted">Jim Rodmark Camus</span><span class="mono accent">Networks · Security · Software · AI engineering</span></div>
+<div class="hero2-meta"><span class="mono muted">Philippines · GMT+8 · Remote</span><span class="avail"><span class="live-dot" aria-hidden="true"></span>Open to opportunities</span></div>
+</div>
+<h1 class="hero2-headline"><span class="sr-only">Jim Camus. </span><span class="headline-line"><span>Engineering</span></span><span class="headline-line"><span><em>impact.</em></span></span></h1>
+<p class="hero2-stats mono hero-enter hero-enter-2"><b>06</b> shipped projects <i>·</i> <b>06</b> AI workflow prototypes <i>·</i> <b>06</b> credentials</p>
+<div class="hero2-grid">
+<div class="hero2-copy hero-enter hero-enter-3">
+<p class="hero-copy">I’m <strong>Jim Rodmark Camus</strong>, an IT professional and software developer working across network infrastructure, cybersecurity, AI workflows, and practical business applications. I turn complex requirements into clear, usable systems.</p>
+<div class="hero-actions"><a class="btn primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#contact">Let’s connect <span aria-hidden="true">↗</span></a></div>
+<div class="hero-aside"><span class="scroll-icon" aria-hidden="true">↓</span><span class="mono">Scroll</span></div>
+</div>
+<div class="hero-portrait hero-enter hero-enter-2">
+<div class="portrait-frame" id="portraitFrame"><picture><source type="image/webp" srcset="/assets/profile/ghost-480.webp 480w, /assets/profile/ghost-960.webp 960w" sizes="(max-width: 820px) 82vw, 360px"><img src="/assets/profile/Ghost.png" alt="Portrait of Jim Rodmark Camus" width="1500" height="2100" decoding="async" fetchpriority="high" onerror="this.style.display='none'" /></picture><span class="portrait-fallback" aria-hidden="true">JC.</span></div>
+<div class="portrait-caption mono"><span>PERSONAL PROFILE</span><span>PHILIPPINES · REMOTE</span></div>
+</div>
+<aside class="ask-card hero-enter hero-enter-4" aria-labelledby="askCardTitle">
+<span class="mono kicker">Ask about my work</span>
+<div class="ask-card-head"><span class="ask-avatar" aria-hidden="true">JC</span><div><strong id="askCardTitle">Portfolio assistant</strong><small data-assistant-mode>Scripted answers · instant</small></div></div>
+<p>Pick a question and get a short answer drawn from this portfolio.</p>
+<div class="ask-chips"><button type="button" class="chip" data-ask="What do you do?">What do you do?</button><button type="button" class="chip" data-ask="Which project should I look at first?">Which project first?</button><button type="button" class="chip" data-ask="What is OpsFusion?">What is OpsFusion?</button></div>
+<button class="btn secondary ask-open" type="button" data-assistant-open aria-haspopup="dialog">Open the assistant <span aria-hidden="true">↗</span></button>
+</aside>
+</div>
+</section>
+<div class="ticker" aria-label="Specialties"><div class="ticker-track">
+<span class="ticker-item">NETWORK OPERATIONS <b>✳</b></span><span class="ticker-item">CYBERSECURITY <b>✳</b></span><span class="ticker-item">SOFTWARE ENGINEERING <b>✳</b></span><span class="ticker-item">AI & AUTOMATION <b>✳</b></span><span class="ticker-item">IT INFRASTRUCTURE <b>✳</b></span>
+<span class="ticker-item" aria-hidden="true">NETWORK OPERATIONS <b>✳</b></span><span class="ticker-item" aria-hidden="true">CYBERSECURITY <b>✳</b></span><span class="ticker-item" aria-hidden="true">SOFTWARE ENGINEERING <b>✳</b></span><span class="ticker-item" aria-hidden="true">AI & AUTOMATION <b>✳</b></span><span class="ticker-item" aria-hidden="true">IT INFRASTRUCTURE <b>✳</b></span>
+</div></div>
+<section class="section wrap" id="work">
+<div class="section-head reveal"><div><span class="mono kicker">01 / Selected work</span><h2 class="section-title">Projects with<br>purpose.</h2></div>
+<p class="section-desc">Six systems that turn engineering ideas into working tools. Pick a category, open a case study, or launch the live build.</p></div>
+<div class="filters" role="group" aria-label="Filter projects"><button class="filter" data-filter="all" aria-pressed="true">All <span class="filter-n">06</span></button><button class="filter" data-filter="security" aria-pressed="false">Security <span class="filter-n">01</span></button><button class="filter" data-filter="operations" aria-pressed="false">Operations <span class="filter-n">04</span></button><button class="filter" data-filter="applications" aria-pressed="false">Applications <span class="filter-n">04</span></button><span class="filter-count mono" id="projectCount" role="status" aria-live="polite">6 projects</span></div>
+<div class="projects"><article class="project reveal" data-categories="operations applications"><div class="visual camus-visual"><div class="camus-product-preview" aria-hidden="true"><div class="camus-preview-nav"><span class="camus-logomark">C<span>.</span></span><span>CAMUS<span>OS</span></span><i></i></div><div class="camus-preview-kicker">PERSONAL OPERATIONS · WORKSPACE</div><div class="camus-preview-title">BUILD WITH<br><b>CLARITY.</b></div><div class="camus-preview-widgets"><span><strong>▦</strong> DASHBOARD</span><span><strong>◷</strong> TIME</span><span><strong>↗</strong> PITCH</span></div></div></div><div class="project-content"><div class="pmeta"><span class="pnum" aria-hidden="true">01</span><span class="pcat mono">New flagship platform</span><span class="pills"><span class="pill pill-new">New</span><span class="pill pill-live">Live</span></span></div><h3>CamusOS</h3><p>An independent, original operations platform combining a productivity dashboard, time tracking, project insights, pitch and offer studios, content analysis, a knowledge base and a live world clock. Built with Vite and deployed on Vercel.</p><div class="tags"><span class="tag">Vite</span><span class="tag">JavaScript</span><span class="tag">Product Design</span><span class="tag">Operations</span></div><button type="button" class="case-study-btn" data-case="CamusOS" aria-haspopup="dialog">Open case study <span aria-hidden="true">↗</span></button><div class="project-links"><a href="https://camusos.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Launch CamusOS live application in a new tab">Launch live application ↗</a><a href="https://github.com/Sachibara/CamusOS" target="_blank" rel="noopener noreferrer" aria-label="View CamusOS source code on GitHub in a new tab">View repository ↗</a></div></div></article>
+<article class="project reveal" data-categories="security operations"><div class="visual unique-visual pyre-visual" role="img" aria-label="Illustrative PyreWall network security dashboard thumbnail"><div class="thumb-app pyre-app"><div class="thumb-header"><span class="thumb-brand"><span class="thumb-brand-symbol">⬡</span> PYREWALL</span><span class="thumb-mini-pill">● PROTECTED</span></div><div class="thumb-tabs">OVERVIEW <span>THREATS</span> <span>RULES</span> <span>HISTORY</span></div><div class="thumb-pyre-main"><div class="thumb-shield">⬡<span>✓</span></div><div class="thumb-pyre-copy"><small>SECURITY STATUS</small><strong>NETWORK SECURE</strong><div class="thumb-inline-bars"><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="thumb-pyre-grid"><div><small>ACTIVE RULES</small><strong>24</strong></div><div><small>THREATS BLOCKED</small><strong>128</strong></div><div><small>DEVICES</small><strong>08</strong></div></div></div></div><div class="project-content"><div class="pmeta"><span class="pnum" aria-hidden="true">02</span><span class="pcat mono">Featured project</span><span class="pills"><span class="pill pill-demo">Demo</span></span></div><h3>PyreWall</h3><p>A Windows-focused next-generation firewall and network control system with packet filtering, custom rules, threat visibility, device discovery and operational history.</p><div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">WinDivert</span><span class="tag">Network Security</span></div><button type="button" class="case-study-btn" data-case="PyreWall" aria-haspopup="dialog">Open case study <span aria-hidden="true">↗</span></button><div class="project-links"><a href="/projects/pyrewall-web/">Explore demo ↗</a><a href="https://github.com/Sachibara/Pyrewall" target="_blank" rel="noopener noreferrer">Source code ↗</a></div></div></article>
+<article class="project reveal" data-categories="operations applications"><div class="visual unique-visual ops-visual" role="img" aria-label="Illustrative OpsFusion IT service desk thumbnail"><div class="thumb-app ops-app"><div class="thumb-header"><span class="thumb-brand"><span class="thumb-brand-symbol">◈</span> OPSFUSION</span><span class="thumb-mini-pill">IT SERVICE DESK</span></div><div class="thumb-ops-grid"><div class="thumb-ops-sidebar"><span class="active">▦ Overview</span><span>▤ Tickets</span><span>◫ Assets</span><span>◎ People</span></div><div class="thumb-ops-main"><small>OPERATIONS OVERVIEW</small><strong>Keep work moving.</strong><div class="thumb-ops-cards"><div><small>OPEN TICKETS</small><b>12</b></div><div><small>RESOLVED</small><b>89%</b></div></div><div class="thumb-ticket"><span>●</span> Access request <i>IN REVIEW</i></div><div class="thumb-ticket"><span>●</span> Device onboarding <i>NEW</i></div></div></div></div></div><div class="project-content"><div class="pmeta"><span class="pnum" aria-hidden="true">03</span><span class="pcat mono">IT operations</span><span class="pills"><span class="pill pill-live">Live</span></span></div><h3>OpsFusion</h3><p>A unified IT service desk and employee support portal for tickets, assets, accounts, knowledge management and AI-assisted workflows.</p><div class="tags"><span class="tag">Supabase</span><span class="tag">JavaScript</span><span class="tag">PostgreSQL</span></div><button type="button" class="case-study-btn" data-case="OpsFusion" aria-haspopup="dialog">Open case study <span aria-hidden="true">↗</span></button><div class="project-links"><a href="https://opsfusion-it.vercel.app/" target="_blank" rel="noopener noreferrer">Live application ↗</a><a href="https://github.com/Sachibara/HelpDesk-Pro" target="_blank" rel="noopener noreferrer">Repository ↗</a></div></div></article>
+<article class="project reveal" data-categories="operations"><div class="visual unique-visual netops-visual" role="img" aria-label="Illustrative NetOps infrastructure topology thumbnail"><div class="thumb-app netops-app"><div class="thumb-header"><span class="thumb-brand"><span class="thumb-brand-symbol">⌘</span> NETOPS ENTERPRISE</span><span class="thumb-mini-pill">● MONITORING</span></div><div class="thumb-network-title"><small>NETWORK TOPOLOGY</small><strong>Infrastructure map</strong></div><svg class="thumb-topology" viewBox="0 0 360 155" role="presentation" aria-hidden="true"><g fill="none" stroke="#5678a3" stroke-width="2" stroke-dasharray="4 5"><path d="M180 31L91 90M180 31L272 90M91 90L45 134M91 90L130 134M272 90L230 134M272 90L316 134"/></g><g fill="#1d3444" stroke="#76c8ff" stroke-width="2"><rect x="151" y="7" width="58" height="40" rx="9"/><rect x="64" y="71" width="54" height="38" rx="8"/><rect x="245" y="71" width="54" height="38" rx="8"/><rect x="25" y="121" width="40" height="26" rx="6"/><rect x="111" y="121" width="40" height="26" rx="6"/><rect x="211" y="121" width="40" height="26" rx="6"/><rect x="297" y="121" width="40" height="26" rx="6"/></g><g fill="#aee7ff" font-family="monospace" font-size="10" text-anchor="middle"><text x="180" y="32">CORE</text><text x="91" y="95">SW-01</text><text x="272" y="95">SW-02</text><text x="45" y="139">PC</text><text x="131" y="139">AP</text><text x="231" y="139">FW</text><text x="317" y="139">NAS</text></g></svg><div class="thumb-network-foot"><span>● 7 NODES ONLINE</span><span>LATENCY 12ms</span></div></div></div><div class="project-content"><div class="pmeta"><span class="pnum" aria-hidden="true">04</span><span class="pcat mono">Network engineering</span><span class="pills"><span class="pill pill-live">Live</span></span></div><h3>NetOps Enterprise</h3><p>A unified network-operations platform connecting device inventory, monitoring, topology, IPAM, configuration backups, incidents and troubleshooting.</p><div class="tags"><span class="tag">Networking</span><span class="tag">FastAPI</span><span class="tag">Supabase</span></div><button type="button" class="case-study-btn" data-case="NetOps Enterprise" aria-haspopup="dialog">Open case study <span aria-hidden="true">↗</span></button><div class="project-links"><a href="https://netops-enterprise.vercel.app/" target="_blank" rel="noopener noreferrer">Live application ↗</a><a href="https://github.com/Sachibara/NetOps-Command-Center" target="_blank" rel="noopener noreferrer">Repository ↗</a></div></div></article>
+<article class="project reveal" data-categories="applications"><div class="visual unique-visual study-visual" role="img" aria-label="Illustrative StudySync academic planner thumbnail"><div class="thumb-app study-app"><div class="thumb-header"><span class="thumb-brand"><span class="thumb-brand-symbol">✳</span> STUDYSYNC</span><span class="thumb-mini-pill">MY CLASSES</span></div><div class="thumb-study-heading"><small>MONDAY · LEARNING WORKSPACE</small><strong>Make progress together.</strong></div><div class="thumb-study-grid"><div class="thumb-study-calendar"><div class="thumb-study-month">NOVEMBER <span>‹ &nbsp; ›</span></div><div class="thumb-days"><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b><b>S</b><i>9</i><i>10</i><i>11</i><i>12</i><i class="marked">13</i><i>14</i><i>15</i></div></div><div class="thumb-study-tasks"><small>UP NEXT</small><span>✓ Group check-in</span><span>○ Review materials</span><span>○ Submit activity</span></div></div><div class="thumb-study-foot">CLASSROOM · CALENDAR · TEAMWORK</div></div></div><div class="project-content"><div class="pmeta"><span class="pnum" aria-hidden="true">05</span><span class="pcat mono">Product development</span><span class="pills"><span class="pill pill-demo">Demo</span></span></div><h3>StudySync</h3><p>A learning and student collaboration experience with task planning, group communication, file sharing, calendars and progress tracking.</p><div class="tags"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">Supabase</span></div><button type="button" class="case-study-btn" data-case="StudySync" aria-haspopup="dialog">Open case study <span aria-hidden="true">↗</span></button><div class="project-links"><a href="https://studysync-remod-demo.vercel.app/" target="_blank" rel="noopener noreferrer">Explore demo ↗</a></div></div></article>
+<article class="project reveal" data-categories="applications"><div class="visual unique-visual omni-visual" role="img" aria-label="Illustrative OmniShare browser-based file sharing thumbnail"><div class="thumb-app omni-app"><div class="thumb-header"><span class="thumb-brand"><span class="thumb-brand-symbol">◉</span> OMNISHARE</span><span class="thumb-mini-pill">SECURE SHARING</span></div><div class="thumb-omni-drop"><div class="thumb-upload-symbol">↑</div><strong>Your files, simplified.</strong><small>DRAG & DROP OR BROWSE FILES</small><span>+ Upload files</span></div><div class="thumb-file-row"><div>▤</div><span><b>project-brief.pdf</b><small>PDF DOCUMENT</small></span><i>SHARED ↗</i></div></div></div><div class="project-content"><div class="pmeta"><span class="pnum" aria-hidden="true">06</span><span class="pcat mono">Web applications</span><span class="pills"><span class="pill pill-live">Live</span></span></div><h3>OmniShare</h3><p>A browser-based file sharing platform designed around a streamlined experience for uploads, sharing and file management.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div><button type="button" class="case-study-btn" data-case="OmniShare" aria-haspopup="dialog">Open case study <span aria-hidden="true">↗</span></button><div class="project-links"><a href="https://finalomnishare.vercel.app/" target="_blank" rel="noopener noreferrer">Live application ↗</a><a href="https://github.com/Sachibara/final_omnishare" target="_blank" rel="noopener noreferrer">Repository ↗</a></div></div></article></div>
+</section>
+<section class="section line" id="services"><div class="wrap">
+<div class="section-head reveal"><div><span class="mono kicker">02 / What I do</span><h2 class="section-title">Four kinds of work.<br>One way of building.</h2></div>
+<p class="section-desc">Each figure comes from a project or credential on this page.</p></div>
+<div class="svc-grid">
+<article class="svc reveal"><span class="svc-n mono" aria-hidden="true">01</span><span class="mono svc-cat">Network operations</span><h3>Networks you can see and manage</h3><p>Topology, device inventory, IP address management, configuration backups and troubleshooting in one console.</p><div class="svc-fig"><strong>10</strong><span>integrated modules in NetOps Enterprise</span></div></article>
+<article class="svc reveal"><span class="svc-n mono" aria-hidden="true">02</span><span class="mono svc-cat">IT service operations</span><h3>Service desks people can actually use</h3><p>Tickets, assets, access and knowledge for IT staff, with a separate portal for employees asking for help.</p><div class="svc-fig"><strong>190+</strong><span>automated tests behind OpsFusion</span></div></article>
+<article class="svc reveal"><span class="svc-n mono" aria-hidden="true">03</span><span class="mono svc-cat">Security</span><h3>Security made understandable</h3><p>Firewall rules, filtering and device visibility presented so an administrator can act on them.</p><div class="svc-fig"><strong>02</strong><span>security certifications, plus PyreWall</span></div></article>
+<article class="svc reveal"><span class="svc-n mono" aria-hidden="true">04</span><span class="mono svc-cat">AI &amp; automation</span><h3>AI workflows with a clear purpose</h3><p>Agents, dashboards and integrations prototyped around real business processes, with honest notes on what was verified.</p><div class="svc-fig"><strong>06</strong><span>workflow prototypes in the AI Engineering Trial</span></div></article>
+</div></div></section>
+<section class="section line" id="skills"><div class="wrap">
+<div class="section-head reveal"><div><span class="mono kicker">03 / What I build with</span><h2 class="section-title">Tools &amp; disciplines.</h2></div>
+<p class="section-desc">Every discipline here links to a build where it was actually used.</p></div>
+<div class="skill2-grid"><article class="skill2 reveal"><span class="skill-n mono" aria-hidden="true">01</span><h3>Network & infrastructure</h3><p>Keeping networks reachable, documented and easy to troubleshoot.</p><p class="proof"><span class="mono">Proven in</span> <button type="button" class="proof-link" data-case="NetOps Enterprise" aria-haspopup="dialog">NetOps Enterprise</button>, <button type="button" class="proof-link" data-case="PyreWall" aria-haspopup="dialog">PyreWall</button></p><div class="tags"><span class="tag">Network troubleshooting</span><span class="tag">TCP/IP</span><span class="tag">Routing & switching</span><span class="tag">Windows</span><span class="tag">Network monitoring</span><span class="tag">Technical support</span></div></article><article class="skill2 reveal"><span class="skill-n mono" aria-hidden="true">02</span><h3>Cybersecurity</h3><p>Filtering, access control and visibility built into the tools I make.</p><p class="proof"><span class="mono">Proven in</span> <button type="button" class="proof-link" data-case="PyreWall" aria-haspopup="dialog">PyreWall</button>, <button type="button" class="proof-link" data-case="OpsFusion" aria-haspopup="dialog">OpsFusion</button></p><div class="tags"><span class="tag">Firewall design</span><span class="tag">Network filtering</span><span class="tag">Threat analysis</span><span class="tag">Access controls</span><span class="tag">Logs & auditing</span></div></article><article class="skill2 reveal"><span class="skill-n mono" aria-hidden="true">03</span><h3>Software development</h3><p>Desktop and web applications, from data model to interface.</p><p class="proof"><span class="mono">Proven in</span> <button type="button" class="proof-link" data-case="CamusOS" aria-haspopup="dialog">CamusOS</button>, <button type="button" class="proof-link" data-case="StudySync" aria-haspopup="dialog">StudySync</button>, <button type="button" class="proof-link" data-case="OmniShare" aria-haspopup="dialog">OmniShare</button></p><div class="tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">PyQt6</span><span class="tag">Flask</span><span class="tag">FastAPI</span><span class="tag">SQL</span></div></article><article class="skill2 reveal"><span class="skill-n mono" aria-hidden="true">04</span><h3>Cloud & backend</h3><p>Authentication, role-based data access and APIs on managed platforms.</p><p class="proof"><span class="mono">Proven in</span> <button type="button" class="proof-link" data-case="OpsFusion" aria-haspopup="dialog">OpsFusion</button>, <button type="button" class="proof-link" data-case="NetOps Enterprise" aria-haspopup="dialog">NetOps Enterprise</button></p><div class="tags"><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Authentication</span><span class="tag">REST APIs</span><span class="tag">Vercel</span></div></article><article class="skill2 reveal"><span class="skill-n mono" aria-hidden="true">05</span><h3>AI & automation</h3><p>AI-assisted workflows and integrations that remove repetitive steps.</p><p class="proof"><span class="mono">Proven in</span> <button type="button" class="proof-link" data-case="OpsFusion" aria-haspopup="dialog">OpsFusion</button>, <a class="proof-link" href="#sywtc">AI Engineering Trial</a></p><div class="tags"><span class="tag">ChatGPT</span><span class="tag">Claude</span><span class="tag">Base44</span><span class="tag">Zapier</span><span class="tag">AI-assisted workflows</span><span class="tag">API integrations</span><span class="tag">Process automation</span></div></article><article class="skill2 reveal"><span class="skill-n mono" aria-hidden="true">06</span><h3>Collaboration</h3><p>Clear documentation and communication around technical work.</p><p class="proof"><span class="mono">Proven in</span> <a class="proof-link" href="#work">Every build above</a></p><div class="tags"><span class="tag">Documentation</span><span class="tag">Support communication</span><span class="tag">Problem-solving</span><span class="tag">Adaptability</span><span class="tag">Teamwork</span></div></article></div></div></section>
+<section class="pull line" aria-label="Statement"><div class="wrap"><p class="pull-text" id="pullText">I bridge the gap between <em>infrastructure</em>, <em>software</em> and <em>AI</em> — and build the tools that make technical work easier.</p></div></section>
+<section class="section line" id="about"><div class="wrap about2">
+<div class="reveal"><span class="mono kicker">04 / A little about me</span><h2 class="section-title">Curious by nature.<br>Technical by craft.</h2>
+<p class="about-copy">I'm Jim, a BS Information Technology graduate specializing in Network Technology. I enjoy building systems that make complex technical work easier: secure networks, practical tools, helpful dashboards and AI-assisted workflows. During my SYWTC trial I worked on connected business tools and hands-on prototypes.</p>
+<p class="about-copy">My approach combines hands-on troubleshooting, thoughtful engineering, clear documentation and a willingness to keep learning.</p>
+<div class="hero-actions"><a class="btn primary" href="#contact">Let’s build something <span aria-hidden="true">↗</span></a><a class="btn secondary" href="https://github.com/Sachibara" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></div>
+<dl class="facts reveal">
+<div><dt class="mono">Based in</dt><dd>Philippines · GMT+8 · working remotely</dd></div>
+<div><dt class="mono">Education</dt><dd>BS Information Technology, Network Technology</dd></div>
+<div><dt class="mono">Focus</dt><dd>Networks, security, software and AI engineering</dd></div>
+<div><dt class="mono">Principle</dt><dd>Turn complex requirements into clear, usable systems.</dd></div>
+</dl>
+</div></section>
+<section class="section wrap" id="experience"><div class="section-head reveal"><div><span class="mono kicker">05 / Professional journey</span><h2 class="section-title">Experience.</h2></div></div><div class="experience"><article class="exp-card reveal"><span class="mono">AI Engineering / 2026</span><h3>AI Engineer — Paid Trial</h3><p>Speak Your Way To Cash® — prototypes and workflows spanning a command center, AI agents, team operations, dashboards, automation, and integration planning. <a href="#sywtc" class="accent">Explore the trial journey ↗</a></p></article><article class="exp-card reveal"><span class="mono">IT / Infrastructure</span><h3>IT Network Support Intern</h3><p>Concentrix — practical IT support exposure, troubleshooting and network-focused technical operations.</p></article><article class="exp-card reveal"><span class="mono">Software / Systems</span><h3>Freelance Full-Stack Developer & IT Services</h3><p>Building practical software solutions and supporting technical operations, from application workflows to infrastructure-oriented tools.</p></article></div></section>
+<section class="section line sywtc-section" id="sywtc"><div class="wrap">
+<div class="section-head reveal"><div><span class="mono kicker">06 / AI Engineering Trial · 2026</span><h2 class="section-title">From ideas<br>to working workflows.</h2></div><p class="section-desc">A hands-on paid AI Engineer trial with Speak Your Way To Cash® focused on AI-assisted business systems, automation and integrations.</p></div>
+<div class="sywtc-lead reveal"><div><span class="mono kicker">Role / AI Engineer · Trial engagement</span><h3>Speak Your Way To Cash®</h3><p>Explored requirements, UI implementation, AI agent workflows, integration planning, debugging, testing and documentation. Worked with GitHub and Base44 to prototype connected operational systems.</p></div><div class="sywtc-focus"><span class="mono kicker">Experience highlights</span><div class="focus-row">AI agent workflows <span>↗</span></div><div class="focus-row">Systems integration <span>↗</span></div><div class="focus-row">Testing & validation <span>↗</span></div><div class="focus-row">UI/UX consistency <span>↗</span></div></div></div>
+<div class="sywtc-subhead reveal"><span class="mono kicker">The build journey</span><p class="muted">A central command center plus five operational applications. Several integrations and production validations remained in progress during the trial.</p></div>
+<div class="trial-grid">
+<article class="trial-card reveal"><span class="mono trial-number">01 / Central platform</span><div class="trial-thumb trial-command" aria-hidden="true"><span class="trial-thumb-symbol">⌘</span><div class="trial-thumb-content"><span class="trial-thumb-label">WORKFLOW CONCEPT</span><span class="trial-thumb-line"></span><span class="trial-thumb-line short"></span></div><span class="trial-thumb-arrow">↗</span></div><h3>AI Command Center</h3><p>Worked on SOP knowledge discovery, Answers Bot, SOP Library workflows, launch tracking, calendar behavior and revenue/payment alert planning.</p><div class="tags"><span class="tag">SOP Q&A</span><span class="tag">Knowledge retrieval</span><span class="tag">Dashboards</span></div><details class="trial-project-details"><summary>Explore project <span aria-hidden="true">↗</span></summary><div class="trial-project-body"><p>Unified workspace for SOP knowledge, Answers Bot, launches, calendar and integration status. Code access restricted to authorized collaborators.</p><div class="repo-meta"><span class="repo-visibility is-private">Private GitHub repository</span><span class="mono repo-owner">J-Work0516</span></div><a class="repo-source-link" href="https://github.com/J-Work0516/SYWTC-Command-Center" target="_blank" rel="noopener noreferrer" aria-label="Open AI Command Center repository on GitHub (private)">Open repository on GitHub <span aria-hidden="true">↗</span></a><small class="repo-caution">Private repository. Only authorized GitHub accounts can view the source.</small></div></details></article>
+<article class="trial-card reveal"><span class="mono trial-number">02 / Time & operations</span><div class="trial-thumb trial-timer" aria-hidden="true"><span class="trial-thumb-symbol">◷</span><div class="trial-thumb-content"><span class="trial-thumb-label">WORKFLOW CONCEPT</span><span class="trial-thumb-line"></span><span class="trial-thumb-line short"></span></div><span class="trial-thumb-arrow">↗</span></div><h3>Team Time Tracker</h3><p>Built and tested timer/manual time entry, voice parsing, approval workflows, labor-cost reporting, KPI tracking and Clockify CSV imports.</p><div class="tags"><span class="tag">Time tracking</span><span class="tag">Roles</span><span class="tag">CSV</span></div><details class="trial-project-details"><summary>Explore project <span aria-hidden="true">↗</span></summary><div class="trial-project-body"><p>Time logging, review and reporting workflows, including manual entry, approvals and CSV-related features. Public GitHub source is available.</p><div class="repo-meta"><span class="repo-visibility is-public">Public GitHub repository</span><span class="mono repo-owner">J-Work0516</span></div><a class="repo-source-link" href="https://github.com/J-Work0516/SYWTC_Team_Timetracker" target="_blank" rel="noopener noreferrer" aria-label="Open Team Time Tracker repository on GitHub (public)">Open repository on GitHub <span aria-hidden="true">↗</span></a></div></details></article>
+<article class="trial-card reveal"><span class="mono trial-number">03 / Business intelligence</span><div class="trial-thumb trial-exec" aria-hidden="true"><span class="trial-thumb-symbol">▥</span><div class="trial-thumb-content"><span class="trial-thumb-label">WORKFLOW CONCEPT</span><span class="trial-thumb-line"></span><span class="trial-thumb-line short"></span></div><span class="trial-thumb-arrow">↗</span></div><h3>CEO Dashboard</h3><p>Worked on executive financial and operational views, transaction detail presentation, external data retrieval and data-reconciliation requirements.</p><div class="tags"><span class="tag">Commas</span><span class="tag">Data validation</span><span class="tag">Analytics</span></div><details class="trial-project-details"><summary>Explore project <span aria-hidden="true">↗</span></summary><div class="trial-project-body"><p>Executive reporting interface and business integration work, with data-mapping and transaction-view requirements.</p><div class="repo-meta"><span class="repo-visibility is-private">Private GitHub repository</span><span class="mono repo-owner">J-Work0516</span></div><a class="repo-source-link" href="https://github.com/J-Work0516/SYWTC-CEO-Dashboard" target="_blank" rel="noopener noreferrer" aria-label="Open CEO Dashboard repository on GitHub (private)">Open repository on GitHub <span aria-hidden="true">↗</span></a><small class="repo-caution">Private repository. Only authorized GitHub accounts can view the source.</small></div></details></article>
+<article class="trial-card reveal"><span class="mono trial-number">04 / Outreach</span><div class="trial-thumb trial-pitch" aria-hidden="true"><span class="trial-thumb-symbol">↗</span><div class="trial-thumb-content"><span class="trial-thumb-label">WORKFLOW CONCEPT</span><span class="trial-thumb-line"></span><span class="trial-thumb-line short"></span></div><span class="trial-thumb-arrow">↗</span></div><h3>Pitching Agent</h3><p>Explored opportunity discovery, AI-assisted pitch drafting and review-oriented outreach processes, with live automation calibration still pending.</p><div class="tags"><span class="tag">AI drafting</span><span class="tag">Discovery</span><span class="tag">Automation</span></div><details class="trial-project-details"><summary>Explore project <span aria-hidden="true">↗</span></summary><div class="trial-project-body"><p>AI-assisted prospect discovery and pitch workflow prototype. Further live integration validation may be required.</p><div class="repo-meta"><span class="repo-visibility is-private">Private GitHub repository</span><span class="mono repo-owner">J-Work0516</span></div><a class="repo-source-link" href="https://github.com/J-Work0516/SYWTC-Pitching-Agent" target="_blank" rel="noopener noreferrer" aria-label="Open Pitching Agent repository on GitHub (private)">Open repository on GitHub <span aria-hidden="true">↗</span></a><small class="repo-caution">Private repository. Only authorized GitHub accounts can view the source.</small></div></details></article>
+<article class="trial-card reveal"><span class="mono trial-number">05 / Offer strategy</span><div class="trial-thumb trial-offer" aria-hidden="true"><span class="trial-thumb-symbol">◇</span><div class="trial-thumb-content"><span class="trial-thumb-label">WORKFLOW CONCEPT</span><span class="trial-thumb-line"></span><span class="trial-thumb-line short"></span></div><span class="trial-thumb-arrow">↗</span></div><h3>Offer & Pricing Agent</h3><p>Prototyped offer-generation and pricing support using cost and margin logic. Full Base44 deployment and production validation remained unverified.</p><div class="tags"><span class="tag">Pricing logic</span><span class="tag">Offer design</span><span class="tag">AI</span></div><details class="trial-project-details"><summary>Explore project <span aria-hidden="true">↗</span></summary><div class="trial-project-body"><p>Offer generation and pricing support prototype; deployment and production behavior were not fully verified.</p><div class="repo-meta"><span class="repo-visibility is-private">Private GitHub repository</span><span class="mono repo-owner">J-Work0516</span></div><a class="repo-source-link" href="https://github.com/J-Work0516/SYWTC-Offer-and-Pricing-Agent" target="_blank" rel="noopener noreferrer" aria-label="Open Offer & Pricing Agent repository on GitHub (private)">Open repository on GitHub <span aria-hidden="true">↗</span></a><small class="repo-caution">Private repository. Only authorized GitHub accounts can view the source.</small></div></details></article>
+<article class="trial-card reveal"><span class="mono trial-number">06 / Content intelligence</span><div class="trial-thumb trial-webinar" aria-hidden="true"><span class="trial-thumb-symbol">▤</span><div class="trial-thumb-content"><span class="trial-thumb-label">WORKFLOW CONCEPT</span><span class="trial-thumb-line"></span><span class="trial-thumb-line short"></span></div><span class="trial-thumb-arrow">↗</span></div><h3>Webinar Critique & Builder</h3><p>Explored webinar critique and structured script-building workflows. Final calibration depended on additional authorized transcripts.</p><div class="tags"><span class="tag">Content analysis</span><span class="tag">Script builder</span><span class="tag">AI</span></div><details class="trial-project-details"><summary>Explore project <span aria-hidden="true">↗</span></summary><div class="trial-project-body"><p>Webinar critique and script-building experience; dependent on authorized supplemental training materials.</p><div class="repo-meta"><span class="repo-visibility is-private">Private GitHub repository</span><span class="mono repo-owner">J-Work0516</span></div><a class="repo-source-link" href="https://github.com/J-Work0516/SYWTC-Webinar-Critique-and-Builder" target="_blank" rel="noopener noreferrer" aria-label="Open Webinar Critique & Builder repository on GitHub (private)">Open repository on GitHub <span aria-hidden="true">↗</span></a><small class="repo-caution">Private repository. Only authorized GitHub accounts can view the source.</small></div></details></article>
+</div>
+<div class="tool-panel reveal"><div><span class="mono kicker">Platforms & tools</span><h3>Different tools.<br>One workflow.</h3><p>Tools used, evaluated, or targeted for integrations during the trial. Listing a platform does not imply a fully completed live integration.</p></div><div class="tool-collections"><div><h4>Development & AI assistance</h4><div class="tool-tags"><span>GitHub / Git</span><span>Base44</span><span>Vite</span><span>React</span><span>ChatGPT</span><span>Claude</span></div></div><div><h4>Business tools & integration targets</h4><div class="tool-tags"><span>GoHighLevel</span><span>Asana</span><span>Kartra</span><span>Zapier</span><span>Commas</span><span>Clockify CSV</span></div></div><div><h4>Early exploration</h4><div class="tool-tags"><span>Pickaxe</span></div></div></div></div>
+<p class="trial-note reveal"><strong>Repository access:</strong> These six repositories remain in the original <a href="https://github.com/J-Work0516" target="_blank" rel="noopener noreferrer">J-Work0516 GitHub account</a>. Five are private, and links to them require authorization. No company source code is copied into this personal portfolio.</p>
+<p class="trial-note reveal"><strong>Scope note:</strong> This summary excludes internal company SOPs, confidential data, credentials, and proprietary training content. Some prototypes and integrations were not production-verified.</p>
+</div></section>
+<section class="section wrap" id="credentials"><div class="section-head reveal"><div><span class="mono kicker">07 / Learning & credentials</span><h2 class="section-title">Proof of practice.</h2></div></div><div class="credential-list">
+<div class="credential reveal"><div><strong>BS Information Technology</strong><small>Network Technology</small></div><span class="mono accent">Education</span></div>
+<div class="credential reveal"><div><strong>Computer Systems Servicing NC II</strong><small>TESDA certification</small></div><a href="/assets/certifications/NCII.jpg" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+<div class="credential reveal"><div><strong>freeCodeCamp Python Certification</strong><small>Programming</small></div><a href="/assets/certifications/JCPythonCert.png" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+<div class="credential reveal"><div><strong>Certified Cybersecurity Educator Professional</strong><small>Cybersecurity</small></div><a href="/assets/certifications/CCEP.png" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+<div class="credential reveal"><div><strong>Certified Red Team Operations Management</strong><small>Security operations</small></div><a href="/assets/certifications/CRTOM.png" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+<div class="credential reveal"><div><strong>Certified C++ Practitioner (CCPC)</strong><small>Software development</small></div><a href="/assets/certifications/CCPC.png" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+</div></section>
+<section class="section wrap" id="contact">
+<div class="contact reveal"><span class="mono kicker">08 / What's next?</span>
+<h2>Let's build<br><span class="accent">something useful.</span></h2>
+<p>Interested in working together, discussing an opportunity, or just talking technology? I'd love to hear from you.</p>
+<div class="contact-actions"><a class="btn primary" href="mailto:markcamus06@gmail.com?subject=Portfolio%20inquiry">Start a conversation ↗</a><button class="btn secondary" type="button" id="copyEmail">Copy email <span aria-hidden="true">⧉</span></button><a class="btn secondary" href="https://github.com/Sachibara" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button class="btn secondary" type="button" data-assistant-open aria-haspopup="dialog">Ask the assistant first</button></div>
+<p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p></div>
+</section>
+</main>
+<dialog id="caseStudy" class="portfolio-dialog case-dialog" aria-labelledby="caseTitle"><div class="dialog-inner">
+<div class="dialog-top"><span class="mono kicker" id="caseEyebrow">Selected project</span><button type="button" class="dialog-close" data-close="caseStudy" aria-label="Close case study">✕</button></div>
+<h2 id="caseTitle"></h2><p class="case-lead" id="caseLead"></p>
+<div class="case-detail-grid"><div><span class="mono kicker">The challenge</span><p id="caseChallenge"></p></div><div><span class="mono kicker">The approach</span><p id="caseApproach"></p></div></div>
+<div class="case-result"><span class="mono kicker">What this demonstrates</span><p id="caseOutcome"></p></div>
+<div class="case-tools" id="caseTools"></div><div class="case-actions" id="caseActions"></div>
+</div></dialog>
+<dialog id="assistant" class="portfolio-dialog assistant-dialog" aria-labelledby="assistantTitle">
+<div class="dialog-inner assistant-inner">
+<div class="dialog-top"><div class="ask-card-head"><span class="ask-avatar" aria-hidden="true">JC</span><div><strong id="assistantTitle">Portfolio assistant</strong><small data-assistant-mode>Scripted answers · instant</small></div></div>
+<button type="button" class="dialog-close" data-close="assistant" aria-label="Close assistant">✕</button></div>
+<div class="chat" id="chatLog" role="log" aria-live="polite" aria-label="Conversation"></div>
+<div class="ask-chips" id="chatChips"></div>
+<form class="chat-form" id="chatForm"><label class="sr-only" for="chatInput">Your question</label>
+<input id="chatInput" type="text" maxlength="300" autocomplete="off" placeholder="Ask about projects, skills or experience…">
+<button class="icon-btn" type="button" id="chatMic" aria-label="Ask by voice" title="Ask by voice" hidden>🎙</button>
+<button class="btn primary" type="submit">Ask</button></form>
+<div class="chat-foot"><label class="chat-speak"><input type="checkbox" id="chatSpeak"> Read answers aloud</label><span id="chatNote">Answers are pre-written from this portfolio. For anything else, email me.</span></div>
+</div>
+</dialog>
+<aside class="world-clock" aria-label="Live regional clock" id="worldClock">
+<button class="world-clock-toggle" type="button" id="worldClockToggle" aria-expanded="false" aria-controls="worldClockPanel" aria-label="Show world clock and time zones">
+<span class="clock-pulse" aria-hidden="true"></span><span class="clock-main"><span class="clock-label">EASTERN TIME</span><time id="clockEastern">--:--:--</time></span>
+<span class="clock-divider" aria-hidden="true"></span><span class="clock-main clock-local"><span class="clock-label" id="clockLocalLabel">YOUR LOCAL TIME</span><time id="clockLocal">--:--:--</time></span><span class="clock-chevron" aria-hidden="true">⌃</span>
+</button>
+<div class="world-clock-panel" id="worldClockPanel" hidden>
+<div class="world-clock-heading"><div><span class="mono kicker">Live world clock</span><h2>Where in the world?</h2></div><button type="button" class="clock-close" id="worldClockClose" aria-label="Close world clock">✕</button></div>
+<p class="clock-description">The date, time and DST offset adapt to each region. Based on your device clock.</p>
+<label class="clock-select-label" for="clockZone">Compare a region</label>
+<select id="clockZone" aria-label="Choose a regional time zone">
+<option value="local">My current time zone</option>
+<option value="Asia/Manila">Manila, Philippines</option>
+<option value="America/New_York">New York, USA (Eastern)</option>
+<option value="America/Chicago">Chicago, USA (Central)</option>
+<option value="America/Denver">Denver, USA (Mountain)</option>
+<option value="America/Los_Angeles">Los Angeles, USA (Pacific)</option>
+<option value="America/Toronto">Toronto, Canada</option>
+<option value="Europe/London">London, United Kingdom</option>
+<option value="Europe/Paris">Paris, France</option>
+<option value="Asia/Dubai">Dubai, UAE</option>
+<option value="Asia/Riyadh">Riyadh, Saudi Arabia</option>
+<option value="Asia/Kolkata">Mumbai, India</option>
+<option value="Asia/Singapore">Singapore</option>
+<option value="Asia/Hong_Kong">Hong Kong</option>
+<option value="Asia/Shanghai">Shanghai, China</option>
+<option value="Asia/Tokyo">Tokyo, Japan</option>
+<option value="Australia/Sydney">Sydney, Australia</option>
+<option value="Pacific/Auckland">Auckland, New Zealand</option>
+</select>
+<div class="clock-timecards">
+<div class="clock-timecard"><span class="clock-timecard-title" id="clockRegionTitle">Selected region</span><time id="clockRegionTime">--:--:--</time><span class="clock-timecard-date" id="clockRegionDate">Loading date…</span><span class="clock-timecard-zone" id="clockRegionZone"></span></div>
+<div class="clock-timecard"><span class="clock-timecard-title">New York · Eastern Time</span><time id="clockETTime">--:--:--</time><span class="clock-timecard-date" id="clockETDate">Loading date…</span><span class="clock-timecard-zone" id="clockETZone"></span></div>
+</div>
+<div class="clock-info" id="clockInfo">Your region is detected from your browser's time zone.</div>
+</div>
+</aside>
+<footer class="line footer2">
+<div class="wrap"><div class="wordmark2" aria-hidden="true">JIM CAMUS</div>
+<div class="footer"><span>© <span id="year"></span> Jim Rodmark Camus. Built with purpose.</span>
+<div class="footer-links"><a href="#home">Back to top ↑</a><a href="#work">Work</a><a href="#about">About</a><a href="https://github.com/Sachibara" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="mailto:markcamus06@gmail.com">Email ↗</a></div></div></div>
+</footer>
+<script>
+(function(){
+'use strict';
+var root=document.documentElement,themeButton=document.getElementById('themeToggle'),menuButton=document.getElementById('menuToggle'),menu=document.getElementById('mobileNav');
+function setTheme(mode){root.setAttribute('data-theme',mode);themeButton.textContent=mode==='dark'?'☼':'☾';themeButton.setAttribute('aria-label',mode==='dark'?'Switch to light theme':'Switch to dark theme');try{localStorage.setItem('jim-theme',mode)}catch(e){}}
+var stored=null;try{stored=localStorage.getItem('jim-theme')}catch(e){}
+setTheme(stored==='light'||stored==='dark'?stored:(window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'));
+themeButton.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+menuButton.addEventListener('click',function(){var opened=menu.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(opened));menuButton.setAttribute('aria-label',opened?'Close navigation':'Open navigation')});
+menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');menuButton.setAttribute('aria-expanded','false')})});
+document.getElementById('year').textContent=new Date().getFullYear();
+var filters=document.querySelectorAll('.filter'),cards=document.querySelectorAll('.project');filters.forEach(function(button){button.addEventListener('click',function(){var selected=button.getAttribute('data-filter');filters.forEach(function(b){b.setAttribute('aria-pressed',String(b===button))});cards.forEach(function(card){card.hidden=selected!=='all'&&!card.getAttribute('data-categories').split(' ').includes(selected)})})});
+if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('js-motion');var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)})}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')})}
+
+/* Decorative motion is disabled for reduced-motion users and touch devices. */
+var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+var finePointer=window.matchMedia('(hover: hover) and (pointer: fine)');
+var progress=document.getElementById('scrollProgress');
+var cursor=document.getElementById('cursorGlow');
+var rafScroll=false;
+function updateScrollEffects(){
+  var max=document.documentElement.scrollHeight-window.innerHeight;
+  if(progress)progress.style.transform='scaleX('+(max>0?Math.min(1,Math.max(0,window.scrollY/max)):0)+')';
+  rafScroll=false;
+}
+function requestScrollEffects(){if(!rafScroll){rafScroll=true;window.requestAnimationFrame(updateScrollEffects)}}
+window.addEventListener('scroll',requestScrollEffects,{passive:true});
+window.addEventListener('resize',requestScrollEffects,{passive:true});
+updateScrollEffects();
+var sectionLinks=document.querySelectorAll('.nav-links a[href^="#"]');
+var observedSections=Array.from(sectionLinks).map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
+if('IntersectionObserver' in window){
+  var activeSectionObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){if(entry.isIntersecting){sectionLinks.forEach(function(a){var current=a.getAttribute('href')==='#'+entry.target.id;if(current)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})}})
+  },{rootMargin:'-20% 0px -62% 0px',threshold:0});
+  observedSections.forEach(function(el){activeSectionObserver.observe(el)});
+}
+if(!reduced.matches&&finePointer.matches){
+  var cx=-500,cy=-500,tx=-500,ty=-500,tracking=false;
+  function moveGlow(){
+    cx+=(tx-cx)*.13;cy+=(ty-cy)*.13;
+    cursor.style.transform='translate3d('+(cx-220)+'px,'+(cy-220)+'px,0)';
+    if(tracking&&Math.abs(tx-cx)+Math.abs(ty-cy)>.5)window.requestAnimationFrame(moveGlow);else tracking=false;
+  }
+  window.addEventListener('pointermove',function(e){
+    if(e.pointerType!=='mouse')return;
+    tx=e.clientX;ty=e.clientY;cursor.style.opacity='1';
+    if(!tracking){tracking=true;window.requestAnimationFrame(moveGlow)}
+  },{passive:true});
+  document.addEventListener('mouseleave',function(){cursor.style.opacity='0'});
+  document.querySelectorAll('.project').forEach(function(card){
+    card.addEventListener('pointermove',function(e){
+      var box=card.getBoundingClientRect();
+      card.style.setProperty('--mx',((e.clientX-box.left)/box.width*100).toFixed(1)+'%');
+      card.style.setProperty('--my',((e.clientY-box.top)/box.height*100).toFixed(1)+'%');
+    },{passive:true});
+  });
+  var portrait=document.getElementById('portraitFrame');
+  if(portrait){
+    portrait.addEventListener('pointermove',function(e){
+      var b=portrait.getBoundingClientRect();
+      var x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;
+      portrait.style.transform='perspective(900px) rotateY('+(x*7).toFixed(2)+'deg) rotateX('+(-y*7).toFixed(2)+'deg)';
+    },{passive:true});
+    portrait.addEventListener('pointerleave',function(){portrait.style.transform=''});
+  }
+}
+
+
+/* Accessible project case studies and quick navigation. */
+var projectStudies={
+"CamusOS":{summary:"A unified, independently branded operations studio for planning and managing work.",challenge:"Bring commonly disconnected productivity activities—time logging, work reporting, proposal creation, content review and knowledge capture—into a coherent user experience.",approach:"Built an original responsive Vite application with modular JavaScript, a client-side workspace model, structured drafting tools, local backup and export, a timezone-aware clock, and automated GitHub build and regression checks.",demonstrates:"Product architecture, information design, frontend engineering, domain modeling, accessibility-minded interaction design, and automated deployment. The current MVP uses local browser data and template/heuristic tools; live AI and team integrations are not connected.",tools:["Vite","JavaScript","CSS","GitHub Actions","Vercel","Web Storage"],live:"https://camusos.vercel.app/",source:"https://github.com/Sachibara/CamusOS"},
+"PyreWall":{summary:"A Windows-focused security platform for monitoring and controlling traffic and devices.",challenge:"Translate network security policies into an understandable administrative experience, with visibility into rules, devices, activity and threats.",approach:"Developed a PyQt6-based desktop control surface integrating firewall-related workflows, filtering techniques and history views. A separate browser demonstration presents key interactions for recruiters.",demonstrates:"Network security architecture, desktop application engineering, operational visibility and usable rule management.",tools:["Python","PyQt6","WinDivert","SQLite","Windows Firewall"],live:"/projects/pyrewall-web/",source:"https://github.com/Sachibara/Pyrewall"},
+"OpsFusion":{summary:"An integrated IT operations workspace and employee support portal.",challenge:"Keep internal IT workflows and employee-facing support experiences clearly separated, while tracking requests, assets, access and knowledge.",approach:"Worked with JavaScript, Supabase Auth and database-backed permissions to create separate workflows, service tickets, inventory and assisted knowledge interactions.",demonstrates:"Role-based access controls, service-desk experience, structured data workflows and operational tool design. Some integrations require further validation.",tools:["JavaScript","Supabase","PostgreSQL","Edge Functions"],live:"https://opsfusion-it.vercel.app/",source:"https://github.com/Sachibara/HelpDesk-Pro"},
+"NetOps Enterprise":{summary:"A consolidated network-operations workspace for managing infrastructure information and workflows.",challenge:"Unify previously separate network and infrastructure utilities into one coherent environment for technical operators.",approach:"Combined concepts for topology, inventories, IP address management, monitoring, configuration backups, troubleshooting and incident histories.",demonstrates:"Network operations domain knowledge, system consolidation, infrastructure workflows and modular application thinking.",tools:["JavaScript","Python","FastAPI","Supabase"],live:"https://netops-enterprise.vercel.app/",source:"https://github.com/Sachibara/NetOps-Command-Center"},
+"StudySync":{summary:"A student-focused academic collaboration and productivity platform.",challenge:"Provide a shared place for students and educators to organize work and communicate.",approach:"Designed collaborative flows for classes, calendars, groups, task progress, files and messaging, using Python desktop development and Supabase-backed data.",demonstrates:"Product thinking, collaboration workflows, interface design and cross-platform application development.",tools:["Python","PyQt6","Supabase","JavaScript"],live:"https://studysync-remod-demo.vercel.app/"},
+"OmniShare":{summary:"A streamlined browser-based file-sharing experience.",challenge:"Make sending and managing shared files easy to understand, without unnecessary interface complexity.",approach:"Built an approachable web interface with upload, sharing and file-state flows.",demonstrates:"Frontend implementation, user experience design and clear interaction patterns.",tools:["HTML","CSS","JavaScript"],live:"https://finalomnishare.vercel.app/",source:"https://github.com/Sachibara/final_omnishare"}
+};
+var caseDialog=document.getElementById('caseStudy');
+function insertText(id,value){document.getElementById(id).textContent=value}
+function openCaseStudy(name){
+var data=projectStudies[name];if(!data||!caseDialog)return;
+insertText('caseTitle',name);insertText('caseLead',data.summary);
+insertText('caseChallenge',data.challenge);insertText('caseApproach',data.approach);insertText('caseOutcome',data.demonstrates);
+var toolsBox=document.getElementById('caseTools');toolsBox.replaceChildren();
+data.tools.forEach(function(t){var item=document.createElement('span');item.textContent=t;toolsBox.appendChild(item)});
+var actions=document.getElementById('caseActions');actions.replaceChildren();
+function link(label,url){var a=document.createElement('a');a.textContent=label+' ↗';a.href=url;a.className='btn secondary';if(/^https?:/.test(url)){a.target='_blank';a.rel='noopener noreferrer'}actions.appendChild(a)}
+link('Explore project',data.live);if(data.source)link('View repository',data.source);
+caseDialog.showModal();
+}
+document.querySelectorAll('[data-case]').forEach(function(btn){btn.addEventListener('click',function(){openCaseStudy(btn.dataset.case)})});
+document.querySelectorAll('[data-close]').forEach(function(btn){btn.addEventListener('click',function(){var dialog=document.getElementById(btn.dataset.close);if(dialog)dialog.close()})});
+document.querySelectorAll('dialog.portfolio-dialog').forEach(function(dialog){
+dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close()})
+});
+var count=document.getElementById('projectCount');
+document.querySelectorAll('.filter').forEach(function(btn){btn.addEventListener('click',function(){if(count){var shown=Array.from(document.querySelectorAll('.project')).filter(function(card){return !card.hidden}).length;count.textContent=shown+' '+(shown===1?'project':'projects')}})});
+var copy=document.getElementById('copyEmail');
+if(copy){copy.addEventListener('click',function(){
+var email='markcamus06@gmail.com';var status=document.getElementById('copyStatus');
+if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(email).then(function(){status.textContent='Email copied: '+email}).catch(function(){status.textContent='Copy unavailable — email: '+email})}
+else status.textContent='Email: '+email;
+})}
+
+
+/* World clock uses IANA time zones and Intl.DateTimeFormat.
+   New Date() obtains current device time; formatting converts the same instant
+   into each selected region, automatically accounting for DST and date boundaries. */
+(function initWorldClock(){
+var root=document.getElementById('worldClock');
+if(!root||!window.Intl||!Intl.DateTimeFormat)return;
+var toggle=document.getElementById('worldClockToggle');
+var panel=document.getElementById('worldClockPanel');
+var close=document.getElementById('worldClockClose');
+var zoneSelect=document.getElementById('clockZone');
+var localTime=document.getElementById('clockLocal');
+var easternTime=document.getElementById('clockEastern');
+var formatters=new Map();
+var browserZone;
+try{browserZone=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';new Intl.DateTimeFormat('en-US',{timeZone:browserZone})}catch(e){browserZone='UTC'}
+document.getElementById('clockLocalLabel').textContent=browserZone.split('/').pop().replace(/_/g,' ').toUpperCase();
+var targetZone=browserZone;
+function getFormatter(zone,kind){
+var key=zone+'|'+kind;
+if(formatters.has(key))return formatters.get(key);
+var options=kind==='time'?{timeZone:zone,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}:kind==='date'?{timeZone:zone,weekday:'short',month:'short',day:'numeric',year:'numeric'}:{timeZone:zone,timeZoneName:'shortOffset',hour:'numeric'};
+var formatter=new Intl.DateTimeFormat('en-US',options);
+formatters.set(key,formatter);
+return formatter;
+}
+function shortOffset(zone,now){
+try{var parts=getFormatter(zone,'offset').formatToParts(now);return (parts.find(function(p){return p.type==='timeZoneName'})||{value:zone}).value}catch(e){return zone}
+}
+function zoneLabel(zone){
+return zone.split('/').pop().replace(/_/g,' ');
+}
+function renderClock(){
+var now=new Date();
+var et='America/New_York';
+try{
+var localText=getFormatter(browserZone,'time').format(now);
+var eastText=getFormatter(et,'time').format(now);
+var chosenText=getFormatter(targetZone,'time').format(now);
+localTime.textContent=localText;easternTime.textContent=eastText;
+localTime.dateTime=now.toISOString();easternTime.dateTime=now.toISOString();
+document.getElementById('clockRegionTime').textContent=chosenText;
+document.getElementById('clockETTime').textContent=eastText;
+document.getElementById('clockRegionDate').textContent=getFormatter(targetZone,'date').format(now);
+document.getElementById('clockETDate').textContent=getFormatter(et,'date').format(now);
+document.getElementById('clockRegionZone').textContent=targetZone+' · '+shortOffset(targetZone,now);
+document.getElementById('clockETZone').textContent=et+' · '+shortOffset(et,now);
+document.getElementById('clockRegionTitle').textContent=targetZone===browserZone?'Your local region':zoneLabel(targetZone);
+root.title='Eastern: '+getFormatter(et,'date').format(now)+' '+eastText+' ('+shortOffset(et,now)+') · Local: '+getFormatter(browserZone,'date').format(now)+' '+localText;
+}catch(error){document.getElementById('clockInfo').textContent='Time zone formatting is unavailable in this browser.'}
+}
+function openPanel(){panel.hidden=false;toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Hide world clock and time zones');zoneSelect.focus();renderClock()}
+function closePanel(restoreFocus){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Show world clock and time zones');if(restoreFocus)toggle.focus()}
+toggle.addEventListener('click',function(){panel.hidden?openPanel():closePanel(false)});
+close.addEventListener('click',function(){closePanel(true)});
+document.addEventListener('pointerdown',function(e){if(!root.contains(e.target)&&!panel.hidden)closePanel(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden){e.stopPropagation();closePanel(true)}});
+zoneSelect.addEventListener('change',function(){targetZone=this.value==='local'?browserZone:this.value;renderClock()});
+document.getElementById('clockInfo').textContent='Detected local time zone: '+browserZone+'. Times follow your device clock; each region uses its own daylight saving rules.';
+renderClock();
+var tick=setInterval(renderClock,1000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)renderClock()});
+window.addEventListener('pageshow',renderClock);
+})();
+
+
+
+/* Pull statement: words brighten as the block scrolls into view. */
+(function initPullText(){
+var el=document.getElementById('pullText');if(!el)return;
+var motion=document.documentElement.classList.contains('js-motion');
+if(!motion)return;
+var words=[];
+Array.from(el.childNodes).forEach(function(node){
+  if(node.nodeType===3){
+    var frag=document.createDocumentFragment();
+    node.textContent.split(/(\s+)/).forEach(function(part){
+      if(!part)return;
+      if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(part));return}
+      var s=document.createElement('span');s.className='w';s.textContent=part;frag.appendChild(s);words.push(s);
+    });
+    el.replaceChild(frag,node);
+  }else if(node.nodeType===1){node.classList.add('w');words.push(node)}
+});
+function paint(){
+  var box=el.getBoundingClientRect(),vh=window.innerHeight;
+  var t=Math.min(1,Math.max(0,(vh*.82-box.top)/(box.height+vh*.34)));
+  var lit=Math.round(t*words.length);
+  words.forEach(function(w,i){w.classList.toggle('on',i<lit)});
+}
+window.addEventListener('scroll',paint,{passive:true});window.addEventListener('resize',paint,{passive:true});paint();
+})();
+
+/* Portfolio assistant.
+   Default: pre-written answers matched by keyword, entirely in the browser.
+   Optional: if the site's /api/ask endpoint reports it is configured, questions
+   are answered by an AI model that is restricted to this portfolio's facts.
+   Voice input and read-aloud use the browser's built-in speech features. */
+(function initAssistant(){
+var dialog=document.getElementById('assistant');if(!dialog||!dialog.showModal)return;
+var log=document.getElementById('chatLog'),form=document.getElementById('chatForm'),input=document.getElementById('chatInput');
+var chips=document.getElementById('chatChips'),note=document.getElementById('chatNote'),speak=document.getElementById('chatSpeak'),mic=document.getElementById('chatMic');
+var EMAIL='markcamus06@gmail.com';
+var ai={checked:false,enabled:false};
+var names=Object.keys(projectStudies);
+function projectAnswer(name){var p=projectStudies[name];return name+': '+p.summary+' '+p.demonstrates+' Built with '+p.tools.join(', ')+'.'}
+var topics=[
+ {keys:['what do you do','who are you','about you','yourself','introduce','summary'],a:'I’m Jim Rodmark Camus, an IT professional and software developer. I work across network infrastructure, cybersecurity, AI workflows and practical business applications, and I focus on turning complex requirements into clear, usable systems.'},
+ {keys:['which project','first','best project','start with','recommend','flagship'],a:'Start with CamusOS, the newest flagship: a live operations workspace built with Vite. For network work open NetOps Enterprise, for IT service operations OpsFusion, and for security PyreWall. Each card in the Work section has a case study.'},
+ {keys:['experience','work history','job','worked','career','intern','concentrix','freelance'],a:'Three roles: AI Engineer on a paid trial with Speak Your Way To Cash® in 2026 (prototypes, AI agent workflows, dashboards and integration planning); IT Network Support Intern at Concentrix; and freelance full-stack development and IT services.'},
+ {keys:['trial','sywtc','speak your way','ai engineer','prototype'],a:'In the 2026 AI Engineering Trial with Speak Your Way To Cash® I worked on six workflow prototypes: an AI Command Center, Team Time Tracker, CEO Dashboard, Pitching Agent, Offer & Pricing Agent, and a Webinar Critique & Builder. Some integrations were not production-verified, and no company code or confidential data is shown here.'},
+ {keys:['credential','certif','degree','education','study','graduate','school'],a:'BS Information Technology (Network Technology); Computer Systems Servicing NC II (TESDA); freeCodeCamp Python Certification; Certified Cybersecurity Educator Professional; Certified Red Team Operations Management; and Certified C++ Practitioner (CCPC).'},
+ {keys:['skill','stack','tools','technolog','language','framework','python','javascript','supabase'],a:'Networking and infrastructure (TCP/IP, routing and switching, monitoring); cybersecurity (firewall design, filtering, access controls); software (Python, JavaScript, HTML, CSS, PyQt6, Flask, FastAPI, SQL); cloud and backend (Supabase, PostgreSQL, authentication, REST APIs, Vercel); and AI-assisted workflows and integrations.'},
+ {keys:['contact','email','reach','hire','message','talk to you','get in touch'],a:'Email is best: '+EMAIL+'. My code is on GitHub at github.com/Sachibara. There is a Copy email button in the Contact section.'},
+ {keys:['available','availability','open to','looking for','location','where are you','based','timezone','time zone','remote'],a:'I’m based in the Philippines (GMT+8), work remotely, and I’m open to opportunities. The clock at the bottom-left compares my time with yours.'},
+ {keys:['network','noc','ipam','topology'],a:projectAnswer('NetOps Enterprise')},
+ {keys:['security','firewall','cyber'],a:projectAnswer('PyreWall')},
+ {keys:['help desk','helpdesk','service desk','ticket','itsm'],a:projectAnswer('OpsFusion')},
+ {keys:['file','sharing','upload'],a:projectAnswer('OmniShare')}
+];
+function scripted(question){
+  var q=' '+question.toLowerCase().replace(/[^a-z0-9+#.\s]/g,' ')+' ';
+  for(var i=0;i<names.length;i++){if(q.indexOf(names[i].toLowerCase())>-1||q.indexOf(names[i].toLowerCase().replace(/\s+/g,''))>-1)return projectAnswer(names[i])}
+  var best=null,score=0;
+  topics.forEach(function(t){var s=0;t.keys.forEach(function(k){if(q.indexOf(k)>-1)s+=k.length});if(s>score){score=s;best=t}});
+  return best?best.a:'I don’t have a prepared answer for that. Try one of the suggested questions, or email me at '+EMAIL+' and I’ll answer personally.';
+}
+function add(text,who,label){
+  var m=document.createElement('div');m.className='msg'+(who==='me'?' me':'')+(who==='wait'?' wait':'');
+  if(label){var s=document.createElement('small');s.textContent=label;m.appendChild(s)}
+  m.appendChild(document.createTextNode(text));log.appendChild(m);log.scrollTop=log.scrollHeight;return m;
+}
+function say(text){
+  if(!speak.checked||!('speechSynthesis' in window))return;
+  try{window.speechSynthesis.cancel();window.speechSynthesis.speak(new SpeechSynthesisUtterance(text))}catch(e){}
+}
+function setMode(){
+  document.querySelectorAll('[data-assistant-mode]').forEach(function(el){el.textContent=ai.enabled?'AI answers · portfolio facts only':'Scripted answers · instant'});
+  note.textContent=ai.enabled?'Questions are sent to an AI model (Google Gemini) to write the answer. Please don’t include private information.':'Answers are pre-written from this portfolio. For anything else, email me.';
+}
+function checkAi(){
+  if(ai.checked)return Promise.resolve();ai.checked=true;
+  if(!window.fetch||location.protocol==='file:')return Promise.resolve();
+  return fetch('/api/ask',{method:'GET',headers:{'Accept':'application/json'}}).then(function(r){return r.ok?r.json():null}).then(function(d){ai.enabled=!!(d&&d.enabled===true);setMode()}).catch(function(){});
+}
+var busy=false;
+function ask(question){
+  question=String(question||'').trim().slice(0,300);if(!question||busy)return;
+  add(question,'me');input.value='';
+  if(!ai.enabled){var a=scripted(question);add(a,'bot','Scripted answer');say(a);return}
+  busy=true;var wait=add('Thinking…','wait');
+  fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:question})})
+   .then(function(r){return r.ok?r.json():Promise.reject(new Error('unavailable'))})
+   .then(function(d){if(!d||typeof d.answer!=='string'||!d.answer.trim())throw new Error('empty');wait.remove();add(d.answer.trim(),'bot','AI answer');say(d.answer.trim())})
+   .catch(function(){wait.remove();var a=scripted(question);add(a,'bot','Scripted answer · AI unavailable');say(a)})
+   .then(function(){busy=false});
+}
+['What do you do?','Which project should I look at first?','What is CamusOS?','What is your experience?','What credentials do you have?','How can I contact you?'].forEach(function(q){
+  var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=q;b.addEventListener('click',function(){ask(q)});chips.appendChild(b);
+});
+function open(question){
+  if(!dialog.open){dialog.showModal()}
+  if(!log.childNodes.length)add('Hi, I’m Jim’s portfolio assistant. Ask about his projects, skills, experience or how to reach him.','bot');
+  checkAi().then(function(){if(question)ask(question);else input.focus()});
+}
+document.querySelectorAll('[data-assistant-open]').forEach(function(b){b.addEventListener('click',function(){open()})});
+document.querySelectorAll('[data-ask]').forEach(function(b){b.addEventListener('click',function(){open(b.getAttribute('data-ask'))})});
+form.addEventListener('submit',function(e){e.preventDefault();ask(input.value)});
+dialog.addEventListener('close',function(){if('speechSynthesis' in window)try{window.speechSynthesis.cancel()}catch(e){}});
+if(!('speechSynthesis' in window)){speak.closest('label').hidden=true}
+var Rec=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(Rec){
+  mic.hidden=false;var rec=null;
+  mic.addEventListener('click',function(){
+    if(rec){rec.stop();return}
+    try{rec=new Rec();rec.lang='en-US';rec.interimResults=false;rec.maxAlternatives=1}catch(e){rec=null;return}
+    mic.classList.add('rec');mic.setAttribute('aria-label','Stop listening');
+    rec.onresult=function(ev){var text=ev.results&&ev.results[0]&&ev.results[0][0]?ev.results[0][0].transcript:'';if(text)ask(text)};
+    rec.onend=rec.onerror=function(){mic.classList.remove('rec');mic.setAttribute('aria-label','Ask by voice');rec=null};
+    try{rec.start()}catch(e){rec=null;mic.classList.remove('rec')}
+  });
+}
+setMode();
+})();
+
+})();
+</script>
+</body>
+</html>

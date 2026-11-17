@@ -16,3 +16,7 @@ jobs:
           node-version: '22'
       - name: Verify portfolio
         run: node scripts/check-portfolio.mjs
+      - name: Verify layout preview
+        run: node scripts/check-next.mjs
+      - name: Verify assistant backend
+        run: node scripts/check-assistant.mjs
