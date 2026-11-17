@@ -15,5 +15,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/next",
+      "destination": "/",
+      "permanent": false
+    }
   ]
 }

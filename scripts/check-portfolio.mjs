@@ -28,7 +28,7 @@ for(const tag of ['header','main','footer','nav','section','article','div','span
  const ends=(html.match(new RegExp('</'+tag+'>','g'))||[]).length;
  assert.equal(starts,ends,'Unbalanced <'+tag+'> tags');
 }
-for(const name of ['work','about','experience','sywtc','skills','credentials','contact','siteSearch','caseStudy']){
+for(const name of ['work','about','experience','sywtc','skills','credentials','contact','services','caseStudy','assistant']){
  assert(unique.has(name),'Missing expected section or dialog: '+name);
 }
 assert(html.includes('prefers-reduced-motion'),'Reduced-motion styles not found');

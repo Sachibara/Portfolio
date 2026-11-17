@@ -114,9 +114,9 @@ A browser-based file-sharing product focused on streamlined upload, sharing, and
 
 ---
 
-## Layout preview (`/next`)
+## Homepage layout
 
-A redesigned homepage lives at `/next` so it can be reviewed before it replaces the current one. It keeps the same content and lime identity, with a larger headline hero, numbered project cards with counted filter tabs, metric blocks, skills that link to the builds they were used in, and a footer wordmark. It is marked `noindex`, and the Ctrl+K search is not part of it.
+The homepage uses a large headline hero, numbered project cards with counted filter tabs, metric blocks, skills that link to the builds they were used in, a pull statement and a footer wordmark, in the portfolio's lime identity. The earlier `/next` preview address redirects to the homepage.
 
 **Portfolio assistant.** The preview has an "Ask about my work" panel.
 
@@ -124,7 +124,7 @@ A redesigned homepage lives at `/next` so it can be reviewed before it replaces 
 - Optional AI mode: add a `GEMINI_API_KEY` environment variable to the Vercel project (and redeploy). `api/ask.js` then answers through Google's Gemini API, restricted to the portfolio facts written in that file. The key stays on the server; the endpoint only accepts requests from this site and limits each address to 8 questions a minute. `GEMINI_MODEL` overrides the model name.
 - Voice input and read-aloud use the browser's built-in speech features where available.
 
-Checks: `node scripts/check-next.mjs` and `node scripts/check-assistant.mjs` (the latter uses a fake Gemini, so it runs offline).
+Checks: `node scripts/check-portfolio.mjs` and `node scripts/check-assistant.mjs` (the latter uses a fake Gemini, so it runs offline).
 
 ## Portfolio Strategy
 
