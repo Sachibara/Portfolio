@@ -146,33 +146,15 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 .nav-links{gap:22px}
 .nav-ask{min-height:40px;padding:0 15px;font-size:13px;border-radius:11px}
 
-/* Hero */
-.hero2{padding:54px 0 84px;position:relative}
-.hero2-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid var(--line)}
-.hero2-id,.hero2-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.avail{display:inline-flex;align-items:center;gap:10px;padding:7px 13px 7px 12px;border:1px solid color-mix(in srgb,var(--accent) 38%,var(--line));border-radius:999px;background:color-mix(in srgb,var(--accent) 9%,transparent);font-size:12.5px;font-weight:600}
-.hero2-headline{margin:26px 0 0;font:600 clamp(64px,13.4vw,196px)/.86 "Space Grotesk",sans-serif;letter-spacing:-.075em;text-wrap:balance}
-.hero2-headline .headline-line{display:block;overflow:hidden;padding-bottom:.06em}
-.hero2-headline .headline-line>span{display:block}
-.hero2-headline em{font-style:normal;color:var(--accent)}
-.hero2-stats{margin:22px 0 0;padding-bottom:26px;border-bottom:1px solid var(--line);color:var(--muted);letter-spacing:.08em}
-.hero2-stats b{color:var(--ink);font-weight:500}
-.hero2-stats i{font-style:normal;color:var(--accent);margin:0 8px}
-.hero2-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(220px,.62fr) minmax(260px,.82fr);gap:clamp(22px,3.4vw,48px);align-items:start;margin-top:38px}
-.hero2-copy .hero-copy{max-width:520px;margin:0 0 26px}
-.hero2-copy .hero-aside{display:flex;align-items:center;gap:10px;margin-top:34px;color:var(--muted)}
-.hero2 .portrait-frame{height:clamp(280px,27vw,400px);border-radius:150px 150px 22px 22px}
-.ask-card{padding:22px;border:1px solid var(--line);border-radius:22px;background:radial-gradient(circle at 100% 0,color-mix(in srgb,var(--accent) 11%,transparent),transparent 46%),var(--panel)}
+/* Assistant identity (used by the assistant dialog) */
 .ask-card-head{display:flex;align-items:center;gap:12px;margin:14px 0 12px}
 .ask-avatar{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:13px;background:var(--accent);color:var(--bg);font:700 15px "Space Grotesk",sans-serif}
 .ask-card-head strong{display:block;font:600 16px/1.2 "Space Grotesk",sans-serif;letter-spacing:-.03em}
 .ask-card-head small{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
 .ask-card-head small::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
-.ask-card>p{margin:0 0 14px;font-size:14px;color:var(--muted)}
 .ask-chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);font-size:12.5px;transition:border-color .2s,color .2s,background .2s}
 .chip:hover{border-color:var(--accent);color:var(--accent)}
-.ask-open{width:100%;margin-top:16px;min-height:46px}
 
 /* Work */
 .filter{display:inline-flex;align-items:center;gap:9px}
@@ -259,8 +241,6 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 @media(max-width:1180px){
   .nav-links{gap:16px}
   .brand2-text small{display:none}
-  .hero2-grid{grid-template-columns:minmax(0,1fr) minmax(200px,.6fr)}
-  .ask-card{grid-column:1/-1}
   .svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .svc:nth-child(2n){border-right:0}
   .svc:nth-child(-n+2){border-bottom:1px solid var(--line)}
@@ -271,10 +251,6 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
   .about2{grid-template-columns:1fr}
 }
 @media(max-width:700px){
-  .hero2{padding:34px 0 60px}
-  .hero2-grid{grid-template-columns:1fr}
-  .hero2 .hero-portrait{max-width:300px}
-  .hero2-copy .hero-aside{display:none}
   .svc-grid,.skill2-grid{grid-template-columns:1fr}
   .svc{border-right:0;border-bottom:1px solid var(--line)}
   .svc:last-child{border-bottom:0}
@@ -283,7 +259,6 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
   .msg{max-width:94%}
 }
 @media(prefers-reduced-motion:reduce){.skill2,.svc,.chip{transition:none}}
-.hero2 .portrait-caption{font-size:9px;letter-spacing:.06em;gap:8px}
 
 </style>
 </head>
@@ -308,31 +283,12 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 </nav>
 </header>
 <main id="main">
-<section class="hero2 wrap" id="home">
-<div class="hero2-top hero-enter hero-enter-1">
-<div class="hero2-id"><span class="mono muted">Jim Rodmark Camus</span><span class="mono accent">Networks · Security · Software · AI engineering</span></div>
-<div class="hero2-meta"><span class="mono muted">Philippines · GMT+8 · Remote</span><span class="avail"><span class="live-dot" aria-hidden="true"></span>Open to opportunities</span></div>
-</div>
-<h1 class="hero2-headline"><span class="sr-only">Jim Camus. </span><span class="headline-line"><span>Engineering</span></span><span class="headline-line"><span><em>impact.</em></span></span></h1>
-<p class="hero2-stats mono hero-enter hero-enter-2"><b>06</b> shipped projects <i>·</i> <b>06</b> AI workflow prototypes <i>·</i> <b>06</b> credentials</p>
-<div class="hero2-grid">
-<div class="hero2-copy hero-enter hero-enter-3">
-<p class="hero-copy">I’m <strong>Jim Rodmark Camus</strong>, an IT professional and software developer working across network infrastructure, cybersecurity, AI workflows, and practical business applications. I turn complex requirements into clear, usable systems.</p>
-<div class="hero-actions"><a class="btn primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#contact">Let’s connect <span aria-hidden="true">↗</span></a></div>
-<div class="hero-aside"><span class="scroll-icon" aria-hidden="true">↓</span><span class="mono">Scroll</span></div>
-</div>
-<div class="hero-portrait hero-enter hero-enter-2">
-<div class="portrait-frame" id="portraitFrame"><picture><source type="image/webp" srcset="/assets/profile/ghost-480.webp 480w, /assets/profile/ghost-960.webp 960w" sizes="(max-width: 820px) 82vw, 360px"><img src="/assets/profile/Ghost.png" alt="Portrait of Jim Rodmark Camus" width="1500" height="2100" decoding="async" fetchpriority="high" onerror="this.style.display='none'" /></picture><span class="portrait-fallback" aria-hidden="true">JC.</span></div>
-<div class="portrait-caption mono"><span>PERSONAL PROFILE</span><span>PHILIPPINES · REMOTE</span></div>
-</div>
-<aside class="ask-card hero-enter hero-enter-4" aria-labelledby="askCardTitle">
-<span class="mono kicker">Ask about my work</span>
-<div class="ask-card-head"><span class="ask-avatar" aria-hidden="true">JC</span><div><strong id="askCardTitle">Portfolio assistant</strong><small data-assistant-mode>Scripted answers · instant</small></div></div>
-<p>Pick a question and get a short answer drawn from this portfolio.</p>
-<div class="ask-chips"><button type="button" class="chip" data-ask="What do you do?">What do you do?</button><button type="button" class="chip" data-ask="Which project should I look at first?">Which project first?</button><button type="button" class="chip" data-ask="What is OpsFusion?">What is OpsFusion?</button></div>
-<button class="btn secondary ask-open" type="button" data-assistant-open aria-haspopup="dialog">Open the assistant <span aria-hidden="true">↗</span></button>
-</aside>
-</div>
+<section class="hero wrap" id="home">
+<div class="hero-top mono muted hero-enter hero-enter-1"><span class="live-dot" aria-hidden="true"></span>NETWORKS · SECURITY · SOFTWARE · AI ENGINEERING</div>
+<div class="hero-layout"><div class="hero-intro"><h1 class="hero-headline"><span class="headline-line"><span>Jim Camus.</span></span><span class="headline-line"><span><em>Engineering impact.</em></span></span></h1>
+<div class="hero-bottom"><div><p class="hero-copy hero-enter hero-enter-3">I’m <strong>Jim Rodmark Camus</strong>, an IT professional and software developer working across network infrastructure, cybersecurity, AI workflows, and practical business applications. I turn complex requirements into clear, usable systems.</p>
+<div class="hero-actions hero-enter hero-enter-4"><a class="btn primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#contact">Let’s connect <span aria-hidden="true">↗</span></a></div></div>
+<div class="hero-aside"><span class="scroll-icon" aria-hidden="true">↓</span><span class="mono">Scroll to explore</span></div></div></div><div class="hero-portrait hero-enter hero-enter-2"><div class="portrait-frame" id="portraitFrame"><picture><source type="image/webp" srcset="assets/profile/ghost-480.webp 480w, assets/profile/ghost-960.webp 960w" sizes="(max-width: 820px) 82vw, 400px"><img src="assets/profile/Ghost.png" alt="Portrait of Jim Rodmark Camus" width="1500" height="2100" decoding="async" fetchpriority="high" onerror="this.style.display='none'" /></picture><span class="portrait-fallback" aria-hidden="true">JC.</span></div><div class="portrait-caption mono"><span>PERSONAL PROFILE</span><span>PHILIPPINES · REMOTE</span></div></div></div>
 </section>
 <div class="ticker" aria-label="Specialties"><div class="ticker-track">
 <span class="ticker-item">NETWORK OPERATIONS <b>✳</b></span><span class="ticker-item">CYBERSECURITY <b>✳</b></span><span class="ticker-item">SOFTWARE ENGINEERING <b>✳</b></span><span class="ticker-item">AI & AUTOMATION <b>✳</b></span><span class="ticker-item">IT INFRASTRUCTURE <b>✳</b></span>
