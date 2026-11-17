@@ -17,7 +17,7 @@ Education: BS Information Technology, specialising in Network Technology.
 Contact: markcamus06@gmail.com. GitHub: https://github.com/Sachibara. Portfolio: https://jimcamus.vercel.app/
 
 Experience:
-- AI Engineer, paid trial, 2026, Speak Your Way To Cash: prototypes and workflows spanning a command center, AI agents, team operations, dashboards, automation and integration planning. Six prototypes: AI Command Center, Team Time Tracker, CEO Dashboard, Pitching Agent, Offer & Pricing Agent, Webinar Critique & Builder. Some integrations were not production-verified; no company code or confidential data is public.
+- AI Engineer (Contractual), 2026, Speak Your Way To Cash: prototypes and workflows spanning a command center, AI agents, team operations, dashboards, automation and integration planning. Six prototypes: AI Command Center, Team Time Tracker, CEO Dashboard, Pitching Agent, Offer & Pricing Agent, Webinar Critique & Builder. Some integrations were not production-verified; no company code or confidential data is public.
 - IT Network Support Intern, Concentrix: IT support exposure, troubleshooting and network-focused technical operations.
 - Freelance Full-Stack Developer & IT Services: practical software solutions and technical operations support.
 
