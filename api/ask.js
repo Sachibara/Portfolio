@@ -9,9 +9,9 @@
 // The key never reaches the browser.
 
 const PROFILE = `
-Name: Jim Rodmark Camus. Role: IT professional and software developer.
+Name: Jim Rodmark Camus. Role: AI engineer and full-stack developer, with a foundation in IT network support and cybersecurity.
 Location: Philippines (GMT+8), works remotely. Open to opportunities.
-Focus: network infrastructure, cybersecurity, AI workflows, practical business applications.
+Focus: AI-powered business tools and agents, web applications, network infrastructure and cybersecurity.
 Principle: turn complex requirements into clear, usable systems.
 Education: BS Information Technology, specialising in Network Technology.
 Contact: markcamus06@gmail.com. GitHub: https://github.com/Sachibara. Portfolio: https://jimcamus.vercel.app/
