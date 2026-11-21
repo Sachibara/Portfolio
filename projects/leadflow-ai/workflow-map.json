@@ -1,0 +1,53 @@
+{
+  "title": "LeadFlow AI — Smart Business Lead Engine",
+  "provenance": "Sanitized high-level summary of a private Zapier export; not an importable Zap",
+  "exported_nodes": 19,
+  "entry_point": "Zapier Interfaces form submission",
+  "pipeline": [
+    "Validate form email",
+    "AI-assisted lead qualification",
+    "Zapier Tables lookup",
+    "Zapier Tables update",
+    "Conditional branching"
+  ],
+  "routing": [
+    {
+      "path": "A",
+      "when": "priority = Hot",
+      "actions": [
+        "Slack direct message",
+        "Zapier Tables update"
+      ]
+    },
+    {
+      "path": "B",
+      "when": "priority = Warm",
+      "actions": [
+        "AI-assisted email draft",
+        "Zapier Tables update",
+        "Gmail draft"
+      ]
+    },
+    {
+      "path": "C",
+      "when": "priority = Cold",
+      "actions": [
+        "Zapier Tables update"
+      ]
+    },
+    {
+      "path": "D",
+      "when": "needs_human_review = true",
+      "actions": [
+        "Zapier Tables update",
+        "Zapier Mail notification"
+      ]
+    }
+  ],
+  "published_demo": {
+    "mode": "client-side deterministic simulation",
+    "external_api_calls": 0,
+    "uses_real_customer_data": false,
+    "auth_credentials_included": false
+  }
+}
