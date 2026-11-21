@@ -58,3 +58,17 @@ assert.equal(offset('2026-11-01T06:00:00Z','America/New_York'),'GMT-5');
 assert.deepEqual(parts('2026-11-14T16:30:00Z','Asia/Manila'),{day:'15',month:'11',year:'2026',hour:'00',minute:'30'});
 assert.deepEqual(parts('2026-01-01T14:00:00Z','Australia/Sydney'),{day:'02',month:'01',year:'2026',hour:'01',minute:'00'});
 console.log('World clock DST, regional offset and calendar rollover checks passed.');
+
+
+const leadflowRoot=path.join(root,'projects/leadflow-ai');
+const leadflowPage=fs.readFileSync(path.join(leadflowRoot,'index.html'),'utf8');
+const leadflowMap=JSON.parse(fs.readFileSync(path.join(leadflowRoot,'workflow-map.json'),'utf8'));
+assert.equal(leadflowMap.exported_nodes,19,'LeadFlow documented workflow node count');
+assert.deepEqual(leadflowMap.routing.map(item=>item.path),['A','B','C','D'],'LeadFlow paths');
+for(const required of ['id="leadForm"','id="leadScenario"','id="resultBody"','data-example="hot"','data-example="warm"','data-example="cold"','data-example="review"'])assert(leadflowPage.includes(required),'LeadFlow interaction missing: '+required);
+const leadflowScripts=Array.from(leadflowPage.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g),m=>m[1]);
+assert.equal(leadflowScripts.length,1,'Expected one LeadFlow demo script');
+for(const script of leadflowScripts)new vm.Script(script,{filename:'projects/leadflow-ai/index.html'});
+for(const secret of ['authorization: Bearer','sk_live_','xoxb-'])assert(!leadflowPage.includes(secret),'Sensitive credential pattern in demo');
+assert(!fs.existsSync(path.join(leadflowRoot,'zapfile.json')),'Private Zapier export must not be committed');
+console.log('LeadFlow AI demonstration and sanitized workflow checks passed.');
