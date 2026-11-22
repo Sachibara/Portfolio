@@ -83,7 +83,7 @@ async function askGateway(messages, token, fetchImpl) {
     signal: AbortSignal.timeout(25000),
     headers: {Authorization: "Bearer " + token, "Content-Type": "application/json"},
     body: JSON.stringify({
-      model: "nvidia/nemotron-3.5-lightning-free",
+      model: "google/gemini-3.1-flash-lite",
       messages: [{role: "system", content: SYSTEM}, ...messages],
       max_tokens: 600
     })
