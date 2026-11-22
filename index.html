@@ -416,7 +416,7 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 </div></dialog>
 <dialog id="assistant" class="portfolio-dialog assistant-dialog" aria-labelledby="assistantTitle">
 <div class="dialog-inner assistant-inner">
-<div class="dialog-top"><div class="ask-card-head"><span class="ask-avatar" aria-hidden="true">JC</span><div><strong id="assistantTitle">Portfolio assistant</strong><small data-assistant-mode>Scripted answers · instant</small></div></div>
+<div class="dialog-top"><div class="ask-card-head"><span class="ask-avatar" aria-hidden="true">JC</span><div><strong id="assistantTitle">Portfolio assistant</strong><small data-assistant-mode>AI answers</small></div></div>
 <button type="button" class="dialog-close" data-close="assistant" aria-label="Close assistant">✕</button></div>
 <div class="chat" id="chatLog" role="log" aria-live="polite" aria-label="Conversation"></div>
 <div class="ask-chips" id="chatChips"></div>
@@ -424,7 +424,7 @@ body>header,body>main,body>footer{position:relative}body>header{position:sticky}
 <input id="chatInput" type="text" maxlength="300" autocomplete="off" placeholder="Ask about projects, skills or experience…">
 <button class="icon-btn" type="button" id="chatMic" aria-label="Ask by voice" title="Ask by voice" hidden>🎙</button>
 <button class="btn primary" type="submit">Ask</button></form>
-<div class="chat-foot"><label class="chat-speak"><input type="checkbox" id="chatSpeak"> Read answers aloud</label><span id="chatNote">Answers are pre-written from this portfolio. For anything else, email me.</span></div>
+<div class="chat-foot"><label class="chat-speak"><input type="checkbox" id="chatSpeak"> Read answers aloud</label><span id="chatNote">Your questions and recent messages are sent to an AI model. Please leave out private information.</span></div>
 </div>
 </dialog>
 <aside class="world-clock" aria-label="Live regional clock" id="worldClock">
@@ -661,40 +661,11 @@ function paint(){
 window.addEventListener('scroll',paint,{passive:true});window.addEventListener('resize',paint,{passive:true});paint();
 })();
 
-/* Portfolio assistant.
-   Default: pre-written answers matched by keyword, entirely in the browser.
-   Optional: if the site's /api/ask endpoint reports it is configured, questions
-   are answered by an AI model that is restricted to this portfolio's facts.
-   Voice input and read-aloud use the browser's built-in speech features. */
 (function initAssistant(){
 var dialog=document.getElementById('assistant');if(!dialog||!dialog.showModal)return;
 var log=document.getElementById('chatLog'),form=document.getElementById('chatForm'),input=document.getElementById('chatInput');
-var chips=document.getElementById('chatChips'),note=document.getElementById('chatNote'),speak=document.getElementById('chatSpeak'),mic=document.getElementById('chatMic');
-var EMAIL='markcamus06@gmail.com';
-var ai={checked:false,enabled:false};
-var names=Object.keys(projectStudies);
-function projectAnswer(name){var p=projectStudies[name];return name+': '+p.summary+' '+p.demonstrates+' Built with '+p.tools.join(', ')+'.'}
-var topics=[
- {keys:['what do you do','who are you','about you','yourself','introduce','summary'],a:'I’m Jim Rodmark Camus, an AI engineer and full-stack developer with a foundation in IT network support and cybersecurity. I build AI-powered business tools, web applications, and the networks and systems they run on.'},
- {keys:['which project','first','best project','start with','recommend','flagship'],a:'Start with CamusOS, the newest flagship: a live operations workspace built with Vite. For network work open NetOps Enterprise, for IT service operations OpsFusion, and for security PyreWall. Each card in the Work section has a case study.'},
- {keys:['experience','work history','job','worked','career','intern','concentrix','freelance'],a:'Three roles: AI Engineer (Contractual) with Speak Your Way To Cash® in 2026 (prototypes, AI agent workflows, dashboards and integration planning); IT Network Support Intern at Concentrix; and freelance full-stack development and IT services.'},
- {keys:['trial','contract','sywtc','speak your way','ai engineer','prototype'],a:'As a contractual AI Engineer with Speak Your Way To Cash® in 2026 I worked on six workflow prototypes: an AI Command Center, Team Time Tracker, CEO Dashboard, Pitching Agent, Offer & Pricing Agent, and a Webinar Critique & Builder. Some integrations were not production-verified, and no company code or confidential data is shown here.'},
- {keys:['credential','certif','degree','education','study','graduate','school'],a:'BS Information Technology (Network Technology); Computer Systems Servicing NC II (TESDA); freeCodeCamp Python Certification; Certified Cybersecurity Educator Professional; Certified Red Team Operations Management; and Certified C++ Practitioner (CCPC).'},
- {keys:['skill','stack','tools','technolog','language','framework','python','javascript','supabase'],a:'Networking and infrastructure (TCP/IP, routing and switching, monitoring); cybersecurity (firewall design, filtering, access controls); software (Python, JavaScript, HTML, CSS, PyQt6, Flask, FastAPI, SQL); cloud and backend (Supabase, PostgreSQL, authentication, REST APIs, Vercel); and AI-assisted workflows and integrations.'},
- {keys:['contact','email','reach','hire','message','talk to you','get in touch'],a:'Email is best: '+EMAIL+'. My code is on GitHub at github.com/Sachibara. There is a Copy email button in the Contact section.'},
- {keys:['available','availability','open to','looking for','location','where are you','based','timezone','time zone','remote'],a:'I’m based in the Philippines (GMT+8), work remotely, and I’m open to opportunities. The clock at the bottom-left compares my time with yours.'},
- {keys:['network','noc','ipam','topology'],a:projectAnswer('NetOps Enterprise')},
- {keys:['security','firewall','cyber'],a:projectAnswer('PyreWall')},
- {keys:['help desk','helpdesk','service desk','ticket','itsm'],a:projectAnswer('OpsFusion')},
- {keys:['file','sharing','upload'],a:projectAnswer('OmniShare')}
-];
-function scripted(question){
-  var q=' '+question.toLowerCase().replace(/[^a-z0-9+#.\s]/g,' ')+' ';
-  for(var i=0;i<names.length;i++){if(q.indexOf(names[i].toLowerCase())>-1||q.indexOf(names[i].toLowerCase().replace(/\s+/g,''))>-1)return projectAnswer(names[i])}
-  var best=null,score=0;
-  topics.forEach(function(t){var s=0;t.keys.forEach(function(k){if(q.indexOf(k)>-1)s+=k.length});if(s>score){score=s;best=t}});
-  return best?best.a:'I don’t have a prepared answer for that. Try one of the suggested questions, or email me at '+EMAIL+' and I’ll answer personally.';
-}
+var chips=document.getElementById('chatChips'),speak=document.getElementById('chatSpeak'),mic=document.getElementById('chatMic');
+var history=[];
 function add(text,who,label){
   var m=document.createElement('div');m.className='msg'+(who==='me'?' me':'')+(who==='wait'?' wait':'');
   if(label){var s=document.createElement('small');s.textContent=label;m.appendChild(s)}
@@ -704,26 +675,34 @@ function say(text){
   if(!speak.checked||!('speechSynthesis' in window))return;
   try{window.speechSynthesis.cancel();window.speechSynthesis.speak(new SpeechSynthesisUtterance(text))}catch(e){}
 }
-function setMode(){
-  document.querySelectorAll('[data-assistant-mode]').forEach(function(el){el.textContent=ai.enabled?'AI answers · portfolio facts only':'Scripted answers · instant'});
-  note.textContent=ai.enabled?'Questions are sent to an AI model (Google Gemini) to write the answer. Please don’t include private information.':'Answers are pre-written from this portfolio. For anything else, email me.';
-}
-function checkAi(){
-  if(ai.checked)return Promise.resolve();ai.checked=true;
-  if(!window.fetch||location.protocol==='file:')return Promise.resolve();
-  return fetch('/api/ask',{method:'GET',headers:{'Accept':'application/json'}}).then(function(r){return r.ok?r.json():null}).then(function(d){ai.enabled=!!(d&&d.enabled===true);setMode()}).catch(function(){});
-}
 var busy=false;
-function ask(question){
-  question=String(question||'').trim().slice(0,300);if(!question||busy)return;
+async function ask(question){
+  question=String(question||'').trim().slice(0,300);
+  if(!question||busy)return;
+  busy=true;
   add(question,'me');input.value='';
-  if(!ai.enabled){var a=scripted(question);add(a,'bot','Scripted answer');say(a);return}
-  busy=true;var wait=add('Thinking…','wait');
-  fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:question})})
-   .then(function(r){return r.ok?r.json():Promise.reject(new Error('unavailable'))})
-   .then(function(d){if(!d||typeof d.answer!=='string'||!d.answer.trim())throw new Error('empty');wait.remove();add(d.answer.trim(),'bot','AI answer');say(d.answer.trim())})
-   .catch(function(){wait.remove();var a=scripted(question);add(a,'bot','Scripted answer · AI unavailable');say(a)})
-   .then(function(){busy=false});
+  var wait=add('Thinking…','wait');
+  var buttons=[form.querySelector('[type=submit]'),mic].concat(Array.from(chips.children));
+  buttons.forEach(function(button){button.disabled=true});
+  try{
+    var response=await fetch('/api/ask',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({question:question,history:history})
+    });
+    if(!response.ok)throw new Error(String(response.status));
+    var data=await response.json();
+    if(typeof data.answer!=='string'||!data.answer.trim())throw new Error('empty');
+    var answer=data.answer.trim();
+    history.push({role:'user',content:question},{role:'assistant',content:answer});
+    history=history.slice(-6);
+    add(answer,'bot','AI answer');say(answer);
+  }catch(error){
+    add(error.message==='429'?'Please wait a minute before asking again.':'The AI could not answer right now. Please try again.','bot');
+    if(!input.value)input.value=question;
+  }finally{
+    wait.remove();busy=false;
+    buttons.forEach(function(button){button.disabled=false});
+  }
 }
 ['What do you do?','Which project should I look at first?','What is CamusOS?','What is your experience?','What credentials do you have?','How can I contact you?'].forEach(function(q){
   var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=q;b.addEventListener('click',function(){ask(q)});chips.appendChild(b);
@@ -731,7 +710,7 @@ function ask(question){
 function open(question){
   if(!dialog.open){dialog.showModal()}
   if(!log.childNodes.length)add('Hi, I’m Jim’s portfolio assistant. Ask about his projects, skills, experience or how to reach him.','bot');
-  checkAi().then(function(){if(question)ask(question);else input.focus()});
+  if(question)ask(question);else input.focus();
 }
 document.querySelectorAll('[data-assistant-open]').forEach(function(b){b.addEventListener('click',function(){open()})});
 document.querySelectorAll('[data-ask]').forEach(function(b){b.addEventListener('click',function(){open(b.getAttribute('data-ask'))})});

@@ -1,5 +1,3 @@
-// Checks for the optional assistant backend (api/ask.js). Gemini is never called:
-// a fake fetch stands in for it, so these run offline and without an API key.
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
@@ -53,4 +51,21 @@ assert.equal(last.status, 429);
 assert.equal((await call('POST', { key: 'k', body: { question: 'anything' }, headers: { 'x-forwarded-for': '4.4.4.4' }, fetchImpl: async () => ({ ok: false }) })).status, 502);
 assert.equal((await call('POST', { key: 'k', body: { question: 'anything' }, headers: { 'x-forwarded-for': '4.4.4.5' }, fetchImpl: async () => { throw new Error('network'); } })).status, 502);
 delete process.env.GEMINI_API_KEY;
-console.log('Assistant backend checks passed: off by default, key stays server-side, origin and rate limits enforced.');
+process.env.AI_GATEWAY_API_KEY = 'gateway-test';
+const gateway = await call('POST', {
+  body: {question: 'Which of those has IPAM?', history: [
+    {role: 'user', content: 'Compare OpsFusion and NetOps.'},
+    {role: 'assistant', content: 'One handles support, the other network operations.'}
+  ]},
+  fetchImpl: async (url, init) => {
+    assert.equal(url, 'https://ai-gateway.vercel.sh/v1/chat/completions');
+    assert.equal(init.headers.Authorization, 'Bearer gateway-test');
+    const { messages } = JSON.parse(init.body);
+    assert.deepEqual(messages.map(m => m.role), ['system', 'user', 'assistant', 'user']);
+    assert.equal(messages.at(-1).content, 'Which of those has IPAM?');
+    return {ok: true, json: async () => ({choices: [{message: {content: 'NetOps Enterprise.'}}]})};
+  }
+});
+assert.deepEqual(gateway, {status: 200, json: {answer: 'NetOps Enterprise.'}});
+delete process.env.AI_GATEWAY_API_KEY;
+console.log('Assistant checks passed for Gemini, gateway conversation history, and error handling.');
