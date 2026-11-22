@@ -83,13 +83,14 @@ async function askGateway(messages, token, fetchImpl) {
     signal: AbortSignal.timeout(25000),
     headers: {Authorization: "Bearer " + token, "Content-Type": "application/json"},
     body: JSON.stringify({
-      model: "google/gemini-3.1-flash-lite",
+      model: "nvidia/nemotron-3.5-lightning-free",
       messages: [{role: "system", content: SYSTEM}, ...messages],
       max_tokens: 600
     })
   });
   if (!response.ok) {
-    console.warn("Portfolio AI gateway status", response.status);
+    const error = await response.json().catch(() => ({}));
+    console.warn("Portfolio AI gateway status", response.status, error.error?.type, error.error?.code);
     return "";
   }
   const answer = (await response.json()).choices?.[0]?.message?.content;
