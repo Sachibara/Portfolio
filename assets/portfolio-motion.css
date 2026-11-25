@@ -50,8 +50,23 @@
   }
   #services .svc-fig strong { font-size: clamp(4rem, 7vw, 7rem); }
 }
+#cursorGlow {
+  z-index: 45;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 17%, transparent), transparent 67%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  #services { padding-block: 0; }
+  #services .service-sheets { width: 100%; max-width: none; gap: 0; }
+  #services .service-sheet {
+    min-height: calc(100svh - var(--nav-height, 77px));
+    transform: scale(var(--sheet-scale, 1));
+    transform-origin: center;
+    border-radius: calc((1 - var(--sheet-scale, 1)) * 110px);
+    padding-inline: max(clamp(25px, 6vw, 88px), calc((100% - var(--width)) / 2));
+  }
+}
 @media (prefers-reduced-motion: no-preference) and (min-height: 650px) {
-  #services .service-sheet { position: sticky; top: 80px; }
+  #services .service-sheet { position: sticky; top: var(--nav-height, 77px); }
 }
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {

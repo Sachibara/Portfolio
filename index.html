@@ -488,15 +488,41 @@ var reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
 var finePointer=window.matchMedia('(hover: hover) and (pointer: fine)');
 var progress=document.getElementById('scrollProgress');
 var cursor=document.getElementById('cursorGlow');
+var services = document.getElementById('services');
+var siteHeader = document.querySelector('body > header');
+var sheetMotion = window.matchMedia('(prefers-reduced-motion: no-preference)');
+var lastSheetScale;
+function updateSheetScale() {
+  if (!sheetMotion.matches) return;
+  var bounds = services.getBoundingClientRect();
+  var available = Math.max(1, window.innerHeight - siteHeader.offsetHeight);
+  var distance = available * 0.72;
+  var enter = (window.innerHeight - bounds.top) / distance;
+  var leave = (bounds.bottom - siteHeader.offsetHeight) / distance;
+  var fit = Math.max(0, Math.min(1, enter, leave));
+  var scale = (0.80 + 0.20 * fit).toFixed(4);
+  if (scale !== lastSheetScale) {
+    services.style.setProperty('--sheet-scale', scale);
+    lastSheetScale = scale;
+  }
+}
+function measureSheetHeader() {
+  services.style.setProperty('--nav-height', siteHeader.offsetHeight + 'px');
+  requestScrollEffects();
+}
 var rafScroll=false;
 function updateScrollEffects(){
   var max=document.documentElement.scrollHeight-window.innerHeight;
   if(progress)progress.style.transform='scaleX('+(max>0?Math.min(1,Math.max(0,window.scrollY/max)):0)+')';
+  updateSheetScale();
   rafScroll=false;
 }
 function requestScrollEffects(){if(!rafScroll){rafScroll=true;window.requestAnimationFrame(updateScrollEffects)}}
 window.addEventListener('scroll',requestScrollEffects,{passive:true});
 window.addEventListener('resize',requestScrollEffects,{passive:true});
+measureSheetHeader();
+if ('ResizeObserver' in window) new ResizeObserver(measureSheetHeader).observe(siteHeader);
+sheetMotion.addEventListener('change', requestScrollEffects);
 updateScrollEffects();
 var sectionLinks=document.querySelectorAll('.nav-links a[href^="#"]');
 var observedSections=Array.from(sectionLinks).map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
