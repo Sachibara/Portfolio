@@ -1,0 +1,73 @@
+@media (prefers-reduced-motion: no-preference) and (min-height: 560px) {
+  #services .svc-grid {
+    display: block;
+    overflow: visible;
+    border: 0;
+    background: none;
+    isolation: isolate;
+  }
+  #services .svc {
+    position: sticky;
+    top: 88px;
+    min-height: min(48svh, 380px);
+    margin-bottom: clamp(28px, 6vh, 64px);
+    padding: clamp(24px, 4vw, 52px);
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+    box-shadow: 0 -10px 30px rgb(0 0 0 / 12%);
+    opacity: 1;
+    transform: none;
+  }
+  #services .svc:nth-child(even) { background: var(--panel2); }
+  #services .svc:last-child { margin-bottom: 0; }
+  #services .svc-cat { margin-top: .75rem; }
+  #services .svc h3 { font-size: clamp(1.45rem, 2.7vw, 2.5rem); }
+  #services .svc p { font-size: 1rem; }
+  #services .svc-fig { margin-top: 0; }
+  @media (min-width: 900px) {
+    #services > .wrap {
+      display: grid;
+      grid-template-columns: minmax(0, .83fr) minmax(0, 1fr);
+      align-items: start;
+      gap: clamp(40px, 7vw, 100px);
+    }
+    #services .section-head {
+      position: sticky;
+      top: 100px;
+      display: block;
+      opacity: 1;
+      transform: none;
+    }
+    #services .section-desc { margin-top: 1.5rem; }
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero { view-timeline-name: --intro; }
+    .hero .portrait-frame picture {
+      display: block;
+      height: 100%;
+      animation: portrait-depart linear both;
+      animation-timeline: --intro;
+      animation-range: exit 0% exit 100%;
+    }
+    @keyframes portrait-depart {
+      from { transform: scale(1); }
+      to { transform: translateY(6%) scale(1.14); }
+    }
+    #services .svc-fig strong {
+      animation: figure-arrive linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+    @keyframes figure-arrive {
+      from { opacity: .45; transform: translateY(.23em); }
+      to { opacity: 1; transform: none; }
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js-motion #services .svc { opacity: 1; transform: none; }
+}
