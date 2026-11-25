@@ -1,47 +1,57 @@
-@media (prefers-reduced-motion: no-preference) and (min-height: 560px) {
-  #services .svc-grid {
-    display: block;
-    overflow: visible;
+@supports (overflow: clip) { body { overflow-x: clip; } }
+#services { padding-block: clamp(24px, 5vw, 72px); }
+.service-sheets {
+  display: grid;
+  gap: clamp(14px, 2vw, 28px);
+  isolation: isolate;
+}
+#services .service-sheet {
+  min-height: calc(100svh - 104px);
+  margin: 0;
+  padding: clamp(25px, 6vw, 88px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+#services .section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background: radial-gradient(ellipse at top right, color-mix(in srgb, var(--accent) 14%, transparent), transparent 65%), var(--panel);
+}
+#services .section-title { font-size: clamp(2.6rem, 6.8vw, 6.4rem); }
+#services .svc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+  gap: 1rem;
+  background: var(--panel2);
+}
+#services .svc:nth-child(odd) { background: var(--panel); }
+#services .svc-cat, #services .svc h3, #services .svc p { margin: 0; }
+#services .svc h3 {
+  font-size: clamp(2rem, 5vw, 4.8rem);
+  line-height: 1.04;
+  max-width: 16ch;
+}
+#services .svc p { font-size: 1rem; max-width: 56ch; }
+#services .svc-fig { margin: .5rem 0 0; }
+#services .svc-fig strong { color: var(--accent); }
+@media (min-width: 850px) {
+  #services .svc { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); column-gap: 8%; }
+  #services .svc > :not(.svc-fig) { grid-column: 1; }
+  #services .svc-fig {
+    grid-area: 1 / 2 / span 4;
+    align-self: center;
     border: 0;
-    background: none;
-    isolation: isolate;
+    border-left: 1px solid var(--line);
+    padding: 1.5rem 0 1.5rem 15%;
   }
-  #services .svc {
-    position: sticky;
-    top: 88px;
-    min-height: min(48svh, 380px);
-    margin-bottom: clamp(28px, 6vh, 64px);
-    padding: clamp(24px, 4vw, 52px);
-    justify-content: center;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: var(--panel);
-    box-shadow: 0 -10px 30px rgb(0 0 0 / 12%);
-    opacity: 1;
-    transform: none;
-  }
-  #services .svc:nth-child(even) { background: var(--panel2); }
-  #services .svc:last-child { margin-bottom: 0; }
-  #services .svc-cat { margin-top: .75rem; }
-  #services .svc h3 { font-size: clamp(1.45rem, 2.7vw, 2.5rem); }
-  #services .svc p { font-size: 1rem; }
-  #services .svc-fig { margin-top: 0; }
-  @media (min-width: 900px) {
-    #services > .wrap {
-      display: grid;
-      grid-template-columns: minmax(0, .83fr) minmax(0, 1fr);
-      align-items: start;
-      gap: clamp(40px, 7vw, 100px);
-    }
-    #services .section-head {
-      position: sticky;
-      top: 100px;
-      display: block;
-      opacity: 1;
-      transform: none;
-    }
-    #services .section-desc { margin-top: 1.5rem; }
-  }
+  #services .svc-fig strong { font-size: clamp(4rem, 7vw, 7rem); }
+}
+@media (prefers-reduced-motion: no-preference) and (min-height: 650px) {
+  #services .service-sheet { position: sticky; top: 80px; }
 }
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
@@ -67,7 +77,4 @@
       to { opacity: 1; transform: none; }
     }
   }
-}
-@media (prefers-reduced-motion: reduce) {
-  html.js-motion #services .svc { opacity: 1; transform: none; }
 }
